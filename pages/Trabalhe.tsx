@@ -1,7 +1,38 @@
-import React from 'react';
-import { Send, Upload, Monitor, Globe } from 'lucide-react';
+import React, { useState } from 'react';
+import { Send,  Monitor, Globe, MessageCircle, FileText, CheckCircle } from 'lucide-react';
 
 const Trabalhe: React.FC = () => {
+  const [formData, setFormData] = useState({
+    nome: '',
+    telefone: '',
+    email: '',
+    mensagem: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Formata a mensagem para o WhatsApp
+    const text = `*CANDIDATURA VIA SITE*%0A%0A` +
+      `*Nome:* ${formData.nome}%0A` +
+      `*Telefone:* ${formData.telefone}%0A` +
+      `*Email:* ${formData.email}%0A` +
+      `*Mensagem:* ${formData.mensagem}%0A%0A` +
+      `_Olá, preenchi meus dados no site e gostaria de enviar meu currículo (PDF) por aqui._`;
+
+    // Redireciona para o WhatsApp Oficial
+    const whatsappUrl = `https://wa.me/5585981186205?text=${text}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="bg-background-light min-h-screen">
       {/* Page Header */}
@@ -15,57 +46,120 @@ const Trabalhe: React.FC = () => {
           
           {/* Left Column: Form */}
           <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-            <h2 className="text-2xl font-bold text-primary mb-2 font-heading">Quer trabalhar conosco ou propor uma parceria?</h2>
-            <p className="text-text-light mb-8">Preencha o formulário abaixo que um dos nossos especialistas entrará em contato.</p>
+            <h2 className="text-2xl font-bold text-primary mb-2 font-heading">Quer fazer parte do time?</h2>
+            <p className="text-text-light mb-8">Preencha seus dados iniciais abaixo. Para garantir que seu currículo seja analisado com agilidade, o envio do arquivo será feito diretamente pelo nosso WhatsApp Oficial.</p>
 
-            <form action="mailto:escritorio@vitorcoelho.adv.br" method="POST" encType="text/plain" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-text-main mb-1">Nome Completo</label>
-                <input required type="text" id="name" name="nome" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" placeholder="Seu nome" />
+                <label htmlFor="nome" className="block text-sm font-medium text-text-main mb-1">Nome Completo</label>
+                <input 
+                  required 
+                  type="text" 
+                  id="nome" 
+                  name="nome" 
+                  value={formData.nome}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
+                  placeholder="Seu nome completo" 
+                />
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-text-main mb-1">Telefone</label>
-                <input required type="tel" id="phone" name="telefone" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" placeholder="(00) 00000-0000" />
+                <label htmlFor="telefone" className="block text-sm font-medium text-text-main mb-1">Telefone / WhatsApp</label>
+                <input 
+                  required 
+                  type="tel" 
+                  id="telefone" 
+                  name="telefone" 
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
+                  placeholder="(00) 00000-0000" 
+                />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-text-main mb-1">E-mail</label>
-                <input required type="email" id="email" name="email" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" placeholder="seu@email.com" />
+                <input 
+                  required 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
+                  placeholder="seu@email.com" 
+                />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-text-main mb-1">Mensagem</label>
-                <textarea required id="message" name="mensagem" rows={5} className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" placeholder="Conte-nos sobre você..."></textarea>
+                <label htmlFor="mensagem" className="block text-sm font-medium text-text-main mb-1">Mensagem / Área de Interesse</label>
+                <textarea 
+                  required 
+                  id="mensagem" 
+                  name="mensagem" 
+                  value={formData.mensagem}
+                  onChange={handleChange}
+                  rows={4} 
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
+                  placeholder="Conte brevemente sobre sua experiência ou área de interesse (Ex: Previdenciário, Administrativo...)"
+                ></textarea>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-text-main mb-1">Anexar Currículo</label>
-                <div className="relative border-2 border-dashed border-gray-300 rounded-md p-8 text-center hover:bg-background-light transition cursor-pointer group">
-                    <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" name="curriculo" />
-                    <Upload className="mx-auto text-gray-400 mb-2 group-hover:text-secondary transition-colors" />
-                    <p className="text-sm text-gray-500 group-hover:text-text-main">Clique ou arraste seu arquivo aqui</p>
+              {/* Instructional Box for PDF */}
+              <div className="bg-blue-50 border border-blue-200 rounded-md p-4 flex items-start gap-3">
+                <FileText className="text-secondary flex-shrink-0 mt-1" size={24} />
+                <div className="text-sm text-blue-800">
+                  <p className="font-bold mb-1">Sobre o envio do Currículo (PDF):</p>
+                  <p>
+                    Ao clicar em "Enviar", você será direcionado para o nosso WhatsApp. 
+                    <strong> Por favor, anexe o arquivo do seu currículo diretamente na conversa</strong> para que nosso RH possa baixar e analisar.
+                  </p>
                 </div>
               </div>
 
               <button type="submit" className="w-full bg-whatsapp hover:bg-green-600 text-white font-bold py-4 rounded-md shadow-md transition-transform transform hover:scale-[1.02] flex items-center justify-center gap-2 text-lg">
-                Enviar <Send size={20} />
+                Enviar e Anexar Currículo <Send size={20} />
               </button>
             </form>
           </div>
 
           {/* Right Column: Info */}
-          <div className="flex flex-col items-center justify-center bg-primary p-8 rounded-lg border border-primary-dark text-center h-full min-h-[400px] text-white">
-            <div className="bg-white/10 p-8 rounded-full shadow-lg mb-8 ring-4 ring-secondary/50 backdrop-blur-sm">
-                <Monitor size={64} className="text-white" />
+          <div className="flex flex-col gap-6">
+            {/* Office Info */}
+            <div className="flex flex-col items-center justify-center bg-primary p-8 rounded-lg border border-primary-dark text-center flex-grow text-white">
+              <div className="bg-white/10 p-8 rounded-full shadow-lg mb-8 ring-4 ring-secondary/50 backdrop-blur-sm">
+                  <Monitor size={64} className="text-white" />
+              </div>
+              <h3 className="text-3xl font-heading font-bold text-white mb-6">Escritório 100% Digital</h3>
+              <p className="text-xl text-gray-200 leading-relaxed max-w-md font-light">
+                Atuamos de forma remota, atendendo clientes em todo o Brasil. Buscamos profissionais proativos, organizados e com facilidade em tecnologia.
+              </p>
+              <div className="mt-12 flex items-center gap-3 text-white bg-white/10 px-4 py-2 rounded-full shadow-sm border border-white/20">
+                  <Globe size={20} />
+                  <span className="text-sm font-medium uppercase tracking-wide">Atendimento Nacional</span>
+              </div>
             </div>
-            <h3 className="text-3xl font-heading font-bold text-white mb-6">Escritório 100% Digital</h3>
-            <p className="text-xl text-gray-200 leading-relaxed max-w-md font-light">
-              Atualmente o escritório trabalha apenas de forma remota, atendendo clientes em todo o Brasil com agilidade e eficiência digital.
-            </p>
-            <div className="mt-12 flex items-center gap-3 text-white bg-white/10 px-4 py-2 rounded-full shadow-sm border border-white/20">
-                <Globe size={20} />
-                <span className="text-sm font-medium uppercase tracking-wide">Atendimento Nacional</span>
+
+            {/* Benefits / Culture */}
+            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+               <h4 className="font-bold text-primary mb-4 flex items-center gap-2">
+                 <CheckCircle size={20} className="text-secondary" /> Por que trabalhar conosco?
+               </h4>
+               <ul className="space-y-3 text-sm text-text-light">
+                 <li className="flex items-start gap-2">
+                   <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-1.5"></span>
+                   Ambiente colaborativo e focado em resultados.
+                 </li>
+                 <li className="flex items-start gap-2">
+                   <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-1.5"></span>
+                   Oportunidade de aprendizado constante em Direito Previdenciário.
+                 </li>
+                 <li className="flex items-start gap-2">
+                   <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-1.5"></span>
+                   Flexibilidade do trabalho remoto.
+                 </li>
+               </ul>
             </div>
           </div>
         </div>
