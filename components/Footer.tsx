@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Image as ImageIcon, ChevronRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -11,13 +11,14 @@ const Footer: React.FC = () => {
           {/* Column 1: Brand & Logo */}
           <div className="space-y-6">
             {/* Logo Placeholder */}
-            <div className="w-[200px] h-[80px] border-2 border-dashed border-gray-600 bg-white/5 rounded-lg flex flex-col items-center justify-center text-gray-500 hover:border-secondary transition-colors cursor-pointer group">
-                 <div className="flex items-center gap-2 mb-1 group-hover:text-secondary">
-                    <ImageIcon size={24} />
-                    <span className="font-heading font-bold text-sm tracking-wider">LOGO AQUI</span>
-                 </div>
-                 <span className="text-[10px] font-mono bg-black/30 px-2 py-0.5 rounded text-gray-500">200 x 80 px (PNG)</span>
-            </div>
+            <Link to="/" className="block">
+              <div className="h-20 w-56 bg-white/5 border-2 border-dashed border-white/20 rounded flex items-center justify-center text-center p-2 group hover:bg-white/10 transition-all">
+                 <span className="text-gray-500 text-xs font-bold tracking-widest uppercase group-hover:text-gray-300">
+                   SUA LOGO AQUI<br/>
+                   <span className="text-[10px] font-normal opacity-70">(Recomendado: 250x80px)</span>
+                 </span>
+              </div>
+            </Link>
 
             <p className="text-sm leading-relaxed text-gray-400">
               Excelência e agilidade na defesa dos seus direitos. Atendimento digital humanizado em todo o território nacional.

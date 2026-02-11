@@ -139,10 +139,10 @@ const Civel: React.FC = () => {
            {/* Texto Centralizado na coluna dele */}
            <div className="relative z-10 text-center flex flex-col items-center">
               <h1 className="text-4xl lg:text-5xl font-heading font-bold text-primary leading-tight mb-6">
-                Dr. Vitor Coelho, advogado em Direito Civil que resolve seu caso com <span className="text-secondary">clareza e segurança</span>.
+                Soluções Jurídicas em Direito Civil e Família com <span className="text-secondary">Excelência e Resultado</span>
               </h1>
               <p className="text-lg text-text-light mb-8 leading-relaxed max-w-lg mx-auto text-justify">
-                Questões como Pensão Alimentícia, Guarda, União Estável, Retificação de Registro ou direitos de saúde não podem esperar. Nós cuidamos de tudo com foco no seu resultado e tranquilidade.
+                Conflitos familiares, questões sucessórias e direitos pessoais exigem mais que conhecimento técnico: exigem sensibilidade e estratégia. Nosso escritório oferece consultoria jurídica especializada em Direito Civil e Família, com foco em soluções práticas que protegem seus interesses e preservam relacionamentos. Atuamos em pensão alimentícia, guarda compartilhada, divórcio, herança, união estável e direitos de saúde com a máxima discrição e eficiência.
               </p>
               <a 
                 href="https://wa.me/5585981186205" 
@@ -156,15 +156,15 @@ const Civel: React.FC = () => {
            {/* Elemento gráfico/textual */}
            <div className="relative z-0 flex justify-center lg:justify-end">
              <div className="bg-white p-8 rounded-lg shadow-xl border-t-4 border-secondary max-w-md w-full">
-                <h3 className="text-xl font-bold text-primary mb-8 text-center font-heading">Por que escolher nosso escritório?</h3>
+                <h3 className="text-xl font-bold text-primary mb-8 text-center font-heading">Diferenciais do Nosso Escritório</h3>
                 <ul className="space-y-6">
                   <li className="flex items-start gap-4">
                     <div className="bg-primary p-3 rounded-full text-white flex-shrink-0">
                       <Smile size={24} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary mb-1">Atendimento Humanizado</h4>
-                      <p className="text-sm text-text-light">Entendemos que por trás de cada processo existe uma história de vida.</p>
+                      <h4 className="font-bold text-primary mb-1">Consultoria Especializada</h4>
+                      <p className="text-sm text-text-light">Expertise em Direito Civil e Família com profundo conhecimento das nuances legais e emocionais envolvidas em cada caso.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
@@ -172,8 +172,8 @@ const Civel: React.FC = () => {
                       <Clock size={24} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary mb-1">Soluções Ágeis</h4>
-                      <p className="text-sm text-text-light">Uso de tecnologia para acelerar a resolução do seu conflito.</p>
+                      <h4 className="font-bold text-primary mb-1">Estratégia Personalizada</h4>
+                      <p className="text-sm text-text-light">Cada caso é único. Desenvolvemos estratégias jurídicas customizadas que protegem seus interesses e preservam relacionamentos.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
@@ -181,8 +181,8 @@ const Civel: React.FC = () => {
                       <Shield size={24} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-primary mb-1">Sigilo Absoluto</h4>
-                      <p className="text-sm text-text-light">Segurança total e discrição com suas informações pessoais.</p>
+                      <h4 className="font-bold text-primary mb-1">Discrição e Confiança</h4>
+                      <p className="text-sm text-text-light">Sigilo absoluto e confidencialidade total. Suas informações pessoais e familiares são protegidas com máxima segurança.</p>
                     </div>
                   </li>
                 </ul>

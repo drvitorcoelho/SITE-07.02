@@ -1,37 +1,105 @@
-import React, { useState } from 'react';
-import { Send,  Monitor, Globe, MessageCircle, FileText, CheckCircle } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Monitor, Globe, CheckCircle } from 'lucide-react';
 
 const Trabalhe: React.FC = () => {
-  const [formData, setFormData] = useState({
-    nome: '',
-    telefone: '',
-    email: '',
-    mensagem: ''
-  });
+  useEffect(() => {
+    // Carregar o script do Zoho Forms
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.innerHTML = `
+    (function() {
+      try{
+        var f = document.createElement("iframe");
+        
+        var ifrmSrc = 'https://forms.zohopublic.com/escritoriovitor1/form/Querfazerpartedotime/formperma/4J1iOYSqUYkxx_FkRFfHmHyToEC_YDVbIMfMmgN3Oh4?zf_rszfm=1';
+        
+        try{
+          if ( typeof ZFAdvLead != "undefined" && typeof zfutm_zfAdvLead != "undefined"  ) {
+            for( var prmIdx = 0 ; prmIdx < ZFAdvLead.utmPNameArr.length ; prmIdx ++ ) {
+              var utmPm = ZFAdvLead.utmPNameArr[ prmIdx ];
+              utmPm = ( ZFAdvLead.isSameDomian && ( ZFAdvLead.utmcustPNameArr.indexOf(utmPm) == -1 ) ) ? "zf_" + utmPm : utmPm;
+              var utmVal = zfutm_zfAdvLead.zfautm_gC_enc( ZFAdvLead.utmPNameArr[ prmIdx ] );
+              if ( typeof utmVal !== "undefined" ) {
+                if ( utmVal != "" ) {
+                  if(ifrmSrc.indexOf('?') > 0){
+                    ifrmSrc = ifrmSrc+'&'+utmPm+'='+utmVal;
+                  }else{
+                    ifrmSrc = ifrmSrc+'?'+utmPm+'='+utmVal;
+                  }
+                }
+              }
+            }
+          }
+          if ( typeof ZFLead !== "undefined" && typeof zfutm_zfLead !== "undefined" ) {
+            for( var prmIdx = 0 ; prmIdx < ZFLead.utmPNameArr.length ; prmIdx ++ ) {
+              var utmPm = ZFLead.utmPNameArr[ prmIdx ];
+              var utmVal = zfutm_zfLead.zfutm_gC_enc( ZFLead.utmPNameArr[ prmIdx ] );
+              if ( typeof utmVal !== "undefined" ) {
+                if ( utmVal != "" ){
+                  if(ifrmSrc.indexOf('?') > 0){
+                    ifrmSrc = ifrmSrc+'&'+utmPm+'='+utmVal;
+                  }else{
+                    ifrmSrc = ifrmSrc+'?'+utmPm+'='+utmVal;
+                  }
+                }
+              }
+            }
+          }
+        }catch(e){}
+        
+        f.src = ifrmSrc;
+        f.style.border="none";
+        f.style.height="941px";
+        f.style.width="100%";
+        f.style.transition="all 0.5s ease";
+        f.setAttribute("aria-label", 'Quer fazer parte do time?');
+        
+        var d = document.getElementById("zf_div_4J1iOYSqUYkxx_FkRFfHmHyToEC_YDVbIMfMmgN3Oh4");
+        if(d) {
+          d.appendChild(f);
+        }
+        
+        window.addEventListener('message', function (event){
+          var evntData = event.data;
+          if( evntData && evntData.constructor == String ){
+            var zf_ifrm_data = evntData.split("|");
+            if ( zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3 ) {
+              var zf_perma = zf_ifrm_data[0];
+              var zf_ifrm_ht_nw = ( parseInt(zf_ifrm_data[1], 10) + 15 ) + "px";
+              var iframe = document.getElementById("zf_div_4J1iOYSqUYkxx_FkRFfHmHyToEC_YDVbIMfMmgN3Oh4").getElementsByTagName("iframe")[0];
+              if ( iframe && (iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0 ) {
+                var prevIframeHeight = iframe.style.height;
+                var zf_tout = false;
+                if( zf_ifrm_data.length == 3 ) {
+                  iframe.scrollIntoView();
+                  zf_tout = true;
+                }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+                if ( prevIframeHeight != zf_ifrm_ht_nw ) {
+                  if( zf_tout ) {
+                    setTimeout(function(){
+                      iframe.style.height = zf_ifrm_ht_nw;
+                    },500);
+                  } else {
+                    iframe.style.height = zf_ifrm_ht_nw;
+                  }
+                }
+              }
+            }
+          }
+        }, false);
+      }catch(e){}
+    })();
+    `;
     
-    // Formata a mensagem para o WhatsApp
-    const text = `*CANDIDATURA VIA SITE*%0A%0A` +
-      `*Nome:* ${formData.nome}%0A` +
-      `*Telefone:* ${formData.telefone}%0A` +
-      `*Email:* ${formData.email}%0A` +
-      `*Mensagem:* ${formData.mensagem}%0A%0A` +
-      `_Olá, preenchi meus dados no site e gostaria de enviar meu currículo (PDF) por aqui._`;
+    document.body.appendChild(script);
 
-    // Redireciona para o WhatsApp Oficial
-    const whatsappUrl = `https://wa.me/5585981186205?text=${text}`;
-    window.open(whatsappUrl, '_blank');
-  };
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-background-light min-h-screen">
@@ -47,81 +115,10 @@ const Trabalhe: React.FC = () => {
           {/* Left Column: Form */}
           <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
             <h2 className="text-2xl font-bold text-primary mb-2 font-heading">Quer fazer parte do time?</h2>
-            <p className="text-text-light mb-8">Preencha seus dados iniciais abaixo. Para garantir que seu currículo seja analisado com agilidade, o envio do arquivo será feito diretamente pelo nosso WhatsApp Oficial.</p>
+            <p className="text-text-light mb-8">Preencha o formulário abaixo com seus dados e anexe seu currículo. Um dos nossos especialistas entrará em contato em breve.</p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="nome" className="block text-sm font-medium text-text-main mb-1">Nome Completo</label>
-                <input 
-                  required 
-                  type="text" 
-                  id="nome" 
-                  name="nome" 
-                  value={formData.nome}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
-                  placeholder="Seu nome completo" 
-                />
-              </div>
-
-              <div>
-                <label htmlFor="telefone" className="block text-sm font-medium text-text-main mb-1">Telefone / WhatsApp</label>
-                <input 
-                  required 
-                  type="tel" 
-                  id="telefone" 
-                  name="telefone" 
-                  value={formData.telefone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
-                  placeholder="(00) 00000-0000" 
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-text-main mb-1">E-mail</label>
-                <input 
-                  required 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
-                  placeholder="seu@email.com" 
-                />
-              </div>
-
-              <div>
-                <label htmlFor="mensagem" className="block text-sm font-medium text-text-main mb-1">Mensagem / Área de Interesse</label>
-                <textarea 
-                  required 
-                  id="mensagem" 
-                  name="mensagem" 
-                  value={formData.mensagem}
-                  onChange={handleChange}
-                  rows={4} 
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition bg-background-light" 
-                  placeholder="Conte brevemente sobre sua experiência ou área de interesse (Ex: Previdenciário, Administrativo...)"
-                ></textarea>
-              </div>
-
-              {/* Instructional Box for PDF */}
-              <div className="bg-blue-50 border border-blue-200 rounded-md p-4 flex items-start gap-3">
-                <FileText className="text-secondary flex-shrink-0 mt-1" size={24} />
-                <div className="text-sm text-blue-800">
-                  <p className="font-bold mb-1">Sobre o envio do Currículo (PDF):</p>
-                  <p>
-                    Ao clicar em "Enviar", você será direcionado para o nosso WhatsApp. 
-                    <strong> Por favor, anexe o arquivo do seu currículo diretamente na conversa</strong> para que nosso RH possa baixar e analisar.
-                  </p>
-                </div>
-              </div>
-
-              <button type="submit" className="w-full bg-whatsapp hover:bg-green-600 text-white font-bold py-4 rounded-md shadow-md transition-transform transform hover:scale-[1.02] flex items-center justify-center gap-2 text-lg">
-                Enviar e Anexar Currículo <Send size={20} />
-              </button>
-            </form>
+            {/* Zoho Form Container */}
+            <div id="zf_div_4J1iOYSqUYkxx_FkRFfHmHyToEC_YDVbIMfMmgN3Oh4"></div>
           </div>
 
           {/* Right Column: Info */}

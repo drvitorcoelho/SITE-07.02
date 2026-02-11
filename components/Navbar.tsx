@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Facebook, Linkedin, Image as ImageIcon, CalendarCheck } from 'lucide-react';
+import { Menu, X, Instagram, Facebook, Linkedin, CalendarCheck } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,16 +49,14 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-28">
             
-            {/* Logo Placeholder Block */}
+            {/* Logo Placeholder */}
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" onClick={() => setIsOpen(false)} className="group" title="Voltar ao início">
-                {/* Visual Placeholder for Logo Insertion */}
-                <div className="w-[240px] h-[70px] border-2 border-dashed border-gray-400/50 bg-white/5 rounded-md flex flex-col items-center justify-center text-gray-400 group-hover:border-secondary transition-colors cursor-pointer">
-                    <div className="flex items-center gap-2 mb-1">
-                        <ImageIcon size={20} />
-                        <span className="font-heading font-bold text-sm tracking-wider">LOGO AQUI</span>
-                    </div>
-                    <span className="text-[10px] font-mono bg-black/20 px-2 py-0.5 rounded text-gray-500">250 x 70 px</span>
+              <Link to="/" onClick={() => setIsOpen(false)} title="Voltar ao início">
+                <div className="h-20 w-56 bg-white/5 border-2 border-dashed border-white/30 rounded flex items-center justify-center text-center p-2 group hover:bg-white/10 transition-all">
+                   <span className="text-white/50 text-xs font-bold tracking-widest uppercase group-hover:text-white">
+                     SUA LOGO AQUI<br/>
+                     <span className="text-[10px] font-normal opacity-70">(Recomendado: 250x80px)</span>
+                   </span>
                 </div>
               </Link>
             </div>
