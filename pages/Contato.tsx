@@ -130,47 +130,78 @@ const Contato: React.FC = () => {
               </div>
             </div>
 
-            {/* Campo Assunto */}
+            {/* Campo Necessidade (Combinado) */}
             <div>
-              <label htmlFor="assunto" className="block text-sm font-bold text-primary mb-2">
-                Assunto *
+              <label htmlFor="necessidade" className="block text-sm font-bold text-primary mb-2">
+                Qual é sua necessidade? *
               </label>
               <select
-                id="assunto"
-                name="assunto"
+                id="necessidade"
+                name="necessidade"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary bg-white text-gray-900"
               >
-                <option value="">Selecione o assunto</option>
-                <option value="Aposentadoria INSS">Aposentadoria INSS</option>
-                <option value="Benefício por Incapacidade">Benefício por Incapacidade</option>
-                <option value="BPC/LOAS">BPC/LOAS</option>
-                <option value="Salário Maternidade">Salário Maternidade</option>
-                <option value="Aposentadoria PCD">Aposentadoria PCD</option>
-                <option value="Revisão de Benefício">Revisão de Benefício</option>
-                <option value="Direito Cível e Família">Direito Cível e Família</option>
-                <option value="Direito à Saúde">Direito à Saúde</option>
-                <option value="Outro">Outro</option>
-              </select>
-            </div>
+                <option value="">Selecione sua necessidade</option>
+                
+                {/* GRUPO: APOSENTADORIAS */}
+                <optgroup label="Aposentadorias">
+                  <option value="Consulta - Aposentadoria INSS">Consulta: Aposentadoria INSS</option>
+                  <option value="Análise - Aposentadoria INSS">Análise: Aposentadoria INSS</option>
+                  <option value="Ação Judicial - Aposentadoria INSS">Ação Judicial: Aposentadoria INSS</option>
+                  <option value="Revisão - Aposentadoria INSS">Revisão: Aposentadoria INSS</option>
+                </optgroup>
 
-            {/* Campo Tipo de Serviço */}
-            <div>
-              <label htmlFor="servico" className="block text-sm font-bold text-primary mb-2">
-                Tipo de Serviço *
-              </label>
-              <select
-                id="servico"
-                name="servico"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary bg-white text-gray-900"
-              >
-                <option value="">Qual serviço você precisa?</option>
-                <option value="Consulta Inicial">Consulta Inicial</option>
-                <option value="Análise de Caso">Análise de Caso</option>
-                <option value="Representação Jurídica">Representação Jurídica</option>
-                <option value="Planejamento Previdenciário">Planejamento Previdenciário</option>
-                <option value="Revisão de Benefício">Revisão de Benefício</option>
+                {/* GRUPO: BENEFÍCIOS POR INCAPACIDADE */}
+                <optgroup label="Benefícios por Incapacidade">
+                  <option value="Consulta - Benefício por Incapacidade">Consulta: Benefício por Incapacidade</option>
+                  <option value="Análise - Benefício por Incapacidade">Análise: Benefício por Incapacidade</option>
+                  <option value="Ação Judicial - Benefício por Incapacidade">Ação Judicial: Benefício por Incapacidade</option>
+                  <option value="Revisão - Benefício por Incapacidade">Revisão: Benefício por Incapacidade</option>
+                </optgroup>
+
+                {/* GRUPO: BPC/LOAS */}
+                <optgroup label="BPC/LOAS">
+                  <option value="Consulta - BPC/LOAS">Consulta: BPC/LOAS</option>
+                  <option value="Análise - BPC/LOAS">Análise: BPC/LOAS</option>
+                  <option value="Ação Judicial - BPC/LOAS">Ação Judicial: BPC/LOAS</option>
+                  <option value="Revisão - BPC/LOAS">Revisão: BPC/LOAS</option>
+                </optgroup>
+
+                {/* GRUPO: SALÁRIO MATERNIDADE */}
+                <optgroup label="Salário Maternidade">
+                  <option value="Consulta - Salário Maternidade">Consulta: Salário Maternidade</option>
+                  <option value="Análise - Salário Maternidade">Análise: Salário Maternidade</option>
+                  <option value="Ação Judicial - Salário Maternidade">Ação Judicial: Salário Maternidade</option>
+                </optgroup>
+
+                {/* GRUPO: APOSENTADORIA PCD */}
+                <optgroup label="Aposentadoria PCD">
+                  <option value="Consulta - Aposentadoria PCD">Consulta: Aposentadoria PCD</option>
+                  <option value="Análise - Aposentadoria PCD">Análise: Aposentadoria PCD</option>
+                  <option value="Ação Judicial - Aposentadoria PCD">Ação Judicial: Aposentadoria PCD</option>
+                  <option value="Revisão - Aposentadoria PCD">Revisão: Aposentadoria PCD</option>
+                </optgroup>
+
+                {/* GRUPO: DIREITO CÍVEL E FAMÍLIA */}
+                <optgroup label="Direito Cível e Família">
+                  <option value="Consulta - Direito Cível e Família">Consulta: Direito Cível e Família</option>
+                  <option value="Análise - Direito Cível e Família">Análise: Direito Cível e Família</option>
+                  <option value="Ação Judicial - Direito Cível e Família">Ação Judicial: Direito Cível e Família</option>
+                </optgroup>
+
+                {/* GRUPO: DIREITO À SAÚDE */}
+                <optgroup label="Direito à Saúde">
+                  <option value="Consulta - Direito à Saúde">Consulta: Direito à Saúde</option>
+                  <option value="Análise - Direito à Saúde">Análise: Direito à Saúde</option>
+                  <option value="Ação Judicial - Direito à Saúde">Ação Judicial: Direito à Saúde</option>
+                </optgroup>
+
+                {/* GRUPO: PLANEJAMENTO */}
+                <optgroup label="Planejamento">
+                  <option value="Planejamento Previdenciário">Planejamento Previdenciário</option>
+                </optgroup>
+
+                {/* OPÇÃO GERAL */}
                 <option value="Outro">Outro</option>
               </select>
             </div>
