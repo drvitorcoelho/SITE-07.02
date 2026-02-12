@@ -136,7 +136,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
       } else if (alertType === 'nao_tempestiva') {
           text += `*Alerta:* Minha contribuição pode não ter sido tempestiva.`;
       } else if (showResult) {
-          text += `*Resultados Estimados (Valor Base):*%0A- Valor Total: ${formatCurrency(beneficioBase)}%0A- 13º Salário Proporcional (Possível Acréscimo): ${formatCurrency(abono13o)}%0A%0AQuero garantir esse benefício!`;
+          text += `*Resultados Estimados (Valor Base):*%0A- Valor Total: ${formatCurrency(beneficioBase)}%0A- 13º Salário Proporcional (Possível Acréscimo): ${formatCurrency(abono13o)}%0A%0AGostaria de mais informações.`;
           if (temFilhos) {
               text += `%0A%0A*Observação:* Tenho outros filhos nascidos nos últimos 5 anos e gostaria de analisar os direitos retroativos.`;
           }
@@ -170,15 +170,22 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
         {/* Header */}
         <div className="bg-primary-dark text-white p-8 text-center">
           <h1 className="text-3xl md:text-4xl font-heading font-bold mb-2">
-            Calculadora de Salário-Maternidade Rural 2026
+            Simulador de Salário-Maternidade Rural 2026
           </h1>
           <p className="text-gray-200 text-lg">
-            Descubra o valor estimado do seu benefício e entenda o cálculo passo a passo.
+            Descubra o valor estimado do benefício e entenda os requisitos.
           </p>
         </div>
 
         <div className="p-8 md:p-12">
           
+          {/* Disclaimer */}
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+            <p className="text-sm text-yellow-800">
+              <strong>Aviso:</strong> Esta calculadora é apenas informativa. A concessão de benefícios depende de análise individual de cada situação conforme legislação vigente do INSS e análise documental.
+            </p>
+          </div>
+
           {/* Form Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div className="col-span-1 md:col-span-2">
@@ -229,7 +236,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
             className="w-full bg-primary hover:bg-primary-dark text-white p-5 rounded-lg text-xl font-bold transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-3"
           >
             <Calculator size={28} />
-            CALCULAR MEU DIREITO AGORA
+            SIMULAR BENEFÍCIO
           </button>
 
           {/* Results / Errors Section */}
@@ -243,7 +250,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                   <div>
                     <strong className="block text-2xl mb-2 font-heading text-blue-800">Atenção: Caso de 2025.</strong>
                     <p className="text-lg mb-6">
-                      Identificamos que as datas informadas são de 2025. Este é um ano de transição de regras e valores, exigindo uma análise detalhada. Para garantir seu direito, é fundamental falar com um de nossos especialistas.
+                      Identificamos que as datas informadas são de 2025. Este é um ano de transição de regras e valores, exigindo uma análise detalhada. Para verificar seu direito, é fundamental falar com um de nossos especialistas.
                     </p>
                     <a 
                       href={getWhatsappLink()}
@@ -291,7 +298,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                   <div>
                     <strong className="block text-2xl mb-2 font-heading text-red-700">Atenção: Filiação e Carência são Essenciais!</strong>
                     <p className="text-lg mb-6">
-                      Para ter direito ao Salário-Maternidade Rural, é fundamental comprovar a filiação ao RGPS e a carência necessária ANTES ou NO PERÍODO da gravidez/parto. Sem a comprovação adequada, o INSS pode negar seu benefício.
+                      Para ter direito ao Salário-Maternidade Rural, é fundamental comprovar a filiação ao RGPS e a carência necessária ANTES ou NO PERÍODO da gravidez/parto. Sem a comprovação adequada, o INSS pode indeferir seu benefício.
                     </p>
                     <a 
                       href={getWhatsappLink()}
@@ -300,7 +307,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                       className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
                     >
                       <MessageCircle size={20} />
-                      Pedir Ajuda com Documentação
+                      Consultar sobre Documentação
                     </a>
                   </div>
                 </div>
@@ -315,7 +322,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                   <div>
                     <strong className="block text-2xl mb-2 font-heading text-red-700">Alerta: Contribuição Não Tempestiva.</strong>
                     <p className="text-lg mb-6">
-                      A contribuição única informada não foi paga dentro do prazo legal de vencimento da competência. Isso pode gerar a negativa do benefício pelo INSS. É crucial que você fale com um de nossos especialistas para analisar seu caso.
+                      A contribuição única informada não foi paga dentro do prazo legal de vencimento da competência. Isso pode impactar o reconhecimento do direito. É crucial que você fale com um de nossos especialistas para analisar seu caso.
                     </p>
                     <a 
                       href={getWhatsappLink()}
@@ -324,7 +331,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                       className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
                     >
                       <MessageCircle size={20} />
-                      Analisar Estratégia
+                      Analisar Situação
                     </a>
                   </div>
                 </div>
@@ -341,8 +348,8 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                       <div className="flex items-start gap-3">
                          <DollarSign size={24} className="text-emerald-600 mt-1" />
                          <div>
-                            <strong className="block text-lg mb-1 font-heading">Você pode ter direitos acumulados!</strong>
-                            <p>Identificamos que você tem outros filhos nascidos nos últimos 5 anos. Isso significa que você pode ter direito a valores retroativos significativos de Salário-Maternidade Rural.</p>
+                            <strong className="block text-lg mb-1 font-heading">Possíveis direitos acumulados</strong>
+                            <p>Identificamos que você tem outros filhos nascidos nos últimos 5 anos. Isso significa que você pode ter direito a valores retroativos de Salário-Maternidade Rural, caso preencha os requisitos na época.</p>
                          </div>
                       </div>
                    </div>
@@ -355,7 +362,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                          <AlertTriangle size={24} className="text-orange-600 mt-1" />
                          <div>
                             <strong className="block text-lg mb-1 font-heading">Atenção sobre o Bolsa Família</strong>
-                            <p>O Salário-Maternidade é considerado renda e pode impactar o seu Bolsa Família, levando à <strong>suspensão temporária</strong> do benefício enquanto você recebe o auxílio do INSS. <strong>Não corra riscos!</strong> Fale com um de nossos especialistas para planejarmos essa transição.</p>
+                            <p>O Salário-Maternidade é considerado renda e pode impactar o seu Bolsa Família, podendo levar à <strong>suspensão temporária</strong> do benefício. Fale com um de nossos especialistas para entender melhor essa questão.</p>
                          </div>
                       </div>
                    </div>
@@ -368,12 +375,12 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                     <div className="text-5xl md:text-6xl font-extrabold my-4 font-heading">{formatCurrency(beneficioBase)}</div>
                     
                     <p className="text-sm text-blue-100 bg-white/10 inline-block px-4 py-2 rounded-lg mb-4 font-medium backdrop-blur-sm">
-                       *O valor total acima não inclui o 13º salário, que pode ser um acréscimo de <span className="text-white font-bold underline decoration-2">{formatCurrency(abono13o)}</span> a ser buscado.
+                       *O valor total acima não inclui o 13º salário, que pode ser um acréscimo de <span className="text-white font-bold underline decoration-2">{formatCurrency(abono13o)}</span>.
                     </p>
 
                     <div className="mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold bg-green-500/20 border border-green-400 text-white backdrop-blur-sm">
                       <CheckCircle size={16} />
-                      <span>Estratégia Válida: Situação indica forte direito ao benefício!</span>
+                      <span>Simulação: Indicativo de direito (sujeito à análise)</span>
                     </div>
                   </div>
                 </div>
@@ -382,24 +389,24 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                 {postPartoWarning && (
                   <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg text-yellow-900 shadow-sm">
                     <strong className="block text-lg mb-2 font-heading flex items-center gap-2">
-                       <AlertTriangle size={20} /> Importante: Contribuição Paga Após o Parto (mas tempestiva).
+                       <AlertTriangle size={20} /> Importante: Contribuição Paga Após o Parto.
                     </strong>
                     <p>
-                      A contribuição única informada foi realizada APÓS a data do parto, mas foi paga dentro do prazo da competência. Isso é legalmente válido, mas o INSS pode tentar negar por formalismo. Fale com um especialista!
+                      A contribuição única informada foi realizada APÓS a data do parto, mas foi paga dentro do prazo da competência. Isso é legalmente válido, mas pode gerar questionamentos pelo INSS. Fale com um especialista!
                     </p>
                   </div>
                 )}
 
                 {/* 5. Info 13o */}
                 <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg text-blue-900 text-sm leading-relaxed shadow-sm">
-                  <strong className="block text-lg mb-1 font-heading">Atenção sobre o 13º Salário (Abono Anual):</strong>
-                  O 13º salário proporcional (4/12 do salário mínimo) é devido no salário-maternidade e, pela regra do INSS, é pago <strong>juntamente com a última parcela do benefício</strong>. O valor total estimado acima <strong>não inclui</strong> o 13º salário, que pode ser um <strong>acréscimo possível</strong> a ser analisado e solicitado.
+                  <strong className="block text-lg mb-1 font-heading">Sobre o 13º Salário (Abono Anual):</strong>
+                  O 13º salário proporcional é devido no salário-maternidade e, pela regra do INSS, é pago juntamente com a última parcela do benefício. O valor total estimado acima <strong>não inclui</strong> o 13º salário, que é calculado proporcionalmente aos meses de duração do benefício.
                 </div>
 
                 {/* 6. Info Imposto */}
                 <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg text-green-900 text-sm leading-relaxed shadow-sm">
-                  <strong className="block text-lg mb-1 font-heading">Boas Notícias sobre Impostos:</strong>
-                  O valor do seu benefício é pago <strong>integralmente, sem descontos de Imposto de Renda</strong>. Isso ocorre porque o valor mensal do salário-maternidade rural (um salário mínimo) está dentro da faixa de isenção da Receita Federal.
+                  <strong className="block text-lg mb-1 font-heading">Informação sobre Impostos:</strong>
+                  O valor do benefício é pago integralmente, sem descontos de Imposto de Renda, quando o valor mensal do salário-maternidade rural (um salário mínimo) está dentro da faixa de isenção da Receita Federal.
                 </div>
 
                 {/* 7. Calculation Steps */}
@@ -417,7 +424,7 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
                     <div className="flex justify-between items-center py-2 border-b border-dashed border-gray-200">
                       <span className="font-medium text-gray-600">13º Salário Proporcional (Abono Anual)</span>
                       <span className="font-bold text-gray-500 text-lg">
-                        {formatCurrency(abono13o)} <span className="text-xs font-normal">(Possível Acréscimo)</span>
+                        {formatCurrency(abono13o)} <span className="text-xs font-normal">(Estimado)</span>
                       </span>
                     </div>
 
@@ -430,9 +437,9 @@ const CalculadoraSalarioMaternidade: React.FC = () => {
 
                 {/* 8. CTA Section */}
                 <div className="bg-[#fff8e1] border-2 border-[#ffe082] rounded-xl p-8 text-center shadow-md">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2 font-heading">Seu Direito Pode Valer Muito!</h3>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2 font-heading">Busque seus direitos</h3>
                   <p className="text-gray-600 mb-6 text-lg">
-                    Esta é apenas uma estimativa do valor base. Nossa equipe de especialistas está pronta para analisar seu caso e buscar o possível acréscimo do 13º salário.
+                    Esta é apenas uma estimativa do valor base. Nossa equipe de especialistas está pronta para analisar seu caso e verificar o cumprimento de todos os requisitos legais.
                   </p>
                   
                   <a 

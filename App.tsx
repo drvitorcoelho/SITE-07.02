@@ -12,6 +12,9 @@ import Saude from './pages/Saude';
 import SalarioMaternidade from './pages/SalarioMaternidade';
 import CalculadoraSalarioMaternidade from './pages/CalculadoraSalarioMaternidade';
 import AposentadoriaPcd from './pages/AposentadoriaPcd';
+import QuemSomos from './pages/QuemSomos';
+import FAQ from './pages/FAQ';
+import Contato from './pages/Contato';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -33,14 +36,17 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/quem-somos" element={<QuemSomos />} />
             <Route path="/previdenciario" element={<Previdenciario />} />
             <Route path="/civel" element={<Civel />} />
             <Route path="/saude" element={<Saude />} />
-            <Route path="/trabalhe" element={<Trabalhe />} />
             <Route path="/bpc-loas" element={<BpcLoas />} />
             <Route path="/salario-maternidade" element={<SalarioMaternidade />} />
             <Route path="/calculadora-salario-maternidade-rural" element={<CalculadoraSalarioMaternidade />} />
             <Route path="/aposentadoria-pcd" element={<AposentadoriaPcd />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/trabalhe" element={<Trabalhe />} />
           </Routes>
         </main>
         <Footer />

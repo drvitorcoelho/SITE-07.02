@@ -7,6 +7,7 @@ import {
   Dna, Briefcase, ClipboardList
 } from 'lucide-react';
 import CalculatorShortcuts from '../components/CalculatorShortcuts';
+import NewsletterForm from '../components/NewsletterForm';
 
 // --- DADOS DOS CARROSSÉIS (Conteúdo solicitado) ---
 
@@ -14,7 +15,7 @@ const previdenciarioData = [
   {
     icon: <Stethoscope size={32} />,
     title: "Benefícios por Incapacidade",
-    description: "Garantia de direitos para trabalhadores incapacitados temporária ou permanentemente.",
+    description: "Análise de direitos para trabalhadores incapacitados temporária ou permanentemente.",
     services: ["Auxílio-Doença", "Aposentadoria por Invalidez", "Auxílio-Acidente", "Análise de elegibilidade"],
     link: "/previdenciario",
     btnText: "Saiba Mais"
@@ -23,14 +24,14 @@ const previdenciarioData = [
     icon: <Handshake size={32} />,
     title: "BPC/LOAS",
     description: "Amparo assistencial para idosos e pessoas com deficiência em situação de vulnerabilidade.",
-    services: ["Análise de vulnerabilidade", "Perícia biopsicossocial", "Revisão de benefícios", "Recursos contra negativas"],
+    services: ["Análise de vulnerabilidade", "Perícia biopsicossocial", "Revisão de benefícios", "Recursos administrativos"],
     link: "/bpc-loas",
-    btnText: "Verificar Direito"
+    btnText: "Verificar Requisitos"
   },
   {
     icon: <Baby size={32} />,
     title: "Salário-Maternidade Rural",
-    description: "Garantia do direito de mães rurais, urbanas e desempregadas. Inclui contribuição única estratégica.",
+    description: "Informações sobre direitos de mães rurais, urbanas e desempregadas.",
     services: ["Cálculo do benefício (4 meses)", "13º salário proporcional", "Contribuição única (2025)", "Casos retroativos"],
     link: "/salario-maternidade",
     btnText: "Calcular Agora"
@@ -38,7 +39,7 @@ const previdenciarioData = [
   {
     icon: <Accessibility size={32} />,
     title: "Aposentadoria PCD",
-    description: "Regras reduzidas de tempo e idade para pessoas com deficiência comprovada.",
+    description: "Regras específicas de tempo e idade para pessoas com deficiência comprovada.",
     services: ["Avaliação biopsicossocial", "Graus de deficiência (Grave, Moderada, Leve)", "Cálculo de elegibilidade", "Revisão de benefícios"],
     link: "/aposentadoria-pcd",
     btnText: "Calcular Agora"
@@ -46,7 +47,7 @@ const previdenciarioData = [
   {
     icon: <Briefcase size={32} />, // Using Briefcase or similar for Fibromialgia represents work capacity issues
     title: "Fibromialgia e PCD",
-    description: "Reconhecimento oficial pela Lei 15.176/2025. Direito à aposentadoria com regras reduzidas.",
+    description: "Reconhecimento pela Lei 15.176/2025. Análise de aposentadoria com regras específicas.",
     services: ["Lei 15.176/2025 (vigência 2026)", "Perícia médica especializada", "Laudo reumatológico", "Cálculo de benefício"],
     link: "/aposentadoria-pcd",
     btnText: "Saiba Mais"
@@ -55,14 +56,14 @@ const previdenciarioData = [
     icon: <Eye size={32} />,
     title: "Visão Monocular",
     description: "Reconhecimento da perda total de visão em um olho como deficiência sensorial (Lei 14.126/2021).",
-    services: ["Tema 378 da TNU", "Avaliação biopsicossocial", "Isenção de IR", "Aposentadoria reduzida"],
+    services: ["Tema 378 da TNU", "Avaliação biopsicossocial", "Isenção de IR", "Aposentadoria PCD"],
     link: "/aposentadoria-pcd",
     btnText: "Saiba Mais"
   },
   {
     icon: <FileBarChart2 size={32} />,
     title: "Revisões de Benefícios",
-    description: "Análise e proposição de ações para corrigir valores e aumentar o benefício previdenciário.",
+    description: "Análise jurídica para verificação de valores e possibilidade de revisão previdenciária.",
     services: ["Revisão da vida toda", "Cálculo de diferenças", "Ação de cobrança", "Atualização de valores"],
     link: "/previdenciario",
     btnText: "Saiba Mais"
@@ -73,7 +74,7 @@ const civelData = [
   {
     icon: <HeartHandshake size={32} />,
     title: "Direito de Família",
-    description: "Resolução de questões familiares com sensibilidade e profissionalismo.",
+    description: "Consultoria em questões familiares com foco na legislação vigente.",
     services: ["Divórcio (judicial e extrajudicial)", "Guarda e visitas", "Pensão alimentícia", "Mediação familiar"],
     link: "/civel",
     btnText: "Saiba Mais"
@@ -81,15 +82,15 @@ const civelData = [
   {
     icon: <Scale size={32} />,
     title: "Obrigações de Fazer",
-    description: "Ações para cumprimento de obrigações legais e contratuais.",
-    services: ["Liberação de cirurgias", "Liberação de medicamentos", "Cumprimento de contratos", "Ações contra planos"],
+    description: "Ações relativas ao cumprimento de obrigações legais e contratuais na área da saúde.",
+    services: ["Procedimentos cirúrgicos", "Medicamentos", "Cumprimento de contratos", "Planos de saúde"],
     link: "/saude",
     btnText: "Saiba Mais"
   },
   {
     icon: <ClipboardList size={32} />,
     title: "Contratos",
-    description: "Análise, elaboração e revisão de contratos civis com segurança jurídica.",
+    description: "Análise, elaboração e revisão de contratos civis.",
     services: ["Contratos de compra e venda", "Contratos de aluguel", "Contratos comerciais", "Análise de cláusulas"],
     link: "/civel",
     btnText: "Saiba Mais"
@@ -97,7 +98,7 @@ const civelData = [
   {
     icon: <FileSignature size={32} />,
     title: "Retificação de Registro Civil",
-    description: "Correção de erros em documentos oficiais com agilidade.",
+    description: "Procedimentos para correção de erros em documentos oficiais.",
     services: ["Correção de certidões de nascimento", "Correção de certidões de casamento", "Correção de certidões de óbito", "Processos administrativos"],
     link: "/civel",
     btnText: "Saiba Mais"
@@ -105,7 +106,7 @@ const civelData = [
   {
     icon: <ShieldAlert size={32} />,
     title: "Interdição e Curatela",
-    description: "Processos para proteção legal de pessoas que não podem gerir seus próprios atos.",
+    description: "Procedimentos legais para representação de pessoas incapazes de gerir seus próprios atos.",
     services: ["Interdição por incapacidade", "Curatela de idosos", "Curatela de deficientes", "Proteção patrimonial"],
     link: "/civel",
     btnText: "Saiba Mais"
@@ -250,10 +251,10 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left">
           <div className="lg:w-3/4">
             <h1 className="text-4xl lg:text-5xl font-heading font-bold leading-tight mb-6 drop-shadow-lg text-white">
-              Defendendo seus direitos com <span className="text-white bg-secondary/80 px-2 rounded box-decoration-clone">Excelência</span> e <span className="text-white bg-secondary/80 px-2 rounded box-decoration-clone">Agilidade</span>.
+              Consultoria Jurídica em <span className="text-white bg-secondary/80 px-2 rounded box-decoration-clone">Direito Previdenciário</span> e <span className="text-white bg-secondary/80 px-2 rounded box-decoration-clone">Cível</span>
             </h1>
             <p className="text-lg lg:text-xl text-white mb-8 max-w-2xl font-body font-semibold drop-shadow-md">
-              Vitor Coelho Advocacia. Atendimento digital em todo o Brasil. Resolvemos seus problemas jurídicos sem você sair de casa.
+              Vitor Coelho Advocacia. Atendimento digital em todo o Brasil. Especialista em Direito Previdenciário, Cível e Saúde.
             </p>
             
             {/* Action Buttons Grid */}
@@ -288,8 +289,8 @@ const Home: React.FC = () => {
                 className="bg-gradient-to-r from-blue-700 via-blue-500 to-teal-400 hover:from-blue-600 hover:via-blue-400 hover:to-teal-300 text-white font-bold py-3 px-6 rounded-md shadow-xl transition-all flex items-center justify-between gap-4 border-2 border-transparent hover:scale-[1.02] md:col-span-1 lg:col-span-1"
               >
                  <div className="flex flex-col items-start leading-tight">
-                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Quem tem direito?</span>
-                    <span className="text-sm font-extrabold tracking-wide uppercase">Ao BPC/LOAS</span>
+                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Requisitos e Regras</span>
+                    <span className="text-sm font-extrabold tracking-wide uppercase">BPC/LOAS</span>
                  </div>
                  <FileSearch size={24} />
               </Link>
@@ -299,7 +300,7 @@ const Home: React.FC = () => {
                 className="bg-gradient-to-r from-pink-700 via-pink-500 to-amber-500 hover:from-pink-600 hover:via-pink-400 hover:to-amber-400 text-white font-bold py-3 px-6 rounded-md shadow-xl transition-all flex items-center justify-between gap-4 border-2 border-transparent hover:scale-[1.02] md:col-span-1 lg:col-span-1"
               >
                  <div className="flex flex-col items-start leading-tight">
-                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Quem tem direito?</span>
+                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Requisitos e Regras</span>
                     <span className="text-sm font-extrabold tracking-wide uppercase">Salário Maternidade</span>
                  </div>
                  <Baby size={24} />
@@ -343,8 +344,13 @@ const Home: React.FC = () => {
             </div>
             <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-md">
                 <p className="text-text-main text-lg leading-relaxed text-justify">
-                  Com uma trajetória pautada pela excelência jurídica e um compromisso inabalável com os resultados, o escritório <strong className="text-primary">Dr. Vitor Coelho Advocacia (OAB/CE 56.789)</strong> transcende as fronteiras geográficas para oferecer soluções jurídicas estratégicas e de alta qualidade em todo o território nacional. Nossa missão é desburocratizar o acesso à justiça, proporcionando um atendimento humanizado, transparente e combativo, onde cada cliente é tratado com a individualidade e a atenção que seu caso exige.
+                  O escritório <strong className="text-primary">Dr. Vitor Coelho Advocacia (OAB/CE 56.789)</strong> presta consultoria jurídica especializada, atuando de forma digital em todo o território nacional. Nosso foco é oferecer orientação técnica e estratégica em demandas previdenciárias e cíveis, sempre pautados pela ética, transparência e pelo compromisso com a defesa dos direitos de nossos clientes.
                 </p>
+                <div className="mt-6 text-center">
+                  <Link to="/quem-somos" className="text-secondary font-bold hover:underline">
+                    Conheça mais sobre nossa história e valores &rarr;
+                  </Link>
+                </div>
             </div>
           </div>
           
@@ -354,16 +360,16 @@ const Home: React.FC = () => {
                 <div className="inline-flex items-center justify-center p-3 bg-white shadow-sm rounded-full text-secondary mb-4 border border-secondary/20">
                   <Scale size={32} />
                 </div>
-                <h2 className="text-3xl font-heading font-bold text-primary">Áreas de Especialização</h2>
+                <h2 className="text-3xl font-heading font-bold text-primary">Áreas de Atuação</h2>
                 <p className="text-text-light mt-2 max-w-2xl mx-auto text-lg">
-                  Nosso escritório oferece expertise jurídica aprofundada nas seguintes áreas, com foco em resultados e proteção dos direitos de nossos clientes.
+                  Atuação jurídica focada nas seguintes áreas, com serviços de consultoria e representação legal.
                 </p>
              </div>
 
              {/* 1. Direito Previdenciário Carousel */}
              <SpecialtyCarousel 
                title="Direito Previdenciário"
-               description="Atuamos com rigor e dedicação em todas as demandas relacionadas à Previdência Social, buscando assegurar os direitos de nossos clientes. Nossos serviços incluem:"
+               description="Atuamos em demandas administrativas e judiciais relacionadas à Previdência Social. Nossos serviços incluem:"
                items={previdenciarioData}
                colorClass="bg-gradient-to-br from-primary to-secondary"
                indicatorColor="bg-primary"
@@ -372,7 +378,7 @@ const Home: React.FC = () => {
              {/* 2. Direito Cível Carousel */}
              <SpecialtyCarousel 
                title="Direito Cível & Família"
-               description="Oferecemos suporte jurídico completo em questões complexas do Direito Cível e de Família, com foco na resolução de conflitos e na proteção dos interesses de nossos clientes:"
+               description="Consultoria jurídica em questões de Direito Civil e de Família, com foco na resolução de conflitos e segurança jurídica:"
                items={civelData}
                colorClass="bg-gradient-to-br from-purple-600 to-indigo-600"
                indicatorColor="bg-purple-600"
@@ -399,10 +405,10 @@ const Home: React.FC = () => {
 
                    <div className="flex-grow">
                       <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-primary">
-                        Atendimento 100% Online: <span className="text-secondary">Sua Solução Jurídica Sem Fronteiras</span>
+                        Atendimento 100% Online
                       </h3>
                       <p className="text-text-light text-lg leading-relaxed text-justify font-medium">
-                        No escritório Dr. Vitor Coelho, a modernidade encontra a eficiência. Oferecemos um atendimento jurídico completo e 100% online, permitindo que você resolva suas questões legais com total comodidade e segurança, de qualquer lugar do Brasil. Através de consultas por videochamada e comunicação ágil via WhatsApp, garantimos a mesma qualidade e atenção de um atendimento presencial.
+                        O escritório Dr. Vitor Coelho utiliza a tecnologia para oferecer atendimento jurídico digital. Realizamos consultas por videochamada e mantemos comunicação via WhatsApp, permitindo que você tenha acesso a uma consultoria especializada de qualquer lugar do Brasil.
                       </p>
                    </div>
                 </div>
@@ -415,37 +421,14 @@ const Home: React.FC = () => {
       {/* Calculator Shortcuts */}
       <CalculatorShortcuts />
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-12">Somos especialistas em Direito Previdenciário e da Saúde</h2>
-           
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Trophy size={48} /></div>
-                 <h3 className="text-4xl font-extrabold text-primary mb-2">+ 500</h3>
-                 <p className="text-text-light font-bold text-lg">Benefícios Concedidos</p>
-                 <p className="text-sm text-gray-500 mt-1">(Judicial e Administrativo)</p>
-              </div>
-              <div className="p-6 border-x-0 md:border-x border-gray-100">
-                 <div className="flex justify-center mb-4 text-secondary"><ShieldCheck size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Especialistas</h3>
-                 <p className="text-text-light font-medium">Em benefícios do INSS e Saúde Pública</p>
-              </div>
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Globe size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Atendimento</h3>
-                 <p className="text-text-light font-medium">100% Online em todo Brasil</p>
-              </div>
-           </div>
-        </div>
-      </section>
+      {/* NEW: Newsletter Form */}
+      <NewsletterForm />
 
       {/* CTA Section */}
       <section className="bg-white py-16 border-t border-gray-100">
          <div className="max-w-5xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-heading text-primary mb-6 font-bold">Precisa de orientação jurídica imediata?</h2>
-            <p className="text-text-light mb-8 text-lg">Não deixe suas dúvidas para depois. Converse agora com um especialista.</p>
+            <h2 className="text-3xl font-heading text-primary mb-6 font-bold">Precisa de orientação jurídica?</h2>
+            <p className="text-text-light mb-8 text-lg">Entre em contato para agendar uma consulta com um especialista.</p>
             <a 
               href="https://wa.me/5585981186205" 
               target="_blank"

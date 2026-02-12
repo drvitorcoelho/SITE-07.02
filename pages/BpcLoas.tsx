@@ -11,50 +11,50 @@ import ServiceShortcuts from '../components/ServiceShortcuts';
 // --- DATA STRUCTURES ---
 
 const profilesData = [
-  { icon: <User size={32} />, title: "Idosos (65+ anos)", text: "Homens e mulheres sem renda suficiente e sem aposentadoria.", msg: "BPC para idoso" },
-  { icon: <Brain size={32} />, title: "Autismo (TEA)", text: "Crianças e adultos que enfrentam barreiras sociais e financeiras.", msg: "BPC para autismo" },
-  { icon: <Heart size={32} />, title: "Síndrome de Down", text: "Auxílio para desenvolvimento e necessidades específicas de saúde.", msg: "BPC para Síndrome de Down" },
-  { icon: <Eye size={32} />, title: "Deficiência Visual/Auditiva", text: "Cegueira ou surdez que impacte a participação plena na sociedade.", msg: "BPC para deficiência visual/auditiva" },
-  { icon: <Activity size={32} />, title: "Esquizofrenia/Saúde Mental", text: "Condições que limitam a autonomia e a capacidade de trabalho.", msg: "BPC para saúde mental" },
-  { icon: <Zap size={32} />, title: "Epilepsia Refratária", text: "Casos em que as crises frequentes impedem a vida laboral estável.", msg: "BPC para epilepsia" },
-  { icon: <Accessibility size={32} />, title: "Mobilidade Reduzida", text: "Sequelas de AVC, paralisia cerebral ou amputações.", msg: "BPC para mobilidade reduzida" },
-  { icon: <Stethoscope size={32} />, title: "Doenças Graves", text: "Câncer, HIV ou doenças renais crônicas que impeçam o sustento.", msg: "BPC para doenças graves" },
-  { icon: <AlertCircle size={32} />, title: "Dependência Química", text: "Incapacidade gerada pela dependência em tratamento.", msg: "BPC para dependência química" },
-  { icon: <Dna size={32} />, title: "Doenças Raras", text: "Condições genéticas que exigem dedicação integral da família.", msg: "BPC para doenças raras" },
+  { icon: <User size={32} />, title: "Idosos (65+ anos)", text: "Cidadãos com 65 anos ou mais que comprovem não possuir meios de prover a própria manutenção.", msg: "BPC para idoso" },
+  { icon: <Brain size={32} />, title: "Autismo (TEA)", text: "Pessoas com Transtorno do Espectro Autista que enfrentam barreiras.", msg: "BPC para autismo" },
+  { icon: <Heart size={32} />, title: "Síndrome de Down", text: "Apoio para pessoas com Síndrome de Down em situação de vulnerabilidade.", msg: "BPC para Síndrome de Down" },
+  { icon: <Eye size={32} />, title: "Deficiência Visual/Auditiva", text: "Pessoas com deficiência visual ou auditiva que impeça a participação plena na sociedade.", msg: "BPC para deficiência visual/auditiva" },
+  { icon: <Activity size={32} />, title: "Esquizofrenia/Saúde Mental", text: "Transtornos mentais graves que geram incapacidade para o trabalho.", msg: "BPC para saúde mental" },
+  { icon: <Zap size={32} />, title: "Epilepsia Refratária", text: "Casos de epilepsia de difícil controle que limitam a vida laboral.", msg: "BPC para epilepsia" },
+  { icon: <Accessibility size={32} />, title: "Mobilidade Reduzida", text: "Deficiências físicas que causam restrições de mobilidade.", msg: "BPC para mobilidade reduzida" },
+  { icon: <Stethoscope size={32} />, title: "Doenças Graves", text: "Portadores de doenças graves que impedem o sustento próprio.", msg: "BPC para doenças graves" },
+  { icon: <AlertCircle size={32} />, title: "Dependência Química", text: "Casos graves de dependência que geram incapacidade.", msg: "BPC para dependência química" },
+  { icon: <Dna size={32} />, title: "Doenças Raras", text: "Condições genéticas raras que demandam cuidados constantes.", msg: "BPC para doenças raras" },
 ];
 
 const risksData = [
-  { icon: <FileWarning size={32} />, title: "CadÚnico Desatualizado", text: "Não atualizar o cadastro a cada 2 anos é a maior causa de cortes.", btn: "Regularizar CadÚnico", msg: "ajuda com CadÚnico desatualizado BPC" },
-  { icon: <SearchX size={32} />, title: "Revisão de Renda", text: "O INSS diz que sua renda subiu? Podemos provar o contrário.", btn: "Contestar Revisão", msg: "ajuda com revisão de renda BPC" },
-  { icon: <Ban size={32} />, title: "Bloqueio de Perícia", text: "O benefício parou de cair? Pode ser falta de reavaliação médica.", btn: "Agendar Perícia", msg: "ajuda com bloqueio de perícia BPC" },
-  { icon: <AlertTriangle size={32} />, title: "CPF Irregular", text: "Divergências no CPF da família podem suspender o pagamento.", btn: "Regularizar CPF", msg: "ajuda com CPF irregular BPC" },
-  { icon: <Users size={32} />, title: "Novo Emprego na Família", text: "Um parente começou a trabalhar? Saiba como manter seu BPC.", btn: "Proteger Benefício", msg: "ajuda com novo emprego na família BPC" },
-  { icon: <Home size={32} />, title: "Dois BPC na mesma Casa", text: "O INSS quer cortar um deles? Isso é um erro que revertemos.", btn: "Manter Benefício", msg: "ajuda com dois BPC na mesma casa" },
-  { icon: <MapPin size={32} />, title: "Mudança de Endereço", text: "Aviso não chegou e o benefício foi suspenso? Regularizamos tudo.", btn: "Atualizar Endereço", msg: "ajuda com mudança de endereço BPC" },
-  { icon: <FileX size={32} />, title: "Indícios de Irregularidade", text: "Erros no sistema podem acusar fraudes inexistentes. Defendemos você.", btn: "Defender-me", msg: "ajuda com indícios de irregularidade BPC" },
-  { icon: <Accessibility size={32} />, title: "Reavaliação da Deficiência", text: "O INSS alega que você \"curou\"? Contestamos com novos laudos.", btn: "Contestar Reavaliação", msg: "ajuda com reavaliação de deficiência BPC" },
-  { icon: <TrendingUp size={32} />, title: "Variação no CNIS", text: "Ganhos temporários não devem causar cancelamento definitivo.", btn: "Proteger Sustento", msg: "ajuda com variação CNIS BPC" },
+  { icon: <FileWarning size={32} />, title: "CadÚnico Desatualizado", text: "A falta de atualização do cadastro pode gerar suspensão do benefício.", btn: "Regularizar CadÚnico", msg: "ajuda com CadÚnico desatualizado BPC" },
+  { icon: <SearchX size={32} />, title: "Revisão de Renda", text: "Procedimentos do INSS para verificação da renda familiar per capita.", btn: "Consultar Revisão", msg: "ajuda com revisão de renda BPC" },
+  { icon: <Ban size={32} />, title: "Perícia Médica", text: "Necessidade de agendamento e realização de perícia médica periódica.", btn: "Informações Perícia", msg: "ajuda com bloqueio de perícia BPC" },
+  { icon: <AlertTriangle size={32} />, title: "Divergências de CPF", text: "Problemas cadastrais no CPF podem impactar o recebimento.", btn: "Regularizar CPF", msg: "ajuda com CPF irregular BPC" },
+  { icon: <Users size={32} />, title: "Composição Familiar", text: "Alterações na composição familiar devem ser informadas.", btn: "Atualizar Dados", msg: "ajuda com novo emprego na família BPC" },
+  { icon: <Home size={32} />, title: "Dois BPC na mesma Casa", text: "Regras sobre o recebimento de mais de um benefício no mesmo lar.", btn: "Entender Regras", msg: "ajuda com dois BPC na mesma casa" },
+  { icon: <MapPin size={32} />, title: "Endereço Desatualizado", text: "Manter o endereço atualizado é fundamental para notificações.", btn: "Atualizar Endereço", msg: "ajuda com mudança de endereço BPC" },
+  { icon: <FileX size={32} />, title: "Indícios de Irregularidade", text: "Defesa administrativa em caso de notificação de irregularidade.", btn: "Consultar", msg: "ajuda com indícios de irregularidade BPC" },
+  { icon: <Accessibility size={32} />, title: "Reavaliação da Deficiência", text: "Processos de reavaliação da condição de deficiência.", btn: "Saiba Mais", msg: "ajuda com reavaliação de deficiência BPC" },
+  { icon: <TrendingUp size={32} />, title: "Variação no CNIS", text: "Análise de vínculos empregatícios no CNIS.", btn: "Consultar CNIS", msg: "ajuda com variação CNIS BPC" },
 ];
 
 const solutionsData = [
-  { icon: <Calculator size={32} />, title: "Negativa por Renda Alta", text: "A justiça aceita renda maior se houver gastos altos com saúde.", btn: "Reverter Negativa", msg: "ajuda com BPC negado por renda" },
-  { icon: <FileX size={32} />, title: "Perícia Médica Negativa", text: "Levamos seu caso ao juiz com médicos especialistas.", btn: "Nova Perícia", msg: "ajuda com perícia médica negativa BPC" },
-  { icon: <Clock size={32} />, title: "Demora na Resposta", text: "Pedido parado há meses? Exigimos uma decisão imediata.", btn: "Acelerar Processo", msg: "ajuda com demora na resposta BPC" },
-  { icon: <FileWarning size={32} />, title: "Erro no Cálculo da Renda", text: "O INSS incluiu rendas que deveriam ser excluídas. Corrigimos.", btn: "Corrigir Cálculo", msg: "ajuda com erro no cálculo de renda BPC" },
-  { icon: <FileCheck size={32} />, title: "Laudo Médico Rejeitado", text: "Orientamos como obter a documentação que o perito aceita.", btn: "Obter Laudo Correto", msg: "ajuda com laudo médico rejeitado BPC" },
-  { icon: <Clock size={32} />, title: "Agendamento Impossível", text: "Atuamos para garantir que sua perícia seja realizada.", btn: "Garantir Agendamento", msg: "ajuda com agendamento de perícia BPC" },
-  { icon: <Globe size={32} />, title: "BPC para Estrangeiros", text: "Residentes no Brasil têm direito garantido pelo STF.", btn: "Garantir BPC", msg: "ajuda com BPC para estrangeiros" },
-  { icon: <Lock size={32} />, title: "Entraves de Curatela", text: "Resolvemos problemas burocráticos que impedem o saque.", btn: "Resolver Curatela", msg: "ajuda com curatela BPC" },
-  { icon: <FileCheck size={32} />, title: "Falta de Provas de Pobreza", text: "Montamos um dossiê completo para provar sua necessidade.", btn: "Provar Pobreza", msg: "ajuda com provas de pobreza BPC" },
-  { icon: <Gavel size={32} />, title: "Recurso Administrativo Parado", text: "Muitas vezes o melhor caminho é ir direto para o juiz.", btn: "Ação Judicial", msg: "ajuda com recurso administrativo BPC" },
+  { icon: <Calculator size={32} />, title: "Cálculo de Renda", text: "Análise detalhada da renda familiar para enquadramento.", btn: "Analisar Renda", msg: "ajuda com BPC negado por renda" },
+  { icon: <FileX size={32} />, title: "Perícia Médica", text: "Orientações sobre documentos médicos para perícia.", btn: "Documentos Perícia", msg: "ajuda com perícia médica negativa BPC" },
+  { icon: <Clock size={32} />, title: "Acompanhamento", text: "Monitoramento do andamento do pedido administrativo.", btn: "Consultar Andamento", msg: "ajuda com demora na resposta BPC" },
+  { icon: <FileWarning size={32} />, title: "Correção de Dados", text: "Retificação de informações incorretas no sistema do INSS.", btn: "Corrigir Dados", msg: "ajuda com erro no cálculo de renda BPC" },
+  { icon: <FileCheck size={32} />, title: "Documentação", text: "Lista de documentos necessários para o requerimento.", btn: "Lista Documentos", msg: "ajuda com laudo médico rejeitado BPC" },
+  { icon: <Clock size={32} />, title: "Agendamento", text: "Auxílio no agendamento de perícias e atendimentos.", btn: "Agendar", msg: "ajuda com agendamento de perícia BPC" },
+  { icon: <Globe size={32} />, title: "Estrangeiros", text: "Informações sobre BPC para estrangeiros residentes.", btn: "Informações", msg: "ajuda com BPC para estrangeiros" },
+  { icon: <Lock size={32} />, title: "Curatela", text: "Orientações sobre representação legal para o benefício.", btn: "Sobre Curatela", msg: "ajuda com curatela BPC" },
+  { icon: <FileCheck size={32} />, title: "Comprovação Social", text: "Documentos para comprovar a situação de vulnerabilidade.", btn: "Saiba Mais", msg: "ajuda com provas de pobreza BPC" },
+  { icon: <Gavel size={32} />, title: "Recursos", text: "Atuação em recursos administrativos e judiciais.", btn: "Consultar", msg: "ajuda com recurso administrativo BPC" },
 ];
 
 const faqItems = [
   { question: "Posso receber BPC e outra pessoa da minha família também?", answer: "Sim! Se houver outro idoso ou pessoa com deficiência na casa que já receba o BPC ou uma aposentadoria de valor mínimo, esse valor não entra no cálculo para o seu novo pedido." },
-  { question: "O INSS negou porque minha renda passou de 1/4 do salário mínimo. Ainda tenho chance?", answer: "Com certeza. A justiça entende que esse limite é muito baixo. Se provarmos que sua família tem muitos gastos com saúde e vive com dificuldades, o juiz pode conceder o benefício mesmo com renda maior." },
-  { question: "O BPC dá direito a 13º salário ou pensão por morte?", answer: "Infelizmente não. O BPC é um benefício assistencial, não previdenciário. Por isso, não tem 13º e não deixa pensão para os dependentes após o falecimento." },
-  { question: "Preciso ter contribuído para o INSS para receber o BPC?", answer: "Não. Essa é a grande vantagem. O BPC é para quem nunca pôde contribuir ou não tem tempo suficiente, desde que cumpra os requisitos de idade ou deficiência e renda." },
-  { question: "O que é o 'Pente-fino' e como me proteger?", answer: "É uma revisão periódica do governo. Para se proteger, mantenha seu CadÚnico sempre atualizado e guarde todos os laudos e exames médicos novos. Se for convocado, procure um advogado imediatamente." },
+  { question: "O INSS negou porque minha renda passou de 1/4 do salário mínimo. Ainda tenho chance?", answer: "Sim. Em via judicial, é possível demonstrar que a renda familiar, mesmo superior a 1/4 do salário mínimo, não é suficiente para prover as necessidades básicas, considerando gastos com saúde e medicamentos." },
+  { question: "O BPC dá direito a 13º salário ou pensão por morte?", answer: "Não. O BPC é um benefício assistencial e, pela legislação atual, não prevê pagamento de 13º salário nem gera direito a pensão por morte." },
+  { question: "Preciso ter contribuído para o INSS para receber o BPC?", answer: "Não. O BPC é um benefício assistencial destinado a quem não possui meios de prover a própria manutenção, não exigindo contribuições prévias ao INSS." },
+  { question: "O que é o 'Pente-fino' e como me proteger?", answer: "É um procedimento de revisão dos benefícios. Para evitar problemas, mantenha seu CadÚnico atualizado a cada dois anos e seus dados no INSS sempre corretos." },
 ];
 
 // --- REUSABLE COMPONENT: CAROUSEL ---
@@ -173,10 +173,10 @@ const BpcLoas: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:w-2/3">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6 drop-shadow-lg">
-              BPC/LOAS: Garanta seu Benefício de <span className="text-primary bg-white px-3 py-1 rounded-lg shadow-md inline-block mt-2 md:mt-0">R$ 1.518,00</span>
+              Consultoria sobre <span className="text-primary bg-white px-3 py-1 rounded-lg shadow-md inline-block mt-2 md:mt-0">BPC/LOAS</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 mb-8 font-semibold drop-shadow-md leading-relaxed">
-              O Benefício de Prestação Continuada é um direito de idosos e pessoas com deficiência. Não deixe a burocracia ou o "pente-fino" do INSS tirar o que é seu por direito.
+              Informações e assessoria jurídica sobre o Benefício de Prestação Continuada para idosos e pessoas com deficiência.
             </p>
             <a
               href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20quero%20saber%20mais%20sobre%20o%20BPC%20LOAS."
@@ -195,8 +195,8 @@ const BpcLoas: React.FC = () => {
       {/* 2. CAROUSEL: QUEM TEM DIREITO */}
       <section className="bg-background-light pt-8">
         <CarouselSection 
-          title="Quem tem direito ao BPC/LOAS?" 
-          subtitle="Conheça as condições que garantem o benefício"
+          title="Quem pode solicitar o BPC/LOAS?" 
+          subtitle="Requisitos básicos para o benefício"
           items={profilesData} 
           variant="profiles" 
         />
@@ -205,8 +205,8 @@ const BpcLoas: React.FC = () => {
       {/* 3. CAROUSEL: RISCOS (Pente Fino) */}
       <section className="bg-white border-y border-gray-200">
         <CarouselSection 
-          title="Seu BPC/LOAS em Risco? Não perca seu benefício!" 
-          subtitle="Fique atento aos motivos que causam suspensão e corte."
+          title="Pontos de Atenção" 
+          subtitle="Fatores que podem impactar o benefício."
           items={risksData} 
           variant="risks" 
         />
@@ -215,8 +215,8 @@ const BpcLoas: React.FC = () => {
       {/* 4. CAROUSEL: SOLUÇÕES */}
       <section className="bg-background-light pb-12">
         <CarouselSection 
-          title="Dificuldades na Concessão e Como Resolver" 
-          subtitle="Nós sabemos como destravar seu pedido no INSS."
+          title="Nossos Serviços" 
+          subtitle="Como podemos auxiliar no seu processo."
           items={solutionsData} 
           variant="solutions" 
         />
@@ -231,10 +231,10 @@ const BpcLoas: React.FC = () => {
             <div className="flex justify-center mb-4">
                <HelpCircle size={40} className="text-secondary" />
             </div>
-            <h3 className="text-2xl font-bold mb-4 font-heading">Não tem todos os documentos agora?</h3>
+            <h3 className="text-2xl font-bold mb-4 font-heading">Precisa de ajuda com a documentação?</h3>
             <p className="text-lg text-gray-200 mb-6 max-w-3xl mx-auto">
-              Não se preocupe! Sabemos que organizar tudo pode ser complexo em um momento delicado. 
-              Você pode entrar em contato conosco imediatamente. Nossa equipe está pronta para orientar você passo a passo sobre como obter cada laudo, negativa ou documento necessário.
+              Organizar os documentos corretamente é essencial para a análise do pedido. 
+              Entre em contato para receber orientações sobre a documentação necessária.
             </p>
             <a 
               href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20preciso%20de%20orientação%20sobre%20documentos%20para%20BPC%20LOAS." 
@@ -244,42 +244,42 @@ const BpcLoas: React.FC = () => {
             </a>
           </div>
 
-          <h2 className="text-3xl font-heading font-bold mb-12 text-center text-white drop-shadow-md">Documentos Essenciais para o BPC/LOAS</h2>
+          <h2 className="text-3xl font-heading font-bold mb-12 text-center text-white drop-shadow-md">Documentos para Análise</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
-                <FileCheck size={28} /> Inscrição no CadÚnico
+                <FileCheck size={28} /> CadÚnico
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">O documento mais importante. Deve estar atualizado nos últimos 2 anos. Vá ao CRAS da sua cidade.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Inscrição atualizada no Cadastro Único do Governo Federal.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
-                <Users size={28} /> Grupo Familiar
+                <Users size={28} /> Documentos Pessoais
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">RG, CPF e Certidões de todos que moram na mesma casa são obrigatórios.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">RG, CPF e Certidões de todos os componentes do grupo familiar.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
-                <Calculator size={28} /> Comprovantes de Renda
+                <Calculator size={28} /> Renda
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Carteira de trabalho (mesmo se estiver em branco), extratos de benefícios ou declaração de renda.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Comprovantes de renda ou declaração de ausência de renda.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
-                <FileWarning size={28} /> Comprovantes de Gastos
+                <FileWarning size={28} /> Despesas Médicas
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Recibos de farmácia, fraldas, tratamentos, exames, aluguel e luz. Essencial para abater a renda.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Comprovantes de gastos com medicamentos, tratamentos e fraldas.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300 text-text-main md:col-span-2 lg:col-span-2">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
-                <Stethoscope size={28} /> Para Pessoas com Deficiência
+                <Stethoscope size={28} /> Laudos Médicos (PCD)
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Laudos médicos atualizados com o CID, Exames, receitas e relatórios de tratamentos (fisioterapia, fonoaudiologia, etc.), Declaração escolar (para crianças).</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Laudos, exames e receitas médicas que comprovem a deficiência e a incapacidade de longo prazo.</p>
             </div>
           </div>
         </div>
@@ -330,11 +330,10 @@ const BpcLoas: React.FC = () => {
                  
                  <div className="space-y-4 text-text-main text-lg leading-relaxed text-justify">
                     <p>
-                       Especialista em Direito Previdenciário e em <strong>Direito Assistencial (BPC/LOAS)</strong>, com foco em garantir o acesso a benefícios para idosos e pessoas com deficiência. 
+                       Especialista em Direito Previdenciário e em <strong>Direito Assistencial (BPC/LOAS)</strong>, com foco na defesa dos direitos de idosos e pessoas com deficiência. 
                     </p>
                     <p>
-                       Minha missão é assegurar que meus clientes recebam os benefícios e direitos que lhes são devidos, com um atendimento personalizado e combativo.
-                       Com experiência sólida e foco em soluções eficazes, fundei o escritório para oferecer atendimento personalizado e resultados consistentes.
+                       Atuo com dedicação para garantir que os benefícios assistenciais sejam concedidos a quem tem direito, sempre pautado pela ética e transparência.
                     </p>
                  </div>
                  
@@ -344,32 +343,6 @@ const BpcLoas: React.FC = () => {
                        Falar com Dr. Vitor
                     </a>
                  </div>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* 8. ACHIEVEMENTS / STATS */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-12">Somos especialistas em Direito Previdenciário e da Saúde</h2>
-           
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Trophy size={48} /></div>
-                 <h3 className="text-4xl font-extrabold text-primary mb-2">+ 500</h3>
-                 <p className="text-text-light font-bold text-lg">Benefícios Concedidos</p>
-                 <p className="text-sm text-gray-500 mt-1">(Judicial e Administrativo)</p>
-              </div>
-              <div className="p-6 border-x-0 md:border-x border-gray-100">
-                 <div className="flex justify-center mb-4 text-secondary"><ShieldCheck size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Especialistas</h3>
-                 <p className="text-text-light font-medium">Em benefícios do INSS e Saúde Pública</p>
-              </div>
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Globe size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Atendimento</h3>
-                 <p className="text-text-light font-medium">100% Online em todo Brasil</p>
               </div>
            </div>
         </div>

@@ -11,50 +11,50 @@ import ServiceShortcuts from '../components/ServiceShortcuts';
 // --- DATA STRUCTURES ---
 
 const gestanteData = [
-  { icon: <DollarSign size={32} />, title: "Valor de R$ 6.578,00", text: "Garanta o suporte financeiro que você e seu bebê merecem, com o 13º proporcional!", msg: "garantir valor de 6.578 salário maternidade" },
-  { icon: <Calendar size={32} />, title: "Receba Antes do Parto", text: "Comece a receber até 28 dias antes do nascimento para o enxoval.", msg: "receber salário maternidade antes do parto" },
-  { icon: <ShieldCheck size={32} />, title: "Proteção no Campo", text: "Sua garantia de descanso e sustento durante os primeiros meses.", msg: "proteção gestante rural" },
-  { icon: <FileCheck size={32} />, title: "Evite Negativas", text: "Com a estratégia certa, o dinheiro cai na conta sem burocracia.", msg: "evitar negativa do INSS gestante" },
-  { icon: <Heart size={32} />, title: "Tranquilidade na Gestação", text: "4 meses de salário mínimo + 13º para a paz que toda gestante precisa.", msg: "tranquilidade na gestação rural" },
-  { icon: <CheckCircle size={32} />, title: "Aprovação Rápida", text: "Analisamos seu caso para uma concessão segura pelo INSS.", msg: "aprovação rápida salário maternidade" },
-  { icon: <FileText size={32} />, title: "Dossiê de Documentos", text: "Organizamos tudo antes do parto para não haver correria.", msg: "organizar documentos maternidade rural" },
-  { icon: <Baby size={32} />, title: "Segurança Pós-Parto", text: "Recursos garantidos para fraldas, remédios e alimentação.", msg: "segurança pós parto rural" },
-  { icon: <Smile size={32} />, title: "Foco na Saúde", text: "Permita-se cuidar de você e do bebê sem o estresse da falta de renda.", msg: "foco na saúde da gestante" },
-  { icon: <MessageCircle size={32} />, title: "Consultoria Gratuita", text: "Fale conosco e descubra como garantir seu direito hoje.", msg: "consultoria gratuita gestante rural" },
+  { icon: <DollarSign size={32} />, title: "Benefício Previdenciário", text: "Direito devido a seguradas em caso de nascimento, adoção ou guarda judicial.", msg: "informação salário maternidade" },
+  { icon: <Calendar size={32} />, title: "Data do Requerimento", text: "Informações sobre quando solicitar o benefício junto ao INSS.", msg: "requerimento salário maternidade" },
+  { icon: <ShieldCheck size={32} />, title: "Segurada Rural", text: "Direitos específicos para trabalhadoras rurais.", msg: "salário maternidade rural" },
+  { icon: <FileCheck size={32} />, title: "Documentação", text: "Análise da documentação necessária para o pedido.", msg: "documentos maternidade" },
+  { icon: <Heart size={32} />, title: "Proteção à Maternidade", text: "Benefício que visa proteger a maternidade e a infância.", msg: "proteção maternidade" },
+  { icon: <CheckCircle size={32} />, title: "Requisitos", text: "Verificação do cumprimento de carência e qualidade de segurado.", msg: "requisitos salário maternidade" },
+  { icon: <FileText size={32} />, title: "Organização Documental", text: "Orientações sobre como organizar provas rurais.", msg: "provas rurais" },
+  { icon: <Baby size={32} />, title: "Direito da Criança", text: "Benefício voltado ao cuidado com o recém-nascido.", msg: "direito da criança" },
+  { icon: <Smile size={32} />, title: "Planejamento", text: "Orientações para futuras mamães sobre direitos previdenciários.", msg: "planejamento maternidade" },
+  { icon: <MessageCircle size={32} />, title: "Consultoria", text: "Tire suas dúvidas com um especialista.", msg: "consultoria salário maternidade" },
 ];
 
 const strategyData = [
-  { icon: <Target size={32} />, title: "Apenas Uma Contribuição", text: "Basta um único pagamento antes do parto para liberar o benefício.", msg: "estratégia contribuição única INSS" },
-  { icon: <Unlock size={32} />, title: "Fim da Carência", text: "Você não precisa mais de 10 meses de trabalho para ter direito.", msg: "salário maternidade sem carência" },
-  { icon: <Clock size={32} />, title: "Pague Antes do Parto", text: "O segredo é quitar a contribuição antes do nascimento do bebê.", msg: "pagar INSS antes do parto" },
-  { icon: <Shield size={32} />, title: "Blindagem Jurídica", text: "A contribuição única dificulta que o INSS negue seu pedido.", msg: "blindagem jurídica salário maternidade" },
-  { icon: <TrendingUp size={32} />, title: "Investimento Seguro", text: "Um pequeno valor pago garante mais de R$ 6.578,00 de retorno.", msg: "investimento salário maternidade" },
-  { icon: <BookOpen size={32} />, title: "Regras de 2025", text: "A IN 188/2025 do INSS é a sua maior aliada neste momento.", msg: "regras INSS 2025 maternidade" },
-  { icon: <Barcode size={32} />, title: "Código de Pagamento", text: "Orientamos sobre o código e valor exatos para não haver erros.", msg: "código pagamento INSS gestante" },
-  { icon: <Zap size={32} />, title: "Proteção Imediata", text: "Pagou e processou? Você já está segurada para o parto.", msg: "proteção imediata INSS" },
-  { icon: <Key size={32} />, title: "Ponte para o Direito", text: "Ideal para quem está há muito tempo sem contribuir com o INSS.", msg: "voltar a pagar INSS grávida" },
-  { icon: <Scale size={32} />, title: "Estratégia Legal", text: "Método 100% dentro da lei e das normas atuais da previdência.", msg: "estratégia legal salário maternidade" },
+  { icon: <Target size={32} />, title: "Contribuição Facultativa", text: "Análise de possibilidade de contribuição para seguradas facultativas.", msg: "contribuição facultativa" },
+  { icon: <Unlock size={32} />, title: "Carência", text: "Entenda os períodos de carência exigidos para cada categoria.", msg: "carência inss" },
+  { icon: <Clock size={32} />, title: "Planejamento Previdenciário", text: "Importância de manter as contribuições em dia.", msg: "planejamento previdenciário" },
+  { icon: <Shield size={32} />, title: "Segurança Jurídica", text: "Atuação conforme a legislação previdenciária vigente.", msg: "legislação previdenciária" },
+  { icon: <TrendingUp size={32} />, title: "Valor do Benefício", text: "Como é calculado o valor do Salário Maternidade.", msg: "cálculo benefício" },
+  { icon: <BookOpen size={32} />, title: "Normas do INSS", text: "Atualizações sobre instruções normativas e portarias.", msg: "normas inss" },
+  { icon: <Barcode size={32} />, title: "Guias de Pagamento", text: "Orientações sobre emissão e pagamento de GPS.", msg: "pagamento inss" },
+  { icon: <Zap size={32} />, title: "Qualidade de Segurado", text: "Manutenção da qualidade de segurado para acesso aos benefícios.", msg: "qualidade de segurado" },
+  { icon: <Key size={32} />, title: "Retorno ao Sistema", text: "Como voltar a contribuir para o INSS.", msg: "voltar a pagar inss" },
+  { icon: <Scale size={32} />, title: "Análise Legal", text: "Verificação de enquadramento nas regras previdenciárias.", msg: "análise legal" },
 ];
 
 const retroactiveData = [
-  { icon: <History size={32} />, title: "Até 5 Anos Atrás", text: "Se o seu filho nasceu nos últimos 5 anos e você era rural, o direito ainda é seu.", msg: "salário maternidade retroativo 5 anos" },
-  { icon: <Coins size={32} />, title: "Receba Tudo de Vez", text: "Valores retroativos acumulados (incluindo 13º) são pagos em parcela única.", msg: "receber atrasados salário maternidade" },
-  { icon: <RefreshCw size={32} />, title: "Recupere Negativas", text: "Negaram seu pedido no passado? Nós revertemos na justiça.", msg: "reverter negativa antiga maternidade" },
-  { icon: <TrendingUp size={32} />, title: "R$ 6.578,00 Corrigidos", text: "O valor é atualizado para o salário mínimo vigente de hoje, com 13º.", msg: "valor atualizado maternidade" },
-  { icon: <Users size={32} />, title: "Vários Filhos", text: "Pode receber por cada filho nascido no prazo de 5 anos.", msg: "salário maternidade vários filhos" },
-  { icon: <Briefcase size={32} />, title: "Mesmo Sem Pagar Carnê", text: "Provamos seu trabalho na roça com documentos e testemunhas.", msg: "salário maternidade sem pagar carnê" },
-  { icon: <FileText size={32} />, title: "Documentos Antigos", text: "Notas e certidões da época do parto são provas fundamentais.", msg: "provas antigas maternidade rural" },
-  { icon: <PiggyBank size={32} />, title: "Suporte para a Criança", text: "Um valor essencial para ajudar na criação do seu filho.", msg: "suporte financeiro filho rural" },
-  { icon: <DollarSign size={32} />, title: "Sem Custos Iniciais", text: "Você só paga nossos honorários quando o dinheiro cair na conta.", msg: "advogado salário maternidade êxito" },
-  { icon: <Search size={32} />, title: "Análise de Prazo", text: "Verificamos gratuitamente se você ainda está dentro do tempo legal.", msg: "analisar prazo salário maternidade" },
+  { icon: <History size={32} />, title: "Prazo para Requerer", text: "O benefício pode ser requerido em até 5 anos após o parto.", msg: "prazo requerimento" },
+  { icon: <Coins size={32} />, title: "Pagamento Retroativo", text: "Possibilidade de recebimento de valores atrasados.", msg: "pagamento retroativo" },
+  { icon: <RefreshCw size={32} />, title: "Revisão de Pedido", text: "Análise de indeferimentos anteriores.", msg: "revisão benefício" },
+  { icon: <TrendingUp size={32} />, title: "Atualização Monetária", text: "Valores pagos com correção monetária.", msg: "correção monetária" },
+  { icon: <Users size={32} />, title: "Múltiplos Partos", text: "Direito analisado para cada nascimento ocorrido no período.", msg: "múltiplos partos" },
+  { icon: <Briefcase size={32} />, title: "Trabalho Rural", text: "Comprovação de atividade rural em período anterior.", msg: "comprovação rural" },
+  { icon: <FileText size={32} />, title: "Provas Materiais", text: "Análise de documentos da época do parto.", msg: "provas materiais" },
+  { icon: <PiggyBank size={32} />, title: "Natureza Alimentar", text: "Benefício de caráter alimentar para a família.", msg: "natureza alimentar" },
+  { icon: <DollarSign size={32} />, title: "Honorários", text: "Consulta sobre honorários advocatícios.", msg: "honorários" },
+  { icon: <Search size={32} />, title: "Prescrição", text: "Verificação de prazos prescricionais.", msg: "prescrição" },
 ];
 
 const faqItems = [
-  { question: "Quando devo pagar a contribuição única?", answer: "Obrigatoriamente antes da data do parto para garantir a qualidade de segurada no sistema. Se pagar depois, a estratégia não funciona para a carência." },
-  { question: "Quanto tempo preciso esperar após pagar?", answer: "Não há tempo de espera (carência) se você já teve vínculos anteriores ou se enquadra na regra de transição. Pagou antes do parto? O direito está garantido pela IN 188/2025." },
-  { question: "E se o meu filho já nasceu?", answer: "Você ainda pode buscar o retroativo se ele tiver até 5 anos, através da prova do trabalho rural (notas, documentos da terra) em vez da contribuição única." },
-  { question: "Preciso ter documento da terra no meu nome?", answer: "Não necessariamente. Documentos em nome do pai, esposo ou sogro podem ser usados para comprovar que você trabalha naquelas terras em regime de economia familiar." },
-  { question: "O Salário-Maternidade Rural inclui o 13º salário?", answer: "Sim! Você tem direito ao 13º salário proporcional, que será pago junto com a última parcela do benefício ou no valor retroativo total." },
+  { question: "Qual o prazo para pedir o Salário Maternidade?", answer: "O benefício pode ser solicitado em até 5 anos a contar da data do parto, adoção ou guarda judicial." },
+  { question: "A segurada rural precisa contribuir?", answer: "A segurada especial (rural) deve comprovar o exercício de atividade rural nos 10 meses anteriores ao parto, não sendo exigida contribuição direta, mas sim a prova da atividade." },
+  { question: "Quem está desempregada tem direito?", answer: "Sim, desde que mantenha a qualidade de segurada (período de graça) ou cumpra os requisitos de carência se voltar a contribuir." },
+  { question: "O benefício é pago em caso de natimorto?", answer: "Sim, em caso de natimorto (feto que morre dentro do útero ou no parto após 23 semanas de gestação), a segurada tem direito ao benefício integral." },
+  { question: "O Salário-Maternidade inclui o 13º salário?", answer: "Sim, o benefício gera direito ao abono anual (13º salário) proporcional ao tempo de duração do benefício." },
 ];
 
 // --- REUSABLE COMPONENT: CAROUSEL ---
@@ -176,17 +176,17 @@ const SalarioMaternidade: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:w-2/3">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6 drop-shadow-lg">
-              Gestante Rural: Garanta <span className="text-pink-600 bg-white px-3 py-1 rounded-lg shadow-md inline-block">R$ 6.578,00</span> para o seu Bebê
+              Consultoria sobre <span className="text-pink-600 bg-white px-3 py-1 rounded-lg shadow-md inline-block">Salário-Maternidade Rural</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 mb-8 font-semibold drop-shadow-md leading-relaxed">
-              Sabia que com apenas <strong>uma única contribuição</strong> antes do parto você garante o seu Salário-Maternidade integral, <strong>incluindo o 13º salário proporcional</strong>? Não corra riscos e planeje o futuro do seu filho com quem entende do assunto.
+              Informações jurídicas sobre o benefício, requisitos de concessão e planejamento previdenciário para gestantes.
             </p>
             <a
-              href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20estou%20grávida%20e%20quero%20garantir%20meu%20Salário-Maternidade%20de%20R$%206.578."
+              href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20quero%20saber%20mais%20sobre%20Salário-Maternidade."
               className="inline-flex items-center gap-2 bg-whatsapp hover:bg-green-600 text-white text-lg font-bold py-4 px-10 rounded-md shadow-xl transition-transform hover:scale-105"
             >
               <MessageCircle size={24} />
-              Garantir meu Benefício Agora
+              Falar com Especialista
             </a>
           </div>
         </div>
@@ -198,8 +198,8 @@ const SalarioMaternidade: React.FC = () => {
       {/* 2. CAROUSEL 1: GESTANTE RURAL (Planning) */}
       <section className="bg-background-light pt-8">
         <CarouselSection 
-          title="Planejamento para a Gestante Rural" 
-          subtitle="Prepare-se para receber seu benefício com tranquilidade."
+          title="Direitos da Gestante Rural" 
+          subtitle="Informações sobre o benefício previdenciário."
           items={gestanteData} 
           variant="gestante" 
         />
@@ -208,8 +208,8 @@ const SalarioMaternidade: React.FC = () => {
       {/* 3. CAROUSEL 2: STRATEGY (Single Contribution) */}
       <section className="bg-emerald-50 border-y border-emerald-200">
         <CarouselSection 
-          title="O Segredo da Contribuição Única" 
-          subtitle="A estratégia legal que o INSS não divulga para você."
+          title="Planejamento Previdenciário" 
+          subtitle="Estratégias legais de contribuição."
           items={strategyData} 
           variant="strategy" 
         />
@@ -218,8 +218,8 @@ const SalarioMaternidade: React.FC = () => {
       {/* 4. CAROUSEL 3: RETROACTIVE (Already Born) */}
       <section className="bg-background-light pb-12">
         <CarouselSection 
-          title="Seu Filho já Nasceu? Você ainda pode Receber!" 
-          subtitle="Não deixe o dinheiro da sua família perdido. Busque até 5 anos atrás."
+          title="Benefício Retroativo" 
+          subtitle="Prazos para requerimento após o parto."
           items={retroactiveData} 
           variant="retroactive" 
         />
@@ -229,76 +229,62 @@ const SalarioMaternidade: React.FC = () => {
       <section className="py-20 bg-pink-600 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Alert Box - Specific for Pregnant Women - RISK */}
+          {/* Alert Box - Information */}
           <div className="bg-amber-100 text-amber-900 border-l-8 border-amber-500 rounded-r-xl p-8 mb-8 shadow-lg">
             <div className="flex items-start gap-4">
                <AlertCircle size={48} className="text-amber-600 flex-shrink-0" />
                <div>
-                 <h3 className="text-2xl font-bold mb-2 font-heading">Gestante, não corra riscos desnecessários!</h3>
+                 <h3 className="text-2xl font-bold mb-2 font-heading">Atenção aos Prazos</h3>
                  <p className="text-lg leading-relaxed">
-                   Uma contribuição errada ou paga fora do prazo pode te fazer perder <strong>R$ 6.578,00</strong>. 
-                   Entre em contato agora para receber o passo a passo da estratégia da contribuição única e garanta o futuro do seu bebê.
+                   O planejamento previdenciário é fundamental para o cumprimento dos requisitos de carência e qualidade de segurado. 
+                   Consulte um advogado para verificar sua situação específica.
                  </p>
                  <a 
-                   href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20preciso%20de%20orientação%20sobre%20a%20contribuição%20única%20para%20Gestante." 
+                   href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20preciso%20de%20orientação." 
                    className="inline-block mt-4 bg-whatsapp hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105"
                  >
-                   Falar com Especialista
+                   Agendar Consulta
                  </a>
                </div>
             </div>
           </div>
 
-          {/* Alert Box - Values Explanation */}
-          <div className="bg-blue-50 text-blue-900 border-l-8 border-blue-500 rounded-r-xl p-8 mb-16 shadow-lg">
-            <div className="flex items-start gap-4">
-               <Info size={48} className="text-blue-600 flex-shrink-0" />
-               <div>
-                 <h3 className="text-2xl font-bold mb-2 font-heading">Atenção aos Valores</h3>
-                 <p className="text-lg leading-relaxed text-justify">
-                    O valor total de <strong>R$ 6.578,00</strong> inclui as 4 parcelas do benefício somadas ao <strong>13º salário proporcional (abono anual)</strong>. 
-                    A possibilidade de receber o 13º depende da análise do seu histórico previdenciário no ano do parto. Caso você já tenha recebido o 13º por outro benefício no mesmo ano, o valor final poderá ser de R$ 6.072,00. Nossa equipe realiza o cálculo exato para garantir que você receba cada centavo do seu direito.
-                 </p>
-               </div>
-            </div>
-          </div>
-
-          <h2 className="text-3xl font-heading font-bold mb-12 text-center text-white drop-shadow-md">O que você precisa para Garantir seu Benefício</h2>
+          <h2 className="text-3xl font-heading font-bold mb-12 text-center text-white drop-shadow-md">Documentação Necessária</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-xl border-t-4 border-pink-400 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-pink-600 font-bold text-xl">
-                <Heart size={28} /> Exame de Gravidez
+                <Heart size={28} /> Comprovação da Gestação
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Para comprovar a gestação e planejar os prazos de pagamento.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Exames ou certidão de nascimento da criança.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border-t-4 border-emerald-500 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-emerald-600 font-bold text-xl">
-                <DollarSign size={28} /> Guia de Contribuição
+                <DollarSign size={28} /> Contribuições
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">A guia paga (GPS) é a prova do seu seguro antes do parto.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Guias de recolhimento (GPS) quando houver.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border-t-4 border-pink-400 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-pink-600 font-bold text-xl">
-                <MapPin size={28} /> Documentos da Terra
+                <MapPin size={28} /> Documentos Rurais
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">ITR, contrato de parceria, carta de anuência ou declaração de trabalho rural.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Documentos que comprovem a atividade rural (ITR, contratos, notas fiscais).</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border-t-4 border-pink-400 hover:scale-[1.02] transition-transform duration-300 text-text-main">
               <div className="flex items-center gap-3 mb-4 text-pink-600 font-bold text-xl">
-                <Briefcase size={28} /> Provas de Lavradora
+                <Briefcase size={28} /> Provas de Atividade
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Certidões antigas, histórico escolar rural ou ficha do sindicato.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Documentos que demonstrem o trabalho no campo no período de carência.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border-t-4 border-pink-400 hover:scale-[1.02] transition-transform duration-300 text-text-main md:col-span-2 lg:col-span-2">
               <div className="flex items-center gap-3 mb-4 text-pink-600 font-bold text-xl">
-                <UserCheck size={28} /> RG e CPF
+                <UserCheck size={28} /> Identificação
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Seus documentos de identificação atualizados e em bom estado.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">RG, CPF e comprovante de residência atualizados.</p>
             </div>
           </div>
         </div>
@@ -341,7 +327,7 @@ const SalarioMaternidade: React.FC = () => {
                  </div>
               </div>
               <div className="w-full md:w-2/3">
-                 <h2 className="text-3xl font-heading font-bold text-primary mb-4">Especialista em Causas Rurais</h2>
+                 <h2 className="text-3xl font-heading font-bold text-primary mb-4">Quem irá te representar?</h2>
                  <div className="flex flex-wrap items-center gap-3 mb-6">
                     <h3 className="text-2xl font-bold text-secondary">Dr. João Vitor Alves Honorato Coelho</h3>
                     <span className="bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-md tracking-wide uppercase">OAB/CE 56.789</span>
@@ -349,45 +335,19 @@ const SalarioMaternidade: React.FC = () => {
                  
                  <div className="space-y-4 text-text-main text-lg leading-relaxed text-justify">
                     <p>
-                       Com vasta experiência em garantir direitos para as famílias do campo, sou especialista em aplicar as novas estratégias do INSS para que <strong>Gestantes Rurais</strong> não percam seus benefícios.
+                       Especialista em Direito Previdenciário e em <strong>Salário-Maternidade</strong>, com foco na garantia de direitos para mães rurais e urbanas.
                     </p>
                     <p>
-                       Minha missão é assegurar que você receba cada centavo para cuidar do seu bebê com dignidade.
+                       Atuo com ética e profissionalismo para assegurar que o benefício seja concedido corretamente, inclusive com análise de valores retroativos.
                     </p>
                  </div>
                  
                  <div className="mt-8">
-                    <a href="https://wa.me/5585981186205?text=Olá%20Dr.%20Vitor,%20quero%20sua%20ajuda%20para%20garantir%20meu%20Salário-Maternidade." className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold py-3 px-8 rounded-md shadow-lg transition-transform hover:scale-105">
+                    <a href="https://wa.me/5585981186205?text=Olá Dr. Vitor, gostaria de falar sobre salário maternidade." className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-white font-bold py-3 px-8 rounded-md shadow-lg transition-transform hover:scale-105">
                        <MessageCircle size={20} />
-                       Falar com Dr. Vitor no WhatsApp
+                       Falar com Dr. Vitor
                     </a>
                  </div>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* 8. ACHIEVEMENTS / STATS */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-12">Somos especialistas em Direito Previdenciário e da Saúde</h2>
-           
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Trophy size={48} /></div>
-                 <h3 className="text-4xl font-extrabold text-primary mb-2">+ 500</h3>
-                 <p className="text-text-light font-bold text-lg">Benefícios Concedidos</p>
-                 <p className="text-sm text-gray-500 mt-1">(Judicial e Administrativo)</p>
-              </div>
-              <div className="p-6 border-x-0 md:border-x border-gray-100">
-                 <div className="flex justify-center mb-4 text-secondary"><ShieldCheck size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Especialistas</h3>
-                 <p className="text-text-light font-medium">Em benefícios do INSS e Saúde Pública</p>
-              </div>
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Globe size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Atendimento</h3>
-                 <p className="text-text-light font-medium">100% Online em todo Brasil</p>
               </div>
            </div>
         </div>

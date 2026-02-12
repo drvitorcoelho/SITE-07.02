@@ -1,52 +1,52 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   MessageCircle, ChevronLeft, ChevronRight, 
-  Pill, Bone, Activity, BedDouble, Baby, Map, Scan, Home, HeartPulse, Accessibility, // SUS Icons
-  AlertTriangle, Clock, Siren, Ban, // Critical Icons
-  FileWarning, Scissors, Brain, TrendingUp, FileX, Dna, Building, DollarSign, UserMinus, // Plan Icons
-  CheckCircle, FileText, HelpCircle, User, ShieldCheck, Trophy, Globe
+  Pill, Bone, Activity, BedDouble, Baby, Map, Scan, Home, HeartPulse, Accessibility, 
+  AlertTriangle, Clock, Siren, Ban, 
+  FileWarning, Scissors, Brain, TrendingUp, FileX, Dna, Building, DollarSign, UserMinus, 
+  FileText, HelpCircle, User, ShieldCheck, Trophy, Globe
 } from 'lucide-react';
 import ServiceShortcuts from '../components/ServiceShortcuts';
 
 // --- DATA STRUCTURES ---
 
 const susServices = [
-  { icon: <Pill size={32} />, title: "Medicamentos de Alto Custo", text: "Fornecimento de remédios oncológicos, para doenças raras ou não padronizados pelo SUS.", msg: "medicamento pelo SUS" },
-  { icon: <Bone size={32} />, title: "Órteses e Próteses (OPME)", text: "Garantia de próteses, órteses e materiais especiais essenciais para cirurgias.", msg: "OPME/insumos pelo SUS" },
-  { icon: <Activity size={32} />, title: "Cirurgias de Alta Complexidade", text: "Aceleração de procedimentos cardíacos e oncológicos na fila do SUS.", msg: "cirurgia pelo SUS" },
-  { icon: <BedDouble size={32} />, title: "Leitos de UTI e Emergência", text: "Ação imediata para transferência ou vaga em leitos de terapia intensiva.", msg: "leito de UTI pelo SUS" },
-  { icon: <Baby size={32} />, title: "Insumos e Dietas Especiais", text: "Fornecimento de fraldas, sondas, suplementos alimentares e fórmulas infantis especiais.", msg: "insumos médicos pelo SUS" },
-  { icon: <Map size={32} />, title: "Tratamento Fora do Domicílio (TFD)", text: "Garantia de transporte e ajuda de custo para tratamentos em outros municípios.", msg: "TFD pelo SUS" },
-  { icon: <Scan size={32} />, title: "Exames de Alta Complexidade", text: "Biópsias, ressonâncias e PET-Scan negados ou com demora excessiva na rede pública.", msg: "exames pelo SUS" },
-  { icon: <Home size={32} />, title: "Home Care pelo SUS", text: "Assistência médica domiciliar para pacientes com indicação clínica e sem condições de hospitalização.", msg: "Home Care pelo SUS" },
-  { icon: <HeartPulse size={32} />, title: "Doenças Crônicas", text: "Acesso contínuo a terapias para diabetes, hipertensão pulmonar e doenças autoimunes.", msg: "tratamento de doença crônica pelo SUS" },
-  { icon: <Accessibility size={32} />, title: "Clínica de Reabilitação", text: "Vaga em centros especializados para recuperação motora ou dependência química.", msg: "reabilitação pelo SUS" },
+  { icon: <Pill size={32} />, title: "Medicamentos de Alto Custo", text: "Solicitação de medicamentos não fornecidos regularmente pelo SUS.", msg: "medicamento pelo SUS" },
+  { icon: <Bone size={32} />, title: "Órteses e Próteses (OPME)", text: "Requerimento de materiais especiais para cirurgias e tratamentos.", msg: "OPME/insumos pelo SUS" },
+  { icon: <Activity size={32} />, title: "Cirurgias de Alta Complexidade", text: "Atuação para realização de procedimentos cirúrgicos na rede pública.", msg: "cirurgia pelo SUS" },
+  { icon: <BedDouble size={32} />, title: "Leitos de UTI", text: "Medidas judiciais para obtenção de vaga em UTI quando necessário.", msg: "leito de UTI pelo SUS" },
+  { icon: <Baby size={32} />, title: "Insumos e Dietas Especiais", text: "Solicitação de fraldas, sondas e suplementos alimentares.", msg: "insumos médicos pelo SUS" },
+  { icon: <Map size={32} />, title: "Tratamento Fora do Domicílio", text: "Pedidos de TFD para tratamento em outros municípios.", msg: "TFD pelo SUS" },
+  { icon: <Scan size={32} />, title: "Exames de Alta Complexidade", text: "Requerimento de exames não disponíveis na rede básica.", msg: "exames pelo SUS" },
+  { icon: <Home size={32} />, title: "Home Care pelo SUS", text: "Solicitação de internação domiciliar quando houver indicação médica.", msg: "Home Care pelo SUS" },
+  { icon: <HeartPulse size={32} />, title: "Doenças Crônicas", text: "Busca por tratamento contínuo para doenças crônicas.", msg: "tratamento de doença crônica pelo SUS" },
+  { icon: <Accessibility size={32} />, title: "Reabilitação", text: "Acesso a centros especializados de reabilitação.", msg: "reabilitação pelo SUS" },
 ];
 
 const criticalSituations = [
-  { icon: <Siren size={32} />, title: "Risco de Morte por Falta de Leito", text: "Aguardando vaga em UTI enquanto o quadro clínico se agrava. Cada segundo é vital.", btn: "Conseguir Vaga em UTI", msg: "ajuda urgente com leito de UTI pelo SUS" },
-  { icon: <Clock size={32} />, title: "Câncer com Tratamento Atrasado", text: "Diagnóstico confirmado, mas a quimioterapia ou cirurgia não começam. O tempo é o maior inimigo.", btn: "Proteger meu Tratamento", msg: "ajuda urgente com tratamento de câncer pelo SUS" },
-  { icon: <AlertTriangle size={32} />, title: "Cirurgia Urgente em Fila Eletiva", text: "O caso é grave, mas o SUS classifica como eletivo. Não espere a sequela se tornar permanente.", btn: "Acelerar Cirurgia", msg: "ajuda urgente com cirurgia pelo SUS" },
-  { icon: <Ban size={32} />, title: "Falta de Medicamento Contínuo", text: "A interrupção do remédio pode causar danos irreversíveis. O Estado não pode parar seu tratamento.", btn: "Garantir meu Remédio", msg: "ajuda urgente com medicamento contínuo pelo SUS" },
-  { icon: <Baby size={32} />, title: "Negativa de Insumos Vitais", text: "Fórmulas alimentares ou sondas essenciais para a vida que o hospital parou de fornecer.", btn: "Exigir Insumos", msg: "ajuda urgente com insumos pelo SUS" },
-  { icon: <Accessibility size={32} />, title: "Criança com Deficiência", text: "Negativa de terapias multidisciplinares ou equipamentos adaptados pelo sistema público.", btn: "Garantir Assistência", msg: "ajuda urgente com assistência para criança com deficiência pelo SUS" },
-  { icon: <BedDouble size={32} />, title: "Paciente 'Preso' em Hospital", text: "Internado sem o exame vital para diagnóstico. Exigimos a remoção ou vaga.", btn: "Resolver Situação", msg: "ajuda urgente com paciente preso em hospital pelo SUS" },
-  { icon: <Map size={32} />, title: "Transferência Negada", text: "O hospital local não tem recursos e a transferência para centro especializado é recusada.", btn: "Exigir Transferência", msg: "ajuda urgente com transferência hospitalar pelo SUS" },
-  { icon: <Bone size={32} />, title: "Falta de Prótese em Cirurgia", text: "Cirurgia cancelada na hora por falta do material especial (OPME).", btn: "Garantir Prótese", msg: "ajuda urgente com falta de prótese em cirurgia pelo SUS" },
-  { icon: <Map size={32} />, title: "Abandono por Falta de TFD", text: "O paciente não tem como viajar para tratar o câncer e o Estado nega o transporte.", btn: "Garantir TFD", msg: "ajuda urgente com TFD pelo SUS" },
+  { icon: <Siren size={32} />, title: "Urgência em UTI", text: "Atuação em casos de necessidade urgente de leito de terapia intensiva.", btn: "Consultar Direito", msg: "ajuda urgente com leito de UTI pelo SUS" },
+  { icon: <Clock size={32} />, title: "Tratamento Oncológico", text: "Acompanhamento para início de tratamento de câncer nos prazos legais.", btn: "Saiba Mais", msg: "ajuda urgente com tratamento de câncer pelo SUS" },
+  { icon: <AlertTriangle size={32} />, title: "Cirurgia Urgente", text: "Medidas para casos cirúrgicos classificados como urgentes.", btn: "Verificar Opções", msg: "ajuda urgente com cirurgia pelo SUS" },
+  { icon: <Ban size={32} />, title: "Fornecimento de Medicamento", text: "Atuação em casos de interrupção ou não fornecimento de remédios.", btn: "Consultar", msg: "ajuda urgente com medicamento contínuo pelo SUS" },
+  { icon: <Baby size={32} />, title: "Insumos Essenciais", text: "Solicitação de insumos vitais para pacientes.", btn: "Saiba Mais", msg: "ajuda urgente com insumos pelo SUS" },
+  { icon: <Accessibility size={32} />, title: "Assistência PCD", text: "Busca por terapias e equipamentos para pessoas com deficiência.", btn: "Consultar", msg: "ajuda urgente com assistência para criança com deficiência pelo SUS" },
+  { icon: <BedDouble size={32} />, title: "Internação Hospitalar", text: "Questões relacionadas à internação e realização de exames.", btn: "Saiba Mais", msg: "ajuda urgente com paciente preso em hospital pelo SUS" },
+  { icon: <Map size={32} />, title: "Transferência Hospitalar", text: "Pedidos de transferência para unidades com recursos adequados.", btn: "Verificar", msg: "ajuda urgente com transferência hospitalar pelo SUS" },
+  { icon: <Bone size={32} />, title: "Materiais Cirúrgicos", text: "Solicitação de próteses e materiais necessários para cirurgias.", btn: "Consultar", msg: "ajuda urgente com falta de prótese em cirurgia pelo SUS" },
+  { icon: <Map size={32} />, title: "TFD", text: "Direito ao Tratamento Fora do Domicílio quando necessário.", btn: "Saiba Mais", msg: "ajuda urgente com TFD pelo SUS" },
 ];
 
 const planServices = [
-  { icon: <FileWarning size={32} />, title: "Remédio 'Off-Label'", text: "Plano nega o remédio alegando que o uso não está na bula para sua doença.", msg: "medicamento off-label pelo plano" },
-  { icon: <Scissors size={32} />, title: "Bariátrica/Reparadora", text: "Recusa sob alegação de procedimento estético. Seus direitos valem mais.", msg: "cirurgia bariátrica negada pelo plano" },
-  { icon: <Brain size={32} />, title: "Limitação de Terapias (TEA)", text: "Corte de sessões de fono ou psicologia. O tratamento deve ser ilimitado.", msg: "limitação de terapias pelo plano" },
-  { icon: <Home size={32} />, title: "Negativa de Home Care", text: "O plano recusa a internação domiciliar mesmo com laudo médico indicando a necessidade.", msg: "Home Care negado pelo plano" },
-  { icon: <TrendingUp size={32} />, title: "Reajuste Abusivo (Idade)", text: "Aumento drástico na mensalidade ao completar 59 ou 60 anos. Revisamos.", msg: "reajuste abusivo do plano" },
-  { icon: <FileX size={32} />, title: "Doença Preexistente", text: "Negativa de atendimento alegando que a doença existia antes do contrato.", msg: "doença preexistente pelo plano" },
-  { icon: <Dna size={32} />, title: "Exames Genéticos", text: "Recusa de sequenciamento genético ou biópsias oncológicas modernas.", msg: "exames genéticos negados pelo plano" },
-  { icon: <Building size={32} />, title: "Descredenciamento", text: "O plano retira seu hospital de confiança da rede sem aviso prévio.", msg: "descredenciamento de hospital pelo plano" },
-  { icon: <DollarSign size={32} />, title: "Negativa de Reembolso", text: "Dificuldade ou recusa em reembolsar valores gastos em urgências.", msg: "reembolso negado pelo plano" },
-  { icon: <UserMinus size={32} />, title: "Aposentados e Demitidos", text: "O plano tenta cancelar seu contrato após sair da empresa. Garanta sua vaga.", msg: "manutenção de plano para aposentado/demitido" },
+  { icon: <FileWarning size={32} />, title: "Medicamento 'Off-Label'", text: "Análise de negativas de medicamentos não previstos em bula.", msg: "medicamento off-label pelo plano" },
+  { icon: <Scissors size={32} />, title: "Cirurgias Reparadoras", text: "Atuação em negativas de cirurgias pós-bariátrica e reparadoras.", msg: "cirurgia bariátrica negada pelo plano" },
+  { icon: <Brain size={32} />, title: "Terapias (TEA)", text: "Questões sobre limites de sessões para terapias multidisciplinares.", msg: "limitação de terapias pelo plano" },
+  { icon: <Home size={32} />, title: "Home Care", text: "Solicitação de cobertura para internação domiciliar.", msg: "Home Care negado pelo plano" },
+  { icon: <TrendingUp size={32} />, title: "Reajustes de Mensalidade", text: "Análise de abusividade em reajustes por faixa etária ou sinistralidade.", msg: "reajuste abusivo do plano" },
+  { icon: <FileX size={32} />, title: "Doença Preexistente", text: "Questões sobre carência e cobertura de doenças preexistentes.", msg: "doença preexistente pelo plano" },
+  { icon: <Dna size={32} />, title: "Exames Genéticos", text: "Cobertura de exames de alta complexidade e genéticos.", msg: "exames genéticos negados pelo plano" },
+  { icon: <Building size={32} />, title: "Descredenciamento", text: "Direitos em caso de descredenciamento de hospitais e clínicas.", msg: "descredenciamento de hospital pelo plano" },
+  { icon: <DollarSign size={32} />, title: "Reembolso", text: "Atuação em casos de negativa ou divergência de reembolso.", msg: "reembolso negado pelo plano" },
+  { icon: <UserMinus size={32} />, title: "Manutenção de Contrato", text: "Direito de manter o plano para aposentados e demitidos.", msg: "manutenção de plano para aposentado/demitido" },
 ];
 
 const faqItems = [
@@ -167,11 +167,11 @@ const Saude: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:w-2/3">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6 drop-shadow-lg">
-              Direito à Saúde Pública: <br />
-              <span className="text-white bg-secondary/80 px-2 rounded box-decoration-clone">Sua Luta é Nossa Causa</span>
+              Consultoria em <br />
+              <span className="text-white bg-secondary/80 px-2 rounded box-decoration-clone">Direito à Saúde</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 mb-8 font-semibold drop-shadow-md leading-relaxed">
-              Quando o SUS, o Estado ou a União negam o acesso a tratamentos essenciais, medicamentos, cirurgias ou leitos, nós agimos para garantir seu direito fundamental à vida e à saúde.
+              Atuação jurídica em defesa do acesso a tratamentos, medicamentos e procedimentos junto ao SUS e Planos de Saúde.
             </p>
             <a
               href="https://wa.me/5585981186205?text=Olá Dr. Vitor, preciso de ajuda com uma questão de saúde pública."
@@ -190,8 +190,8 @@ const Saude: React.FC = () => {
       {/* 2. CAROUSEL 1: SUS SERVICES */}
       <section className="bg-background-light pt-8">
         <CarouselSection 
-          title="Em quais situações podemos te ajudar?" 
-          subtitle="Atuação contra Estado, Município e União"
+          title="Atuação Contra o Estado (SUS)" 
+          subtitle="Consultoria para obtenção de direitos na saúde pública."
           items={susServices} 
           variant="sus" 
         />
@@ -200,8 +200,8 @@ const Saude: React.FC = () => {
       {/* 3. CAROUSEL 2: CRITICAL SITUATIONS */}
       <section className="bg-white border-y border-gray-200">
         <CarouselSection 
-          title="Situações Críticas que Exigem Ação Imediata" 
-          subtitle="Se você está passando por isso, não espere."
+          title="Situações de Atuação" 
+          subtitle="Casos que demandam análise jurídica especializada."
           items={criticalSituations} 
           variant="critical" 
         />
@@ -210,8 +210,8 @@ const Saude: React.FC = () => {
       {/* 4. CAROUSEL 3: HEALTH PLANS */}
       <section className="bg-background-light pb-12">
         <CarouselSection 
-          title="Problemas com Planos de Saúde?" 
-          subtitle="Não fique desamparado diante de negativas abusivas."
+          title="Planos de Saúde" 
+          subtitle="Análise de contratos e coberturas."
           items={planServices} 
           variant="plan" 
         />
@@ -226,10 +226,10 @@ const Saude: React.FC = () => {
             <div className="flex justify-center mb-4">
                <HelpCircle size={40} className="text-secondary" />
             </div>
-            <h3 className="text-2xl font-bold mb-4 font-heading">Não tem todos os documentos agora?</h3>
+            <h3 className="text-2xl font-bold mb-4 font-heading">Dúvidas sobre documentos?</h3>
             <p className="text-lg text-gray-200 mb-6 max-w-3xl mx-auto">
-              Não se preocupe! Sabemos que organizar tudo pode ser complexo em um momento delicado. 
-              Você pode entrar em contato conosco imediatamente. Nossa equipe está pronta para orientar você passo a passo sobre como obter cada laudo.
+              Sabemos que a documentação médica pode ser complexa. 
+              Entre em contato para receber orientações sobre quais laudos e relatórios são necessários para a análise do seu caso.
             </p>
             <a 
               href="https://wa.me/5585981186205?text=Olá Dr. Vitor, preciso de orientação sobre documentos." 
@@ -239,49 +239,49 @@ const Saude: React.FC = () => {
             </a>
           </div>
 
-          <h2 className="text-3xl font-heading font-bold mb-12 text-center text-white drop-shadow-md">Documentos Essenciais para Ações de Saúde</h2>
+          <h2 className="text-3xl font-heading font-bold mb-12 text-center text-white drop-shadow-md">Documentos Importantes</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
                 <FileText size={28} /> Relatório Médico
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">O documento mais crucial. Deve conter: Diagnóstico (CID), tratamento indicado, justificativa da urgência (risco de vida) e ineficácia de alternativas do SUS.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Documento essencial contendo diagnóstico (CID), tratamento indicado e justificativa clínica.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
                 <FileX size={28} /> Negativa Formal
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Protocolo ou carta de negativa do SUS, Secretaria de Saúde ou Plano. É seu direito exigir por escrito.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Protocolo ou documento que comprove a recusa do fornecimento pelo SUS ou Plano de Saúde.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
                 <User size={28} /> Documentos Pessoais
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">RG, CPF, comprovante de residência atualizado e Cartão do SUS (ou carteirinha do plano).</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">RG, CPF, comprovante de residência e Cartão do SUS (ou carteira do plano).</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
                 <DollarSign size={28} /> Hipossuficiência
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Para ações contra o Estado, comprovar a incapacidade financeira (contracheque, IR ou declaração).</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Comprovantes de renda para casos de justiça gratuita.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
                 <Pill size={28} /> Receitas Médicas
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Atualizadas e legíveis, com a posologia e tempo de tratamento.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Receitas atualizadas e legíveis.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 text-secondary font-bold text-xl">
                 <Scan size={28} /> Exames
               </div>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">Laudos e resultados que comprovem a necessidade do tratamento.</p>
+              <p className="text-gray-700 text-base leading-relaxed font-medium">Laudos de exames que fundamentam o diagnóstico.</p>
             </div>
           </div>
         </div>
@@ -333,11 +333,10 @@ const Saude: React.FC = () => {
                  
                  <div className="space-y-4 text-text-main text-lg leading-relaxed text-justify">
                     <p>
-                       Especialista em Direito Previdenciário e em <strong>Direito da Saúde Pública</strong>, com foco em garantir o acesso a tratamentos, medicamentos e cirurgias essenciais. 
+                       Especialista em Direito Previdenciário e em <strong>Direito da Saúde</strong>, com foco na garantia de acesso a tratamentos e medicamentos. 
                     </p>
                     <p>
-                       Minha missão é assegurar que meus clientes recebam os benefícios e direitos que lhes são devidos, com um atendimento personalizado e combativo.
-                       Com experiência sólida e foco em soluções eficazes, fundei o escritório para oferecer atendimento personalizado e resultados consistentes.
+                       Atuo com ética e profissionalismo para assegurar que os direitos dos pacientes sejam respeitados, oferecendo consultoria jurídica especializada.
                     </p>
                  </div>
                  
@@ -347,32 +346,6 @@ const Saude: React.FC = () => {
                        Falar com Dr. Vitor
                     </a>
                  </div>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* 8. ACHIEVEMENTS / STATS */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-12">Somos especialistas em Direito Previdenciário e da Saúde</h2>
-           
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Trophy size={48} /></div>
-                 <h3 className="text-4xl font-extrabold text-primary mb-2">+ 500</h3>
-                 <p className="text-text-light font-bold text-lg">Benefícios Concedidos</p>
-                 <p className="text-sm text-gray-500 mt-1">(Judicial e Administrativo)</p>
-              </div>
-              <div className="p-6 border-x-0 md:border-x border-gray-100">
-                 <div className="flex justify-center mb-4 text-secondary"><ShieldCheck size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Especialistas</h3>
-                 <p className="text-text-light font-medium">Em benefícios do INSS e Saúde Pública</p>
-              </div>
-              <div className="p-6">
-                 <div className="flex justify-center mb-4 text-secondary"><Globe size={48} /></div>
-                 <h3 className="text-2xl font-bold text-primary mb-2 mt-2">Atendimento</h3>
-                 <p className="text-text-light font-medium">100% Online em todo Brasil</p>
               </div>
            </div>
         </div>

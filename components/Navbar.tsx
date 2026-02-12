@@ -18,9 +18,11 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Início', path: '/' },
-    { name: 'Direito Previdenciário', path: '/previdenciario' },
-    { name: 'Direito Cível & Família', path: '/civel' },
-    { name: 'Trabalhe Conosco', path: '/trabalhe' },
+    { name: 'Quem Somos', path: '/quem-somos' },
+    { name: 'Previdenciário', path: '/previdenciario' },
+    { name: 'Cível', path: '/civel' },
+    { name: 'Perguntas', path: '/faq' },
+    { name: 'Contato', path: '/contato' },
   ];
 
   return (
@@ -62,13 +64,13 @@ const Navbar: React.FC = () => {
             </div>
             
             {/* Desktop Navigation - Justified */}
-            <div className="hidden lg:flex flex-grow justify-center px-8">
-              <div className="flex items-center justify-between w-full max-w-3xl">
+            <div className="hidden lg:flex flex-grow justify-center px-4">
+              <div className="flex items-center justify-center gap-6 w-full max-w-4xl flex-wrap">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`${isActive(link.path)} px-3 py-2 text-sm font-heading tracking-wide uppercase text-center`}
+                    className={`${isActive(link.path)} px-2 py-2 text-xs xl:text-sm font-heading tracking-wide uppercase text-center whitespace-nowrap`}
                   >
                     {link.name}
                   </Link>
@@ -77,15 +79,24 @@ const Navbar: React.FC = () => {
             </div>
             
             {/* Desktop Button (Agende Atendimento) - REDESIGNED */}
-            <div className="hidden lg:flex items-center">
+            <div className="hidden lg:flex items-center flex-shrink-0">
                <a 
                   href="https://wa.me/5585981186205" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-white transition-all duration-300 bg-secondary rounded-full hover:bg-white hover:text-secondary hover:shadow-[0_0_20px_rgba(30,115,190,0.5)] border-2 border-transparent hover:border-secondary"
+                  className="
+                    relative inline-flex items-center justify-center gap-2 
+                    px-6 py-3 
+                    bg-secondary hover:bg-secondary/90
+                    text-white font-bold 
+                    rounded-full 
+                    shadow-[0_0_15px_rgba(30,115,190,0.5)] hover:shadow-[0_0_25px_rgba(30,115,190,0.7)]
+                    transition-all duration-300 transform hover:scale-105
+                    border border-white/10
+                  "
                >
                   <CalendarCheck size={18} />
-                  <span className="uppercase font-heading tracking-wide text-sm">Agende Atendimento</span>
+                  <span className="uppercase font-heading tracking-wide text-xs xl:text-sm drop-shadow-sm">Agendar</span>
                </a>
             </div>
 
@@ -126,7 +137,7 @@ const Navbar: React.FC = () => {
                 rel="noreferrer"
                 className="w-full mt-6 bg-secondary hover:bg-secondary-dark text-white block px-4 py-4 rounded-md text-lg font-bold text-center shadow-md font-heading uppercase"
              >
-                Agende Atendimento
+                Agendar Atendimento
              </a>
           </div>
         </div>

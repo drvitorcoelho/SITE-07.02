@@ -15,86 +15,86 @@ const diseasesSlides = [
   {
     id: 1,
     law: "🏥 ART. 151 - LEI 8.213/1991",
-    title: "Doenças Graves - Sem Carência",
-    subtitle: "Se comprovada a incapacidade, não exigem tempo mínimo de pagamento",
-    description: "Estas doenças presume-se serem graves o suficiente. Se o perito confirmar que você não pode trabalhar, a aposentadoria sai **sem exigir 12 meses de contribuição**.",
+    title: "Isenção de Carência",
+    subtitle: "Doenças que podem isentar de carência para auxílio-doença/aposentadoria por invalidez",
+    description: "Algumas doenças, quando geram incapacidade, podem dispensar o cumprimento dos 12 meses de carência, conforme a legislação.",
     lists: [
       ["Câncer (Neoplasia Maligna)", "Cardiopatia Grave", "Doença de Parkinson", "Espondilite Anquilosante", "Nefropatia Grave", "AIDS/SIDA"],
       ["Alienação Mental", "Cegueira", "Esclerose Múltipla", "Hepatopatia Grave", "Paralisia Irreversível", "Tuberculose Ativa", "Hanseníase"]
     ],
     alert: {
       type: "warning",
-      title: "ATENÇÃO: Diagnóstico não é suficiente",
-      text: "O perito do INSS precisa confirmar que a doença gera incapacidade permanente e impossibilidade de reabilitação."
+      title: "Requisito: Incapacidade",
+      text: "A isenção de carência depende da comprovação da incapacidade laborativa por perícia médica."
     }
   },
   {
     id: 2,
-    law: "📊 ESTATÍSTICAS DO INSS",
-    title: "Doenças Campeãs - Maior Volume",
-    subtitle: "Causam muita limitação física ou mental - Exigem 12 meses de carência",
-    description: "Estas doenças **não estão na lista de isenção**, mas são as que **MAIS aposentam por volume** porque causam limitação significativa.",
+    law: "📊 ESTATÍSTICAS",
+    title: "Outras Condições Comuns",
+    subtitle: "Doenças que frequentemente geram benefícios por incapacidade",
+    description: "Diversas condições de saúde podem gerar direito a benefícios, desde que comprovada a incapacidade para o trabalho.",
     customContent: (
       <div className="space-y-4 my-6 text-left">
         <div>
-          <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Accessibility size={18} /> DOENÇAS DA COLUNA</h4>
+          <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Accessibility size={18} /> ORTOPÉDICAS</h4>
           <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-            <li>Hérnia de Disco grave com compressão</li>
-            <li>Artrose severa (quadril/joelho/coluna)</li>
-            <li>Que não melhora com cirurgia</li>
+            <li>Hérnia de Disco</li>
+            <li>Artrose</li>
+            <li>Problemas na coluna</li>
           </ul>
         </div>
         <div>
-          <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Brain size={18} /> TRANSTORNOS MENTAIS</h4>
+          <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Brain size={18} /> SAÚDE MENTAL</h4>
           <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-            <li><strong>Depressão Recorrente Grave</strong> (resistente a remédios)</li>
-            <li><strong>Transtorno Bipolar</strong> (fases maníacas incontroláveis)</li>
+            <li><strong>Depressão</strong></li>
+            <li><strong>Transtornos de Ansiedade</strong></li>
           </ul>
         </div>
       </div>
     ),
     alert: {
       type: "warning",
-      title: "EXIGÊNCIA: 12 Meses de Carência",
-      text: "Você precisa ter contribuído ao INSS por pelo menos 12 meses. Laudo médico detalhado é essencial."
+      title: "Carência",
+      text: "Em regra, exige-se 12 meses de contribuição, salvo isenções legais ou acidentes."
     }
   },
   {
     id: 3,
-    law: "♿ LEI 15.176/2025 E LEI 13.146/2015",
-    title: "Novas Vias - Aposentadoria PCD",
-    subtitle: "Doenças que permitem aposentadoria facilitada por serem deficiência",
-    description: "Estas doenças dificilmente geram \"invalidez total\" direta, mas agora permitem **APOSENTADORIA FACILITADA** (regra mais leve) por serem consideradas Deficiência.",
+    law: "♿ LEGISLAÇÃO PCD",
+    title: "Aposentadoria da Pessoa com Deficiência",
+    subtitle: "Regras específicas da LC 142/2013",
+    description: "A legislação prevê critérios diferenciados de tempo de contribuição e idade para pessoas com deficiência, dependendo do grau (leve, moderado ou grave).",
     customContent: (
       <div className="space-y-4 my-6 text-left">
         <div className="bg-green-50 p-3 rounded border border-green-200">
-          <h4 className="font-bold text-green-800 mb-1 flex items-center gap-2"><Check size={16} /> FIBROMIALGIA</h4>
-          <p className="text-xs text-green-700">Lei 15.176/2025. Se grave e incapacitante, requer avaliação biopsicossocial.</p>
+          <h4 className="font-bold text-green-800 mb-1 flex items-center gap-2"><Check size={16} /> CONDIÇÕES ABRANGIDAS</h4>
+          <p className="text-xs text-green-700">Diversas condições podem ser enquadradas, mediante avaliação biopsicossocial.</p>
         </div>
         <div className="bg-green-50 p-3 rounded border border-green-200">
           <h4 className="font-bold text-green-800 mb-1 flex items-center gap-2"><Check size={16} /> VISÃO MONOCULAR</h4>
-          <p className="text-xs text-green-700">Lei 14.126/2021. Classificada como deficiência visual. Tema 378 da TNU.</p>
+          <p className="text-xs text-green-700">Reconhecida como deficiência sensorial pela Lei 14.126/2021.</p>
         </div>
         <div className="bg-green-50 p-3 rounded border border-green-200">
-          <h4 className="font-bold text-green-800 mb-1 flex items-center gap-2"><Check size={16} /> AUTISMO (TEA) ADULTO</h4>
-          <p className="text-xs text-green-700">Lei 12.764/2012. Nível de suporte 1, 2 ou 3. Requer avaliação multidisciplinar.</p>
+          <h4 className="font-bold text-green-800 mb-1 flex items-center gap-2"><Check size={16} /> AVALIAÇÃO</h4>
+          <p className="text-xs text-green-700">Necessária perícia médica e social para graduar a deficiência.</p>
         </div>
       </div>
     ),
     alert: {
       type: "success",
-      title: "VANTAGEM: Requisitos Reduzidos",
-      text: "Menos tempo de contribuição e idade reduzida comparado à aposentadoria comum. Sem fator previdenciário."
+      title: "Critérios Diferenciados",
+      text: "Possibilidade de redução no tempo de contribuição exigido."
     }
   }
 ];
 
 const faqData = [
-  { q: "Qual a diferença entre Aposentadoria PCD e BPC/LOAS?", a: "A Aposentadoria PCD é para quem contribuiu ao INSS e pode receber valores muito maiores (até o teto). O BPC/LOAS é assistencial (valor fixo de 1 salário mínimo) para quem não contribuiu e tem baixa renda." },
-  { q: "Preciso ter diagnóstico de deficiência para aposentar?", a: "Sim, mas o diagnóstico sozinho não basta. O INSS avalia o IMPACTO da deficiência na sua vida através da perícia biopsicossocial (IF-BrA)." },
-  { q: "Posso trabalhar enquanto recebo Aposentadoria PCD?", a: "Sim! Diferente da Aposentadoria por Invalidez ou BPC, na Aposentadoria PCD você pode continuar trabalhando e recebendo o benefício." },
-  { q: "Fibromialgia aposenta em 2026?", a: "Sim! A Lei 15.176/2025 reconheceu a Fibromialgia como deficiência. Agora há muito mais facilidade de aprovação com a avaliação biopsicossocial." },
-  { q: "E se meu pedido for negado?", a: "Você tem direito a recurso administrativo ou ação judicial. Um especialista pode identificar os erros do INSS e buscar a aprovação." }
+  { q: "Qual a diferença entre Aposentadoria PCD e BPC/LOAS?", a: "A Aposentadoria PCD é um benefício previdenciário para quem contribuiu ao INSS, com valor baseado nas contribuições. O BPC/LOAS é um benefício assistencial de um salário mínimo para quem não tem meios de subsistência, independente de contribuição." },
+  { q: "Como é comprovada a deficiência?", a: "Através de perícia médica e avaliação social no INSS, que analisam os impedimentos de longo prazo e as barreiras enfrentadas." },
+  { q: "Posso continuar trabalhando?", a: "Na Aposentadoria da Pessoa com Deficiência (por idade ou tempo de contribuição), o segurado pode continuar trabalhando. Já na Aposentadoria por Invalidez, não é permitido o retorno ao trabalho." },
+  { q: "Fibromialgia dá direito à aposentadoria PCD?", a: "A Fibromialgia pode ser enquadrada como deficiência se gerar impedimentos de longo prazo, sujeita à avaliação biopsicossocial." },
+  { q: "O que fazer se o pedido for negado?", a: "É possível recorrer administrativamente no próprio INSS ou ingressar com ação judicial para reavaliação do caso." }
 ];
 
 // --- SUB-COMPONENTES ---
@@ -254,9 +254,9 @@ const AposentadoriaPcd: React.FC = () => {
     
     if (showResult) {
       if (results.isEligible) {
-         text += `*Resultado:* O sistema indicou que posso ter direito!%0A`;
+         text += `*Resultado:* A simulação indica cumprimento dos requisitos.%0A`;
       } else {
-         text += `*Resultado:* Ainda falta tempo, quero planejar.%0A`;
+         text += `*Resultado:* A simulação indica tempo faltante.%0A`;
       }
     }
     
@@ -277,17 +277,17 @@ const AposentadoriaPcd: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left">
           <div className="lg:w-3/4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight drop-shadow-lg">
-              Aposente-se Até 10 Anos Mais Cedo <br/>
-              <span className="text-secondary">com a Aposentadoria PCD</span>
+              Informações sobre <br/>
+              <span className="text-secondary">Aposentadoria da Pessoa com Deficiência</span>
             </h1>
             <p className="text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed">
-              Se você sofre de limitação ou dor crônica (Fibromialgia, Problemas de Coluna, Autismo) e já contribuiu para o INSS, descubra agora o seu potencial de aposentadoria com valor integral.
+              Saiba como funciona a aposentadoria para quem possui limitações de longo prazo e entenda os requisitos da Lei Complementar 142/2013.
             </p>
             <a 
               href="#calculadora"
               className="inline-flex items-center gap-3 bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-transform hover:scale-105 text-lg"
             >
-              <Calculator size={24} /> CALCULE MEU DIREITO AGORA
+              <Calculator size={24} /> SIMULAR TEMPO DE CONTRIBUIÇÃO
             </a>
           </div>
         </div>
@@ -314,11 +314,11 @@ const AposentadoriaPcd: React.FC = () => {
               </thead>
               <tbody className="divide-y divide-gray-200 text-sm md:text-base">
                 {[
-                  { label: "Valor Mensal (2026)", bpc: "R$ 1.621,00 (Fixo)", pcd: "Até R$ 7.000+/mês (Depende contribuição)" },
-                  { label: "13º Salário", bpc: "Não recebe", pcd: "Sim (Integral)" },
-                  { label: "Pensão por Morte", bpc: "Não deixa", pcd: "Sim, deixa para herdeiros" },
-                  { label: "Pode Trabalhar?", bpc: "Não (perde o benefício)", pcd: "Sim, sem perder o benefício" },
-                  { label: "Renda Familiar", bpc: "Limite R$ 405/pessoa", pcd: "Sem limite de renda" },
+                  { label: "Natureza", bpc: "Assistencial", pcd: "Previdenciário" },
+                  { label: "13º Salário", bpc: "Não recebe", pcd: "Sim" },
+                  { label: "Pensão por Morte", bpc: "Não deixa", pcd: "Sim" },
+                  { label: "Permite Trabalho?", bpc: "Não", pcd: "Sim" },
+                  { label: "Exige Contribuição?", bpc: "Não", pcd: "Sim" },
                 ].map((row, i) => (
                   <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                     <td className="p-4 font-bold text-gray-700">{row.label}</td>
@@ -333,8 +333,7 @@ const AposentadoriaPcd: React.FC = () => {
           <div className="mt-6 bg-blue-50 border-l-4 border-primary p-4 rounded text-sm text-blue-900 flex items-start gap-3">
             <Info className="flex-shrink-0 mt-1" />
             <p>
-              <strong>IMPORTANTE:</strong> Se você contribuiu para o INSS, a Aposentadoria PCD é geralmente MUITO MAIS VANTAJOSA. 
-              Exemplo: Maria, 45 anos, Fibromialgia grave. BPC: R$ 1.621 | Aposentadoria PCD: R$ 6.484. <strong>Diferença de quase R$ 5.000/mês!</strong>
+              <strong>NOTA:</strong> A escolha do melhor benefício depende do histórico de cada segurado. Consulte um especialista para análise.
             </p>
           </div>
         </div>
@@ -344,8 +343,8 @@ const AposentadoriaPcd: React.FC = () => {
       <section className="py-20 bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-heading font-bold text-primary mb-4">Doenças que Aposentam em 2026</h2>
-            <p className="text-gray-600">Conheça as condições reconhecidas para concessão de benefício.</p>
+            <h2 className="text-3xl font-heading font-bold text-primary mb-4">Condições de Saúde e Previdência</h2>
+            <p className="text-gray-600">Entenda como a legislação trata diferentes condições de saúde.</p>
           </div>
           
           <DiseasesCarousel />
@@ -369,21 +368,21 @@ const AposentadoriaPcd: React.FC = () => {
                 </h2>
                 
                 <p className="text-sm text-gray-700 mb-6 flex-grow leading-relaxed">
-                  Se você tem perda de visão em um olho, é reconhecido como PCD. O INSS exige a <strong>Avaliação Biopsicossocial (Tema 378 da TNU)</strong> para provar barreiras, não apenas o laudo médico.
+                  A visão monocular é classificada como deficiência sensorial para todos os efeitos legais, permitindo o enquadramento nas regras da LC 142/2013, mediante avaliação biopsicossocial.
                 </p>
                 
                 <div className="space-y-2 mb-6">
-                  <div className="flex items-center gap-2 text-green-700 text-sm font-bold"><CheckCircle size={16} /> Aposentadoria Reduzida</div>
-                  <div className="flex items-center gap-2 text-green-700 text-sm font-bold"><CheckCircle size={16} /> Isenção Imposto Renda</div>
+                  <div className="flex items-center gap-2 text-green-700 text-sm font-bold"><CheckCircle size={16} /> Aposentadoria PCD</div>
+                  <div className="flex items-center gap-2 text-green-700 text-sm font-bold"><CheckCircle size={16} /> Isenção Imposto Renda (se aposentado)</div>
                   <div className="flex items-center gap-2 text-green-700 text-sm font-bold"><CheckCircle size={16} /> BPC/LOAS (se baixa renda)</div>
                 </div>
 
                 <div className="bg-orange-50 p-4 rounded-lg border border-orange-200 text-center mt-auto">
                   <div className="flex items-center justify-center gap-2 mb-2 text-orange-800 font-bold">
-                    <AlertOctagon size={20} /> Alerta de Perícia
+                    <AlertOctagon size={20} /> Avaliação
                   </div>
                   <p className="text-xs text-orange-700">
-                    A perícia não avalia apenas a visão, mas as barreiras que você enfrenta no trabalho e na sociedade.
+                    A perícia analisa as barreiras enfrentadas e o impacto na participação social.
                   </p>
                 </div>
               </div>
@@ -394,28 +393,28 @@ const AposentadoriaPcd: React.FC = () => {
               <div className="bg-white rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-2 bg-purple-600"></div>
                 
-                <span className="inline-block bg-purple-100 text-purple-700 font-bold px-3 py-1 rounded mb-4 text-xs tracking-wider w-fit">LEI 14.705/2023 & 12.764/2012</span>
+                <span className="inline-block bg-purple-100 text-purple-700 font-bold px-3 py-1 rounded mb-4 text-xs tracking-wider w-fit">LEGISLAÇÃO APLICÁVEL</span>
                 
                 <h2 className="text-2xl font-heading font-bold text-purple-800 mb-4 flex items-center gap-2">
                   <Brain className="text-purple-600" size={28} /> Fibromialgia e TEA
                 </h2>
                 
                 <p className="text-sm text-gray-700 mb-6 flex-grow leading-relaxed">
-                  A Fibromialgia e o Autismo (mesmo leve ou adulto) garantem direitos PCD se houver <strong>barreiras funcionais</strong>. A dor crônica e as dificuldades de interação social contam tempo diferenciado.
+                  Condições que geram impedimentos de longo prazo podem ser enquadradas como deficiência para fins previdenciários, dependendo da avaliação das barreiras e limitações funcionais.
                 </p>
                 
                 <div className="space-y-2 mb-6">
-                  <div className="flex items-center gap-2 text-purple-700 text-sm font-bold"><CheckCircle size={16} /> Tempo Reduzido (LC 142/2013)</div>
-                  <div className="flex items-center gap-2 text-purple-700 text-sm font-bold"><CheckCircle size={16} /> Sem Fator Previdenciário</div>
-                  <div className="flex items-center gap-2 text-purple-700 text-sm font-bold"><CheckCircle size={16} /> Continuidade no Trabalho</div>
+                  <div className="flex items-center gap-2 text-purple-700 text-sm font-bold"><CheckCircle size={16} /> Avaliação Biopsicossocial</div>
+                  <div className="flex items-center gap-2 text-purple-700 text-sm font-bold"><CheckCircle size={16} /> LC 142/2013</div>
+                  <div className="flex items-center gap-2 text-purple-700 text-sm font-bold"><CheckCircle size={16} /> Lei 12.764/2012 (TEA)</div>
                 </div>
 
                 <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-200 text-center mt-auto">
                   <div className="flex items-center justify-center gap-2 mb-2 text-indigo-800 font-bold">
-                    <FileText size={20} /> Prova Invisível
+                    <FileText size={20} /> Documentação
                   </div>
                   <p className="text-xs text-indigo-700">
-                    Dores e barreiras sociais não aparecem no Raio-X. O segredo é um relatório médico funcional detalhado.
+                    Relatórios médicos detalhados sobre as limitações funcionais são essenciais.
                   </p>
                 </div>
               </div>
@@ -429,11 +428,19 @@ const AposentadoriaPcd: React.FC = () => {
       <section className="py-20 bg-background-light" id="calculadora">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+            
+            {/* Disclaimer no topo da calculadora */}
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+              <p className="text-sm text-yellow-800 text-center">
+                <strong>Aviso:</strong> Esta calculadora é apenas uma ferramenta informativa de simulação. A concessão do benefício e o cálculo exato do tempo de contribuição dependem da análise oficial do INSS e da avaliação biopsicossocial.
+              </p>
+            </div>
+
             <div className="bg-primary p-8 text-center text-white">
               <h2 className="text-2xl md:text-3xl font-heading font-bold mb-2 flex justify-center items-center gap-3">
-                <Calculator /> Calculadora de Aposentadoria PCD 2026
+                <Calculator /> Simulador de Requisitos PCD
               </h2>
-              <p className="opacity-90">Descubra o valor estimado do seu benefício e sua elegibilidade.</p>
+              <p className="opacity-90">Verifique os critérios de tempo e idade previstos na LC 142/2013.</p>
             </div>
 
             <div className="p-8 md:p-12 space-y-8">
@@ -459,7 +466,7 @@ const AposentadoriaPcd: React.FC = () => {
                   <option value="moderada">Moderada</option>
                   <option value="leve">Leve</option>
                 </select>
-                <p className="text-xs text-gray-500 mt-2">*Se não tiver certeza, selecione "Grave" para simular o melhor cenário ou fale com nossos especialistas.</p>
+                <p className="text-xs text-gray-500 mt-2">*O grau é definido pela perícia do INSS. Selecione para simulação.</p>
               </div>
 
               {/* Tempos */}
@@ -501,7 +508,7 @@ const AposentadoriaPcd: React.FC = () => {
               </div>
 
               <button onClick={handleCalculate} className="w-full bg-whatsapp hover:bg-green-600 text-white font-bold py-5 rounded-xl text-xl shadow-lg transition-transform transform hover:-translate-y-1 flex items-center justify-center gap-3">
-                CALCULAR MEU DIREITO AGORA <ChevronRight />
+                SIMULAR REQUISITOS <ChevronRight />
               </button>
             </div>
           </div>
@@ -514,35 +521,29 @@ const AposentadoriaPcd: React.FC = () => {
               <div className="bg-white rounded-xl shadow-lg border-l-8 border-secondary p-8 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-5 text-primary"><DollarSign size={120} /></div>
                 
-                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-1">Resultado da Estimativa</h3>
+                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-1">Resultado da Simulação</h3>
                 <div className="mb-6">
-                  <span className="text-4xl md:text-5xl font-extrabold text-primary font-heading">
-                    R$ 6.484,00<span className="text-lg text-gray-400 font-normal">*</span>
-                  </span>
-                  <p className="text-sm text-gray-500 mt-1">Valor Base Estimado (Considerando teto/média alta)</p>
+                  <p className="text-gray-700">
+                    Com base nos dados informados, a simulação verifica os critérios de tempo e idade.
+                  </p>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-6 border-t border-gray-100 pt-6">
-                  <div>
-                    <span className="block text-sm text-gray-500">13º Salário Proporcional</span>
-                    <strong className="text-xl text-green-600">+ R$ 540,33</strong>
-                  </div>
-                  <div>
-                    <span className="block text-sm text-gray-500">Total Estimado a Receber</span>
-                    <strong className="text-xl text-primary">R$ 7.024,33</strong>
-                  </div>
+                   <p className="text-sm text-gray-500">
+                     A Aposentadoria PCD oferece vantagens como a possibilidade de exclusão do fator previdenciário e redução no tempo de contribuição. O valor exato depende da média de suas contribuições.
+                   </p>
                 </div>
               </div>
 
               {/* Status de Elegibilidade */}
               <div className={`p-6 rounded-lg border-l-4 shadow-sm ${results.isEligible ? 'bg-green-50 border-green-500' : 'bg-amber-50 border-amber-500'}`}>
                 <h4 className={`text-xl font-bold mb-2 ${results.isEligible ? 'text-green-800' : 'text-amber-800'}`}>
-                  {results.isEligible ? '✅ Estratégia Válida: Forte Indício de Direito!' : '⚠️ Atenção: Tempo Faltante'}
+                  {results.isEligible ? '✅ Requisitos Aparentemente Cumpridos' : '⚠️ Requisitos Não Atingidos'}
                 </h4>
                 <p className="text-gray-700">
                   {results.isEligible 
-                    ? "Sua situação indica que você cumpre os requisitos básicos. Fale com um especialista para validar a documentação." 
-                    : `Você ainda precisa de aproximadamente ${results.timeRemaining.toFixed(1)} anos de contribuição ou aguardar a idade.`}
+                    ? "Sua simulação indica que os requisitos de tempo/idade podem ter sido atingidos. É recomendada uma análise detalhada." 
+                    : `Segundo a simulação, ainda faltariam aproximadamente ${results.timeRemaining.toFixed(1)} anos de contribuição ou idade.`}
                 </p>
               </div>
 
@@ -553,26 +554,11 @@ const AposentadoriaPcd: React.FC = () => {
                   <div>
                     <strong className="block text-orange-900 font-bold mb-1">ATENÇÃO: Bolsa Família</strong>
                     <p className="text-sm text-orange-800">
-                      A Aposentadoria é renda e pode suspender seu Bolsa Família. Planeje essa transição com cuidado!
+                      O recebimento de aposentadoria altera a renda familiar e pode impactar a manutenção do Bolsa Família.
                     </p>
                   </div>
                 </div>
               )}
-
-              <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500 flex items-start gap-4">
-                <CheckCircle className="text-green-600 flex-shrink-0" />
-                <div>
-                  <strong className="block text-green-900 font-bold mb-1">BOA NOTÍCIA: Isenção de IR</strong>
-                  <p className="text-sm text-green-800">
-                    O valor é pago integralmente, sem descontos de Imposto de Renda para muitas doenças graves/PCD.
-                  </p>
-                </div>
-              </div>
-
-              {/* Disclaimer do Cálculo */}
-              <p className="text-xs text-center text-gray-500 italic max-w-2xl mx-auto">
-                * Nota: O valor de R$ 6.484,00 é uma estimativa baseada em um cenário de contribuição pelo teto ou média alta. O valor real depende da sua média salarial (80% maiores salários) e do fator previdenciário (se houver). Consulte um advogado para o cálculo exato (CNIS).
-              </p>
 
               {/* CTA WhatsApp */}
               <div className="text-center pt-8">
@@ -582,9 +568,9 @@ const AposentadoriaPcd: React.FC = () => {
                   rel="noreferrer" 
                   className="inline-flex items-center gap-3 bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl transition-all hover:scale-105 animate-pulse-slow"
                 >
-                  <MessageCircle size={24} /> FALAR COM UM DE NOSSOS ESPECIALISTAS
+                  <MessageCircle size={24} /> AGENDAR CONSULTA COM ESPECIALISTA
                 </a>
-                <p className="mt-4 text-sm text-gray-500">Análise Gratuita • Sem Compromisso • Resposta em Minutos</p>
+                <p className="mt-4 text-sm text-gray-500">Atendimento profissional e sigiloso.</p>
               </div>
 
             </div>
@@ -598,7 +584,7 @@ const AposentadoriaPcd: React.FC = () => {
           <h2 className="text-3xl font-heading font-bold text-primary mb-8 text-center">Perguntas Frequentes</h2>
           <div className="space-y-4">
             {faqData.map((item, i) => (
-              <details key={i} className="bg-gray-50 border border-gray-200 rounded-lg group">
+              <details key={i} className="bg-gray-5 entry border border-gray-200 rounded-lg group">
                 <summary className="font-bold text-primary p-5 cursor-pointer flex justify-between items-center group-open:text-secondary">
                   {item.q}
                   <ChevronRight className="transition-transform group-open:rotate-90" />
@@ -616,12 +602,12 @@ const AposentadoriaPcd: React.FC = () => {
       <section className="py-12 bg-background-light border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><FileText size={20} /> Perícia Biopsicossocial Obrigatória</h4>
-            <p className="text-sm text-gray-600">O INSS não aprova apenas com laudo médico. A avaliação biopsicossocial (IF-BrA) é crucial. Nós preparamos você para ela.</p>
+            <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><FileText size={20} /> Avaliação Biopsicossocial</h4>
+            <p className="text-sm text-gray-600">O INSS realiza a avaliação médica e social para determinar o grau da deficiência (leve, moderada ou grave), impactando o tempo exigido.</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
             <h4 className="font-bold text-primary mb-2 flex items-center gap-2"><Clock size={20} /> Conversão de Tempo</h4>
-            <p className="text-sm text-gray-600">Se você trabalhou sem deficiência antes, convertemos esse tempo com multiplicadores que AUMENTAM seu tempo total.</p>
+            <p className="text-sm text-gray-600">Períodos trabalhados com e sem deficiência podem ser convertidos e somados, conforme regras específicas de cálculo.</p>
           </div>
         </div>
       </section>
@@ -629,15 +615,15 @@ const AposentadoriaPcd: React.FC = () => {
       {/* SEÇÃO 12: FINAL CTA */}
       <section className="py-20 bg-primary text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-heading font-bold mb-6">Você Pode Estar Deixando de Ganhar Milhares de Reais!</h2>
+          <h2 className="text-3xl font-heading font-bold mb-6">Busque seus direitos</h2>
           <p className="text-xl text-gray-200 mb-10">
-            A Aposentadoria PCD é um direito seu. Não deixe para depois. Fale com um de nossos especialistas AGORA.
+            Agende uma consulta para análise detalhada do seu tempo de contribuição e enquadramento nas regras de Aposentadoria PCD.
           </p>
           <a 
             href={getWhatsappLink()}
             className="inline-block bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-12 rounded-md text-lg shadow-2xl transition-transform hover:scale-105"
           >
-            FALAR COM ESPECIALISTA AGORA
+            FALAR COM ESPECIALISTA
           </a>
         </div>
       </section>

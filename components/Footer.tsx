@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Mail, MapPin, ChevronRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, ChevronRight, CheckCircle, Lock, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -52,6 +52,18 @@ const Footer: React.FC = () => {
                 <Link to="/" className="flex items-center gap-2 hover:text-secondary transition-colors group">
                   <ChevronRight size={14} className="text-gray-500 group-hover:text-secondary" />
                   Início
+                </Link>
+              </li>
+              <li>
+                <Link to="/quem-somos" className="flex items-center gap-2 hover:text-secondary transition-colors group">
+                  <ChevronRight size={14} className="text-gray-500 group-hover:text-secondary" />
+                  Quem Somos
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="flex items-center gap-2 hover:text-secondary transition-colors group">
+                  <ChevronRight size={14} className="text-gray-500 group-hover:text-secondary" />
+                  Perguntas Frequentes
                 </Link>
               </li>
               <li>
@@ -123,18 +135,53 @@ const Footer: React.FC = () => {
                   contato@vitorcoelho.adv.br
                 </a>
               </li>
+              <li className="text-gray-400 text-xs mt-2">
+                 <p className="mb-1"><strong>Número OAB-CE:</strong> 56.789</p>
+                 <p>Todos os dados são tratados com sigilo profissional conforme Código de Ética e Disciplina da OAB.</p>
+              </li>
               <li className="pt-4">
-                <a 
-                  href="https://wa.me/5585981186205" 
+                <Link 
+                  to="/contato" 
                   className="inline-flex w-full items-center justify-center bg-whatsapp hover:bg-green-600 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-green-900/20"
                 >
                   Iniciar Atendimento
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
         
+        {/* Badges and Certifications */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-gray-800 pt-8 pb-8 text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-3">
+            <div className="p-2 bg-white/5 rounded-full text-secondary">
+              <CheckCircle size={24} />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-sm">Conformidade OAB</h4>
+              <p className="text-xs text-gray-500">Atuamos conforme Provimento 205/2021</p>
+            </div>
+          </div>
+          <div className="flex items-center justify-center md:justify-start gap-3">
+            <div className="p-2 bg-white/5 rounded-full text-green-500">
+              <Shield size={24} />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-sm">Conformidade LGPD</h4>
+              <p className="text-xs text-gray-500">Seus dados protegidos pela lei</p>
+            </div>
+          </div>
+          <div className="flex items-center justify-center md:justify-start gap-3">
+            <div className="p-2 bg-white/5 rounded-full text-blue-400">
+              <Lock size={24} />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-sm">Site Seguro</h4>
+              <p className="text-xs text-gray-500">Conexão criptografada (SSL)</p>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
           <p>&copy; {new Date().getFullYear()} Vitor Coelho Advocacia. Todos os direitos reservados.</p>
