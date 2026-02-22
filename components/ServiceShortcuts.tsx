@@ -48,7 +48,7 @@ const ServiceShortcuts: React.FC = () => {
     {
       path: '/aposentadoria-pcd',
       label: 'Aposentadoria PCD',
-      title: 'CALCULADORA 2026',
+      title: 'REQUISITOS E REGRAS',
       subtitle: 'APOSENTADORIA PCD',
       icon: <Accessibility size={24} />,
       className: 'bg-gradient-to-r from-indigo-700 via-purple-600 to-blue-500 hover:from-indigo-600 hover:via-purple-500 hover:to-blue-400 text-white',

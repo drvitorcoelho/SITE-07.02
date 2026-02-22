@@ -138,33 +138,6 @@ const Contato: React.FC = () => {
 
         </div>
 
-        {/* PERGUNTAS RÁPIDAS */}
-        <div className="mt-16 max-w-3xl mx-auto">
-           <h3 className="text-xl font-heading font-bold text-primary mb-6 text-center">Dúvidas Comuns</h3>
-           <div className="space-y-4">
-              <div className="border-b border-gray-200 pb-4">
-                 <p className="font-bold text-primary">Qual é o melhor horário para entrar em contato?</p>
-                 <p className="text-sm text-gray-600">Atendimento comercial: segunda a sexta, 7h às 18h. WhatsApp está disponível 24/7.</p>
-              </div>
-              <div className="border-b border-gray-200 pb-4">
-                 <p className="font-bold text-primary">Quanto custa a consulta inicial?</p>
-                 <p className="text-sm text-gray-600">A consulta inicial é completamente gratuita e sem compromisso.</p>
-              </div>
-              <div className="border-b border-gray-200 pb-4">
-                 <p className="font-bold text-primary">Preciso ir presencialmente?</p>
-                 <p className="text-sm text-gray-600">Não. Todo o atendimento é 100% online. Você não precisa sair de casa.</p>
-              </div>
-              <div className="border-b border-gray-200 pb-4">
-                 <p className="font-bold text-primary">Como envio documentos?</p>
-                 <p className="text-sm text-gray-600">Você pode enviar pelo WhatsApp, email ou plataforma segura que fornecemos.</p>
-              </div>
-              <div className="border-b border-gray-200 pb-4">
-                 <p className="font-bold text-primary">Quanto tempo leva para responder?</p>
-                 <p className="text-sm text-gray-600">Respondemos em até 24 horas úteis. Casos urgentes podem ser atendidos mais rapidamente.</p>
-              </div>
-           </div>
-        </div>
-
         {/* CTA FINAL */}
         <div className="mt-16 text-center">
            <h2 className="text-2xl font-heading font-bold text-primary mb-4">Pronto para Resolver seu Caso?</h2>

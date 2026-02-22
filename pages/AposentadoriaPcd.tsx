@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  Calculator, CheckCircle, AlertTriangle, MessageCircle, Info, Accessibility, 
-  ChevronRight, ChevronLeft, Calendar, DollarSign, Clock, Check, Heart, Scale, FileText, 
-  Eye, Brain, Activity, User, FileCheck, Stethoscope, AlertOctagon, HelpCircle
+  CheckCircle, MessageCircle, Info, Accessibility, 
+  ChevronRight, ChevronLeft, Check, Eye, Brain, FileText, 
+  AlertOctagon, Clock
 } from 'lucide-react';
 import ServiceShortcuts from '../components/ServiceShortcuts';
 
@@ -179,92 +179,11 @@ const CustomCheckbox = ({ id, checked, onChange, label }: { id: string, checked:
 // --- PÁGINA PRINCIPAL ---
 
 const AposentadoriaPcd: React.FC = () => {
-  // State Calculator
-  const [gender, setGender] = useState<'homem' | 'mulher'>('mulher');
-  const [degree, setDegree] = useState<'grave' | 'moderada' | 'leve'>('grave');
-  const [deficiencyTime, setDeficiencyTime] = useState<number | ''>('');
-  const [contributionTime, setContributionTime] = useState<number | ''>('');
-  const [age, setAge] = useState<number | ''>('');
-  const [bolsaFamilia, setBolsaFamilia] = useState(false);
-  const [existingBenefit, setExistingBenefit] = useState('nao');
   
-  const [showResult, setShowResult] = useState(false);
-  const resultRef = useRef<HTMLDivElement>(null);
-
-  // Logic Constants
-  const timeReqs = {
-    'grave': { 'homem': 25, 'mulher': 20 },
-    'moderada': { 'homem': 29, 'mulher': 24 },
-    'leve': { 'homem': 33, 'mulher': 28 }
-  };
-  const ageReqs = { 'homem': 60, 'mulher': 55 };
-
-  const handleCalculate = () => {
-    if (deficiencyTime === '' || contributionTime === '' || age === '') {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
-    setShowResult(true);
-    setTimeout(() => {
-      resultRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
-  const calculateResult = () => {
-    const cTime = Number(contributionTime);
-    const dTime = Number(deficiencyTime);
-    const cAge = Number(age);
-
-    // 1. Elegibilidade por Tempo
-    const reqTime = timeReqs[degree][gender];
-    const timeRemaining = Math.max(0, reqTime - cTime);
-    
-    // 2. Elegibilidade por Idade
-    const reqAge = ageReqs[gender];
-    const ageRemaining = Math.max(0, reqAge - cAge);
-    
-    const defRemaining = Math.max(0, 15 - dTime);
-    const agePathBlocked = defRemaining > 0 || ageRemaining > 0;
-
-    // Estimativa Financeira
-    const estimatedMin = SM_2026; 
-    const estimatedMax = 6484.00;
-
-    const isEligible = timeRemaining <= 0 || (!agePathBlocked);
-
-    return {
-      timeRemaining,
-      reqTime,
-      isEligible,
-      estimatedMin,
-      estimatedMax,
-      ageRemaining
-    };
-  };
-
-  const results = calculateResult();
-
   const getWhatsappLink = () => {
-    let text = `Olá! Fiz a simulação da Aposentadoria PCD 2026:%0A%0A`;
-    text += `*Perfil:* ${gender === 'homem' ? 'Homem' : 'Mulher'}, Deficiência ${degree}%0A`;
-    text += `*Tempo Deficiência:* ${deficiencyTime} anos%0A`;
-    text += `*Tempo Contribuição:* ${contributionTime} anos%0A`;
-    text += `*Idade:* ${age} anos%0A`;
-    if(bolsaFamilia) text += `*Obs:* Recebo Bolsa Família.%0A`;
-    
-    if (showResult) {
-      if (results.isEligible) {
-         text += `*Resultado:* A simulação indica cumprimento dos requisitos.%0A`;
-      } else {
-         text += `*Resultado:* A simulação indica tempo faltante.%0A`;
-      }
-    }
-    
+    let text = `Olá! Gostaria de saber mais sobre a Aposentadoria PCD 2026:%0A%0A`;
     return `https://wa.me/5585981186205?text=${text}`;
   };
-
-  // Reusable input style class (Matching CalculadoraSalarioMaternidade)
-  const inputClass = "w-full p-4 border-2 border-gray-300 bg-white text-gray-900 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all text-lg shadow-sm placeholder-gray-500";
 
   return (
     <div className="bg-[#f8f9fa] min-h-screen font-body text-[#333]">
@@ -284,10 +203,10 @@ const AposentadoriaPcd: React.FC = () => {
               Saiba como funciona a aposentadoria para quem possui limitações de longo prazo e entenda os requisitos da Lei Complementar 142/2013.
             </p>
             <a 
-              href="#calculadora"
+              href={getWhatsappLink()}
               className="inline-flex items-center gap-3 bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-transform hover:scale-105 text-lg"
             >
-              <Calculator size={24} /> SIMULAR TEMPO DE CONTRIBUIÇÃO
+              <MessageCircle size={24} /> FALAR COM ESPECIALISTA
             </a>
           </div>
         </div>
@@ -421,160 +340,6 @@ const AposentadoriaPcd: React.FC = () => {
             </div>
 
           </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 7: CALCULADORA */}
-      <section className="py-20 bg-background-light" id="calculadora">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-            
-            {/* Disclaimer no topo da calculadora */}
-            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-              <p className="text-sm text-yellow-800 text-center">
-                <strong>Aviso:</strong> Esta calculadora é apenas uma ferramenta informativa de simulação. A concessão do benefício e o cálculo exato do tempo de contribuição dependem da análise oficial do INSS e da avaliação biopsicossocial.
-              </p>
-            </div>
-
-            <div className="bg-primary p-8 text-center text-white">
-              <h2 className="text-2xl md:text-3xl font-heading font-bold mb-2 flex justify-center items-center gap-3">
-                <Calculator /> Simulador de Requisitos PCD
-              </h2>
-              <p className="opacity-90">Verifique os critérios de tempo e idade previstos na LC 142/2013.</p>
-            </div>
-
-            <div className="p-8 md:p-12 space-y-8">
-              
-              {/* Gênero */}
-              <div>
-                <label className="block text-primary-dark font-bold mb-3 text-lg">1. Qual é o seu gênero?</label>
-                <div className="flex gap-4">
-                  {['homem', 'mulher'].map((g) => (
-                    <label key={g} className={`flex-1 cursor-pointer p-4 rounded-lg border-2 flex items-center justify-center gap-2 transition-all ${gender === g ? 'border-secondary bg-secondary/10 text-primary font-bold' : 'border-gray-200 hover:border-gray-300'}`}>
-                      <input type="radio" name="gender" value={g} checked={gender === g} onChange={() => setGender(g as any)} className="hidden" />
-                      <span className="capitalize">{g}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Grau */}
-              <div>
-                <label className="block text-primary-dark font-bold mb-3 text-lg">2. Qual é o seu grau de deficiência?</label>
-                <select value={degree} onChange={(e) => setDegree(e.target.value as any)} className={inputClass}>
-                  <option value="grave">Grave</option>
-                  <option value="moderada">Moderada</option>
-                  <option value="leve">Leve</option>
-                </select>
-                <p className="text-xs text-gray-500 mt-2">*O grau é definido pela perícia do INSS. Selecione para simulação.</p>
-              </div>
-
-              {/* Tempos */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-primary-dark font-bold mb-2">3. Tempo COM deficiência (anos)</label>
-                  <input type="number" value={deficiencyTime} onChange={(e) => setDeficiencyTime(e.target.value === '' ? '' : Number(e.target.value))} placeholder="Ex: 10" className={inputClass} />
-                </div>
-                <div>
-                  <label className="block text-primary-dark font-bold mb-2">4. Tempo TOTAL contribuição (anos)</label>
-                  <input type="number" value={contributionTime} onChange={(e) => setContributionTime(e.target.value === '' ? '' : Number(e.target.value))} placeholder="Ex: 20" className={inputClass} />
-                </div>
-              </div>
-
-              {/* Idade */}
-              <div>
-                <label className="block text-primary-dark font-bold mb-2">5. Qual é a sua idade atual?</label>
-                <input type="number" value={age} onChange={(e) => setAge(e.target.value === '' ? '' : Number(e.target.value))} placeholder="Ex: 45" className={inputClass} />
-              </div>
-
-              {/* Extras */}
-              <div className="space-y-6">
-                <CustomCheckbox 
-                  id="bolsaFamilia"
-                  label="Você recebe Bolsa Família?"
-                  checked={bolsaFamilia}
-                  onChange={setBolsaFamilia}
-                />
-                
-                <div>
-                  <label className="block text-primary-dark font-bold mb-2">Você já recebe algum benefício do INSS?</label>
-                  <select value={existingBenefit} onChange={(e) => setExistingBenefit(e.target.value)} className={inputClass}>
-                    <option value="nao">Não</option>
-                    <option value="auxilio">Auxílio-Doença</option>
-                    <option value="bpc">BPC/LOAS</option>
-                    <option value="outro">Outro</option>
-                  </select>
-                </div>
-              </div>
-
-              <button onClick={handleCalculate} className="w-full bg-whatsapp hover:bg-green-600 text-white font-bold py-5 rounded-xl text-xl shadow-lg transition-transform transform hover:-translate-y-1 flex items-center justify-center gap-3">
-                SIMULAR REQUISITOS <ChevronRight />
-              </button>
-            </div>
-          </div>
-
-          {/* SEÇÃO 8: RESULTADO DO CÁLCULO */}
-          {showResult && (
-            <div ref={resultRef} className="mt-12 animate-fade-in space-y-8">
-              
-              {/* Resultado Financeiro */}
-              <div className="bg-white rounded-xl shadow-lg border-l-8 border-secondary p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5 text-primary"><DollarSign size={120} /></div>
-                
-                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-1">Resultado da Simulação</h3>
-                <div className="mb-6">
-                  <p className="text-gray-700">
-                    Com base nos dados informados, a simulação verifica os critérios de tempo e idade.
-                  </p>
-                </div>
-
-                <div className="flex flex-col md:flex-row gap-6 border-t border-gray-100 pt-6">
-                   <p className="text-sm text-gray-500">
-                     A Aposentadoria PCD oferece vantagens como a possibilidade de exclusão do fator previdenciário e redução no tempo de contribuição. O valor exato depende da média de suas contribuições.
-                   </p>
-                </div>
-              </div>
-
-              {/* Status de Elegibilidade */}
-              <div className={`p-6 rounded-lg border-l-4 shadow-sm ${results.isEligible ? 'bg-green-50 border-green-500' : 'bg-amber-50 border-amber-500'}`}>
-                <h4 className={`text-xl font-bold mb-2 ${results.isEligible ? 'text-green-800' : 'text-amber-800'}`}>
-                  {results.isEligible ? '✅ Requisitos Aparentemente Cumpridos' : '⚠️ Requisitos Não Atingidos'}
-                </h4>
-                <p className="text-gray-700">
-                  {results.isEligible 
-                    ? "Sua simulação indica que os requisitos de tempo/idade podem ter sido atingidos. É recomendada uma análise detalhada." 
-                    : `Segundo a simulação, ainda faltariam aproximadamente ${results.timeRemaining.toFixed(1)} anos de contribuição ou idade.`}
-                </p>
-              </div>
-
-              {/* Alertas Específicos */}
-              {bolsaFamilia && (
-                <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500 flex items-start gap-4">
-                  <AlertTriangle className="text-orange-600 flex-shrink-0" />
-                  <div>
-                    <strong className="block text-orange-900 font-bold mb-1">ATENÇÃO: Bolsa Família</strong>
-                    <p className="text-sm text-orange-800">
-                      O recebimento de aposentadoria altera a renda familiar e pode impactar a manutenção do Bolsa Família.
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* CTA WhatsApp */}
-              <div className="text-center pt-8">
-                <a 
-                  href={getWhatsappLink()} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="inline-flex items-center gap-3 bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl transition-all hover:scale-105 animate-pulse-slow"
-                >
-                  <MessageCircle size={24} /> AGENDAR CONSULTA COM ESPECIALISTA
-                </a>
-                <p className="mt-4 text-sm text-gray-500">Atendimento profissional e sigiloso.</p>
-              </div>
-
-            </div>
-          )}
         </div>
       </section>
 

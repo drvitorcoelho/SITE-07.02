@@ -72,12 +72,6 @@ const Footer: React.FC = () => {
                   Trabalhe Conosco
                 </Link>
               </li>
-              <li>
-                 <a href="https://wa.me/5585981186205" className="flex items-center gap-2 hover:text-secondary transition-colors group">
-                  <ChevronRight size={14} className="text-gray-500 group-hover:text-secondary" />
-                  Agendar Consulta
-                </a>
-              </li>
             </ul>
           </div>
 

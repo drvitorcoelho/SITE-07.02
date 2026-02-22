@@ -34,7 +34,7 @@ const previdenciarioData = [
     description: "Informações sobre direitos de mães rurais, urbanas e desempregadas.",
     services: ["Cálculo do benefício (4 meses)", "13º salário proporcional", "Contribuição única (2025)", "Casos retroativos"],
     link: "/salario-maternidade",
-    btnText: "Calcular Agora"
+    btnText: "Saiba Mais"
   },
   {
     icon: <Accessibility size={32} />,
@@ -42,7 +42,7 @@ const previdenciarioData = [
     description: "Regras específicas de tempo e idade para pessoas com deficiência comprovada.",
     services: ["Avaliação biopsicossocial", "Graus de deficiência (Grave, Moderada, Leve)", "Cálculo de elegibilidade", "Revisão de benefícios"],
     link: "/aposentadoria-pcd",
-    btnText: "Calcular Agora"
+    btnText: "Saiba Mais"
   },
   {
     icon: <Briefcase size={32} />, // Using Briefcase or similar for Fibromialgia represents work capacity issues
@@ -307,22 +307,11 @@ const Home: React.FC = () => {
               </Link>
 
               <Link 
-                to="/calculadora-salario-maternidade-rural" 
-                className="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold py-3 px-6 rounded-md shadow-xl transition-all flex items-center justify-between gap-4 border-2 border-transparent hover:scale-[1.02] md:col-span-1 lg:col-span-1"
-              >
-                 <div className="flex flex-col items-start leading-tight">
-                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Simule o valor</span>
-                    <span className="text-sm font-extrabold tracking-wide uppercase">Calculadora 2026</span>
-                 </div>
-                 <Calculator size={24} />
-              </Link>
-
-              <Link 
                 to="/aposentadoria-pcd" 
-                className="bg-gradient-to-r from-indigo-700 via-purple-600 to-blue-500 hover:from-indigo-600 hover:via-purple-500 hover:to-blue-400 text-white font-bold py-3 px-6 rounded-md shadow-xl transition-all flex items-center justify-between gap-4 border-2 border-transparent hover:scale-[1.02] md:col-span-2 lg:col-span-1 lg:col-start-2"
+                className="bg-gradient-to-r from-indigo-700 via-purple-600 to-blue-500 hover:from-indigo-600 hover:via-purple-500 hover:to-blue-400 text-white font-bold py-3 px-6 rounded-md shadow-xl transition-all flex items-center justify-between gap-4 border-2 border-transparent hover:scale-[1.02] md:col-span-1 lg:col-span-1"
               >
                  <div className="flex flex-col items-start leading-tight">
-                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Calculadora 2026</span>
+                    <span className="text-[10px] font-bold tracking-wider opacity-90 uppercase">Requisitos e Regras</span>
                     <span className="text-sm font-extrabold tracking-wide uppercase">Aposentadoria PCD</span>
                  </div>
                  <Accessibility size={24} />
