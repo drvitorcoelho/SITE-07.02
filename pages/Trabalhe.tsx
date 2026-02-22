@@ -98,6 +98,11 @@ const Trabalhe: React.FC = () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+      // Clean up the container to prevent duplicate iframes
+      const container = document.getElementById("zf_div_4J1iOYSqUYkxx_FkRFfHmHyToEC_YDVbIMfMmgN3Oh4");
+      if (container) {
+        container.innerHTML = '';
+      }
     };
   }, []);
 

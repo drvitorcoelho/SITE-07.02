@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Instagram, Facebook, Linkedin, MessageCircle } from 'lucide-react';
+import TikTokIcon from './TikTokIcon';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,9 @@ const Navbar: React.FC = () => {
               <a href="https://www.linkedin.com/in/joaovitoralveshonoratocoelho/" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-secondary hover:scale-110 transition-all" title="LinkedIn">
                 <Linkedin size={18} />
               </a>
+              <a href="https://www.tiktok.com/@vitorcoelho_adv" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-secondary hover:scale-110 transition-all" title="TikTok">
+                <TikTokIcon size={18} />
+              </a>
             </div>
         </div>
       </div>
@@ -65,7 +69,7 @@ const Navbar: React.FC = () => {
             
             {/* Desktop Navigation - Justified */}
             <div className="hidden lg:flex flex-grow justify-center px-4">
-              <div className="flex items-center justify-center gap-6 w-full max-w-4xl flex-wrap">
+              <div className="flex items-center justify-center gap-4 xl:gap-6 w-full max-w-5xl">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
