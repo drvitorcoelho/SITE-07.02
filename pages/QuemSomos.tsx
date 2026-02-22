@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Heart, Star, Globe, MessageSquare, CheckCircle, ArrowRight, Scale, FileText, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ServiceShortcuts from '../components/ServiceShortcuts';
 
 const QuemSomos: React.FC = () => {
   return (
@@ -28,6 +29,9 @@ const QuemSomos: React.FC = () => {
           </a>
         </div>
       </section>
+
+      {/* Service Shortcuts */}
+      <ServiceShortcuts />
 
       {/* SEÇÃO 2: APRESENTAÇÃO DO ESCRITÓRIO */}
       <section className="py-20 bg-white">

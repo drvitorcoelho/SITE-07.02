@@ -6,6 +6,7 @@ import {
   Stethoscope, Handshake, Eye, FileBarChart2, FileSignature, FileText, ShieldAlert, HeartHandshake,
   Dna, Briefcase, ClipboardList, Clock
 } from 'lucide-react';
+import ServiceShortcuts from '../components/ServiceShortcuts';
 
 
 
@@ -283,6 +284,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Service Shortcuts */}
+      <ServiceShortcuts />
 
 
 
