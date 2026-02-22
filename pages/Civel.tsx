@@ -1,482 +1,577 @@
-import React, { useState, useEffect } from 'react';
-import { MessageCircle, Heart, FileText, UserPlus, Home, Users, ChevronLeft, ChevronRight, Quote, Shield, Clock, Smile, Trophy, ShieldCheck, Globe } from 'lucide-react';
+import React from 'react';
+import { 
+  MessageCircle, Heart, FileText, UserPlus, Home, Users, ChevronRight, 
+  Shield, Clock, Smile, CheckCircle, AlertTriangle, Calendar, Search, 
+  Briefcase, DollarSign, Gavel, FileSignature, Scale, Lock, ChevronDown
+} from 'lucide-react';
 import ServiceShortcuts from '../components/ServiceShortcuts';
 
-const testimonialsData = [
-  { text: "Consultoria profissional em Direito Civil. Atendimento atencioso e bem orientado.", name: "M.S.", location: "Fortaleza, CE" },
-  { text: "Orientação clara em questões familiares. Profissionalismo e competência.", name: "J.O.", location: "Sobral, CE" },
-  { text: "Atendimento humanizado e especializado. Muito bom.", name: "A.P.", location: "Juazeiro do Norte, CE" },
-  { text: "Consultoria bem estruturada. Profissionais competentes e dedicados.", name: "F.S.", location: "Caucaia, CE" },
-  { text: "Atendimento profissional e atencioso. Excelente orientação.", name: "A.C.", location: "Crato, CE" },
-  { text: "Consultoria especializada em Direito Civil. Muito satisfeito.", name: "J.R.", location: "Maracanaú, CE" },
-  { text: "Orientação clara e profissional. Equipe dedicada.", name: "F.L.", location: "Quixadá, CE" },
-  { text: "Atendimento de qualidade. Profissionais competentes e humanizados.", name: "A.S.", location: "Iguatu, CE" },
-  { text: "Consultoria profissional em questões familiares. Recomendo.", name: "M.F.", location: "São Paulo, SP" },
-  { text: "Atendimento ágil e profissional. Muito bom.", name: "R.A.", location: "Canindé, CE" },
-  { text: "Orientação clara e bem estruturada. Profissionais competentes.", name: "A.R.", location: "Eusébio, CE" },
-  { text: "Consultoria especializada. Atendimento de excelência.", name: "P.G.", location: "Rio de Janeiro, RJ" },
-  { text: "Atendimento profissional e atencioso. Muito satisfeito.", name: "L.M.", location: "Aquiraz, CE" },
-  { text: "Consultoria bem orientada. Equipe dedicada e competente.", name: "C.E.", location: "Russas, CE" },
-  { text: "Orientação clara em Direito Civil. Profissionais humanizados.", name: "F.B.", location: "Recife, PE" },
-  { text: "Atendimento de qualidade. Consultoria especializada.", name: "P.H.", location: "Crateús, CE" },
-  { text: "Profissionais competentes e atenciosos. Muito bom.", name: "J.D.", location: "Aracati, CE" },
-  { text: "Consultoria profissional em questões familiares. Recomendo.", name: "M.V.", location: "Tianguá, CE" },
-  { text: "Atendimento ágil e bem orientado. Muito satisfeito.", name: "P.L.", location: "Horizonte, CE" },
-  { text: "Orientação clara e profissional. Equipe dedicada.", name: "R.M.", location: "Salvador, BA" }
-];
-
-const problemsData = [
-  {
-    title: "Pensão Alimentícia",
-    text: "Orientação jurídica sobre fixação, revisão e execução de pensão alimentícia para filhos menores e outros dependentes.",
-    button: "Saiba Mais"
-  },
-  {
-    title: "Interdição e Curatela",
-    text: "Procedimentos legais para nomeação de curador para pessoas incapazes de gerir seus próprios atos e bens.",
-    button: "Entenda o Processo"
-  },
-  {
-    title: "Guarda e Visitas",
-    text: "Regulamentação de guarda (compartilhada ou unilateral) e regime de convivência familiar.",
-    button: "Verificar Opções"
-  },
-  {
-    title: "Direito à Saúde",
-    text: "Atuação em casos de negativas de procedimentos, cirurgias e medicamentos por planos de saúde ou SUS.",
-    button: "Consultar Direitos"
-  },
-  {
-    title: "Retificação de Registro Civil",
-    text: "Correção de erros em certidões de nascimento, casamento e óbito, via judicial ou extrajudicial.",
-    button: "Saiba Como Funciona"
-  },
-  {
-    title: "Revisional de Pensão",
-    text: "Análise da possibilidade de revisão do valor da pensão alimentícia em caso de mudança na capacidade financeira.",
-    button: "Análise de Caso"
-  },
-  {
-    title: "Acordos Extrajudiciais",
-    text: "Elaboração e homologação de acordos para garantir segurança jurídica e evitar litígios.",
-    button: "Formalizar Acordo"
-  },
-  {
-    title: "Divórcio e Separação",
-    text: "Assessoria em divórcios consensuais e litigiosos, partilha de bens e dissolução de união estável.",
-    button: "Agendar Consulta"
-  },
-  {
-    title: "Inventário e Sucessões",
-    text: "Abertura e acompanhamento de inventários judiciais e extrajudiciais para partilha de bens.",
-    button: "Saiba Mais"
-  },
-  {
-    title: "Danos Morais e Materiais",
-    text: "Ações de reparação civil por danos sofridos em decorrência de atos ilícitos.",
-    button: "Consultar Advogado"
-  }
-];
-
 const Civel: React.FC = () => {
-  const [itemsPerPage, setItemsPerPage] = useState(1);
   
-  // States for the two carousels
-  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
-  const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
-
-  // Adjust items per page based on window width
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsPerPage(3);
-      } else if (window.innerWidth >= 768) {
-        setItemsPerPage(2);
-      } else {
-        setItemsPerPage(1);
-      }
-    };
-
-    handleResize(); // Initial call
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Testimonial Navigation
-  const nextTestimonial = () => {
-    setCurrentTestimonialIndex((prevIndex) => 
-      (prevIndex + itemsPerPage >= testimonialsData.length) ? 0 : prevIndex + itemsPerPage
-    );
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  const prevTestimonial = () => {
-    setCurrentTestimonialIndex((prevIndex) => 
-      (prevIndex - itemsPerPage < 0) ? Math.max(0, testimonialsData.length - itemsPerPage) : prevIndex - itemsPerPage
-    );
+  const getWhatsappLink = () => {
+    return "https://wa.me/5585981186205?text=Olá Dr. Vitor, gostaria de uma consultoria em Direito Civil.";
   };
-
-  // Problems Navigation
-  const nextProblem = () => {
-    setCurrentProblemIndex((prevIndex) => 
-      (prevIndex + itemsPerPage >= problemsData.length) ? 0 : prevIndex + itemsPerPage
-    );
-  };
-
-  const prevProblem = () => {
-    setCurrentProblemIndex((prevIndex) => 
-      (prevIndex - itemsPerPage < 0) ? Math.max(0, problemsData.length - itemsPerPage) : prevIndex - itemsPerPage
-    );
-  };
-
-  const visibleTestimonials = testimonialsData.slice(currentTestimonialIndex, currentTestimonialIndex + itemsPerPage);
-  const visibleProblems = problemsData.slice(currentProblemIndex, currentProblemIndex + itemsPerPage);
 
   return (
-    <div className="flex flex-col bg-background-light">
-      {/* 1. Headline Impactante */}
-      <section className="relative bg-background-light py-20 lg:py-28 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-           {/* Texto Centralizado na coluna dele */}
-           <div className="relative z-10 text-center flex flex-col items-center">
-              <h1 className="text-4xl lg:text-5xl font-heading font-bold text-primary leading-tight mb-6">
-                Consultoria em <span className="text-secondary">Direito Civil e Família</span>
-              </h1>
-              <p className="text-lg text-text-light mb-8 leading-relaxed max-w-lg mx-auto text-justify">
-                Especialista em questões de Direito Civil e Família. Atendimento profissional em pensão alimentícia, guarda, divórcio, herança, união estável e direitos de saúde. Consultoria com discrição e profissionalismo.
-              </p>
-              <a 
-                href="https://wa.me/5585981186205" 
-                className="inline-flex items-center gap-2 bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-8 rounded-md shadow-lg transition-transform hover:scale-105"
-              >
-                <MessageCircle size={20} />
-                Agendar Atendimento
-              </a>
-           </div>
-           
-           {/* Elemento gráfico/textual */}
-           <div className="relative z-0 flex justify-center lg:justify-end">
-             <div className="bg-white p-8 rounded-lg shadow-xl border-t-4 border-secondary max-w-md w-full">
-                <h3 className="text-xl font-bold text-primary mb-8 text-center font-heading">Diferenciais do Atendimento</h3>
-                <ul className="space-y-6">
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary p-3 rounded-full text-white flex-shrink-0">
-                      <Smile size={24} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-primary mb-1">Consultoria Especializada</h4>
-                      <p className="text-sm text-text-light">Expertise em Direito Civil e Família com profundo conhecimento das questões legais envolvidas.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary p-3 rounded-full text-white flex-shrink-0">
-                      <Clock size={24} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-primary mb-1">Atendimento Profissional</h4>
-                      <p className="text-sm text-text-light">Procedimentos bem estruturados e orientação clara em todas as etapas do processo.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="bg-primary p-3 rounded-full text-white flex-shrink-0">
-                      <Shield size={24} />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-primary mb-1">Sigilo e Confidencialidade</h4>
-                      <p className="text-sm text-text-light">Todos os dados são tratados com sigilo profissional conforme Código de Ética da OAB.</p>
-                    </div>
-                  </li>
-                </ul>
-             </div>
-           </div>
+    <div className="flex flex-col bg-[#f8f9fa] text-[#333] font-body">
+      
+      {/* SEÇÃO 1: HERO SECTION */}
+      <section className="relative bg-primary-dark text-white py-20 lg:py-28 overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/20 to-transparent transform skew-x-12"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left">
+          <div className="lg:w-3/4">
+            <h1 className="text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight drop-shadow-lg">
+              Consultoria em <span className="text-secondary">Direito Civil e Família</span>
+            </h1>
+            <h2 className="text-xl text-gray-200 mb-4 font-semibold">
+              Orientação jurídica especializada em questões de família, propriedade, contratos e sucessões.
+            </h2>
+            <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
+              Direito Civil é a área que regula as relações entre pessoas e empresas, envolvendo questões como divórcio, guarda, pensão alimentícia, herança, contratos e indenizações. Se você tem dúvidas sobre direitos pessoais, familiares ou patrimoniais, estamos aqui para orientá-lo.
+            </p>
+            <a 
+              href={getWhatsappLink()}
+              className="inline-flex items-center gap-3 bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-transform hover:scale-105 text-lg"
+            >
+              <MessageCircle size={24} /> FALAR COM UM DE NOSSOS ESPECIALISTAS
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Shortcuts */}
       <ServiceShortcuts />
 
-      {/* 2. Seção de Problemas (Carousel) */}
-      <section className="py-20 bg-background-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-heading font-bold text-primary mb-4">Áreas de Atuação</h2>
-            <div className="w-20 h-1 bg-secondary mx-auto"></div>
-          </div>
-          
-          <div className="relative">
-            <div className="flex justify-between items-center gap-4">
-              <button 
-                onClick={prevProblem}
-                className="p-3 rounded-full bg-background-light hover:bg-gray-200 text-primary shadow-sm transition-colors z-10"
-                aria-label="Anterior"
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              <div className="flex-grow overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-                  {visibleProblems.map((item, idx) => (
-                    <div key={idx} className="bg-background-light p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow flex flex-col h-full">
-                       <h3 className="font-bold text-xl text-primary mb-4 font-heading">{item.title}</h3>
-                       <p className="text-text-light mb-6 flex-grow text-justify">{item.text}</p>
-                       <a 
-                          href="https://wa.me/5585981186205"
-                          className="inline-block w-full text-center bg-white border border-secondary text-secondary hover:bg-secondary hover:text-white font-bold py-3 px-4 rounded-md transition-colors"
-                       >
-                         {item.button}
-                       </a>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <button 
-                onClick={nextProblem}
-                className="p-3 rounded-full bg-background-light hover:bg-gray-200 text-primary shadow-sm transition-colors z-10"
-                aria-label="Próximo"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-            
-            {/* Dots Indicator for Problems */}
-            <div className="flex justify-center mt-8 gap-2">
-              {Array.from({ length: Math.ceil(problemsData.length / itemsPerPage) }).map((_, idx) => (
-                <div 
-                  key={idx} 
-                  className={`h-2 rounded-full transition-all ${Math.ceil(currentProblemIndex / itemsPerPage) === idx ? 'bg-secondary w-8' : 'bg-gray-300 w-2'}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-xl font-medium text-primary mb-6">Busque orientação profissional para resolver suas questões jurídicas.</p>
-            <a href="https://wa.me/5585981186205" className="text-secondary font-bold hover:underline text-lg">Inicie uma conversa no WhatsApp &rarr;</a>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Solução */}
-      <section className="py-20 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
-             <div className="w-full md:w-1/2">
-                <img 
-                  src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-                  alt="Escritório Moderno" 
-                  className="rounded-lg shadow-xl border-4 border-secondary"
-                />
-             </div>
-             <div className="w-full md:w-1/2">
-                <h2 className="text-3xl font-heading font-bold text-white mb-6">Como o escritório atua</h2>
-                <p className="text-gray-200 mb-8 text-lg text-justify">
-                  Oferecemos um atendimento técnico e personalizado, analisando cada caso detalhadamente para definir a melhor estratégia jurídica.
-                </p>
-                <div className="space-y-6">
-                   <div className="flex items-start gap-4">
-                      <div className="bg-white p-3 rounded-lg shadow-sm text-primary"><Users size={24} /></div>
-                      <div>
-                        <h4 className="font-bold text-white font-heading">Direito de Família</h4>
-                        <p className="text-sm text-gray-300">Divórcio, Guarda, Pensão Alimentícia, União Estável.</p>
-                      </div>
-                   </div>
-                   <div className="flex items-start gap-4">
-                      <div className="bg-white p-3 rounded-lg shadow-sm text-primary"><UserPlus size={24} /></div>
-                      <div>
-                        <h4 className="font-bold text-white font-heading">Registros Públicos</h4>
-                        <p className="text-sm text-gray-300">Retificação de Nome, Sobrenome e Gênero em certidões.</p>
-                      </div>
-                   </div>
-                   <div className="flex items-start gap-4">
-                      <div className="bg-white p-3 rounded-lg shadow-sm text-primary"><Home size={24} /></div>
-                      <div>
-                        <h4 className="font-bold text-white font-heading">Obrigações e Contratos</h4>
-                        <p className="text-sm text-gray-300">Ações de cobrança, despejo, indenizações e revisão de contratos.</p>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Benefícios - Updated for visibility (White BG) */}
-      <section className="py-20 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-           <h2 className="text-3xl font-heading font-bold mb-12 text-primary">Nossa Metodologia</h2>
-           <div className="grid md:grid-cols-3 gap-8">
-              <div className="p-8 border border-gray-200 rounded-lg bg-background-light shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-secondary mb-3 font-heading">Clareza</h3>
-                <p className="text-text-light">Comunicação acessível para que você entenda cada etapa do processo.</p>
-              </div>
-              <div className="p-8 border border-gray-200 rounded-lg bg-background-light shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-secondary mb-3 font-heading">Agilidade</h3>
-                <p className="text-text-light">Processos digitais e comunicação eficiente via canais online.</p>
-              </div>
-              <div className="p-8 border border-gray-200 rounded-lg bg-background-light shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-secondary mb-3 font-heading">Segurança</h3>
-                <p className="text-text-light">Sigilo absoluto e profissionalismo na condução de casos sensíveis.</p>
-              </div>
-           </div>
-        </div>
-      </section>
-
-      {/* 5. Prova Social (Carrossel) */}
-      <section className="py-20 bg-background-white">
+      {/* SEÇÃO 2: ÍNDICE/MENU INTERNO */}
+      <section className="py-12 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-             <h2 className="text-3xl font-heading font-bold text-primary">Avaliações</h2>
+          <h2 className="text-2xl font-heading font-bold text-primary mb-6 text-center">Navegue pelo Conteúdo</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { id: 'o-que-e', label: '1. O que é Direito Civil?' },
+              { id: 'areas', label: '2. Áreas de Atuação' },
+              { id: 'mudancas', label: '3. Mudanças em 2026' },
+              { id: 'atendimento', label: '4. Como Funciona' },
+              { id: 'prazos', label: '5. Prazos Estimados' },
+              { id: 'o-que-fazer', label: '6. O Que Você Precisa Fazer' },
+              { id: 'documentos', label: '7. Documentos Necessários' },
+              { id: 'faq', label: '8. Perguntas Frequentes' },
+              { id: 'proximos', label: '9. Próximos Passos' },
+            ].map((item) => (
+              <button 
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-left p-4 bg-gray-50 hover:bg-primary/5 rounded-lg border border-gray-200 hover:border-primary transition-all flex items-center justify-between group"
+              >
+                <span className="font-semibold text-gray-700 group-hover:text-primary">{item.label}</span>
+                <ChevronRight size={16} className="text-gray-400 group-hover:text-primary" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 3: O QUE É DIREITO CIVIL? */}
+      <section id="o-que-e" className="py-16 bg-[#f8f9fa]">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-heading font-bold text-primary mt-2">O Que é Direito Civil?</h2>
+            <div className="w-20 h-1 bg-secondary mx-auto mt-4"></div>
           </div>
           
-          <div className="relative">
-            <div className="flex justify-between items-center gap-4">
-              <button 
-                onClick={prevTestimonial}
-                className="p-2 rounded-full bg-background-light hover:bg-gray-200 text-primary transition-colors"
-                aria-label="Anterior"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full overflow-hidden transition-all">
-                {visibleTestimonials.map((item, index) => (
-                  <div key={index} className="bg-background-light p-6 rounded-lg border border-gray-100 shadow-sm flex flex-col items-center text-center animate-fade-in">
-                    <div className="text-secondary mb-4">
-                      <Quote size={24} className="fill-current opacity-50" />
-                    </div>
-                    <div className="flex text-secondary mb-4 text-sm">★★★★★</div>
-                    <p className="text-text-light italic mb-6 text-sm text-justify">
-                      "{item.text}"
-                    </p>
-                    <div className="mt-auto">
-                      <h4 className="font-bold text-primary">{item.name}</h4>
-                      <p className="text-xs text-text-light uppercase tracking-wide mt-1 flex items-center justify-center gap-1">
-                        <Home size={12} /> {item.location}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <button 
-                onClick={nextTestimonial}
-                className="p-2 rounded-full bg-background-light hover:bg-gray-200 text-primary transition-colors"
-                aria-label="Próximo"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
+          <div className="bg-white p-8 rounded-xl shadow-md">
+            <p className="text-lg text-gray-700 mb-8 text-center">
+              Direito Civil é a área do direito que regula as relações entre pessoas físicas e jurídicas, envolvendo direitos e deveres em diversas situações do cotidiano.
+            </p>
             
-            <div className="flex justify-center mt-8 gap-2">
-              {Array.from({ length: Math.ceil(testimonialsData.length / itemsPerPage) }).map((_, idx) => (
-                <div 
-                  key={idx} 
-                  className={`h-2 rounded-full transition-all ${Math.floor(currentTestimonialIndex / itemsPerPage) === idx ? 'bg-secondary w-8' : 'bg-gray-300 w-2'}`}
-                />
-              ))}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-bold text-primary text-xl mb-4 flex items-center gap-2"><Users size={24}/> Relações Familiares</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Divórcio, separação e dissolução de união estável</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Guarda, visitas e pensão alimentícia</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Reconhecimento de filiação</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Direitos e deveres entre cônjuges</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-primary text-xl mb-4 flex items-center gap-2"><Home size={24}/> Propriedade e Bens</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Compra, venda e aluguel de imóveis</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Direitos de propriedade e Usucapião</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Despejo e conflitos imobiliários</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-primary text-xl mb-4 flex items-center gap-2"><FileSignature size={24}/> Contratos e Obrigações</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Elaboração e revisão de contratos</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Cobrança de dívidas e Indenizações</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Responsabilidade civil</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-primary text-xl mb-4 flex items-center gap-2"><Scale size={24}/> Sucessões e Especiais</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Testamentos, heranças e inventários</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Direitos do consumidor e Interdição</li>
+                  <li className="flex items-start gap-2"><CheckCircle size={16} className="text-secondary mt-1"/> Retificação de registros civis</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. FAQ (Atualizado) */}
-      <section className="py-16 bg-background-light">
-        <div className="max-w-4xl mx-auto px-4">
-           <div className="text-center mb-10">
-              <h2 className="text-3xl font-heading font-bold text-primary mb-4">Dúvidas Comuns - Área Cível</h2>
-              <div className="bg-secondary/10 border-l-4 border-secondary text-primary p-4 text-sm text-left rounded shadow-sm max-w-2xl mx-auto">
-                <p><strong>Atenção:</strong> As informações aqui apresentadas são de caráter meramente informativo e não configuram consultoria jurídica. Para casos específicos, é fundamental buscar o auxílio de um advogado.</p>
+      {/* SEÇÃO 4: ÁREAS DE ATUAÇÃO */}
+      <section id="areas" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold text-primary">Áreas de Atuação</h2>
+            <p className="text-gray-600 mt-2">Atuação completa em todas as esferas do Direito Civil.</p>
+          </div>
+
+          <div className="space-y-12">
+            {/* Família */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 border-b pb-2 flex items-center gap-2"><Users/> Direito de Família</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Divórcio</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Divórcio amigável e litigioso</li>
+                    <li>• Dissolução de união estável</li>
+                    <li>• Partilha de bens</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Guarda e Visitas</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Guarda compartilhada e unilateral</li>
+                    <li>• Regime de convivência</li>
+                    <li>• Modificação de guarda</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Pensão Alimentícia</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Fixação e revisão de valores</li>
+                    <li>• Execução e exoneração</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">União Estável</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Reconhecimento e dissolução</li>
+                    <li>• Direitos e deveres</li>
+                    <li>• Herança em união estável</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Abandono Afetivo</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Reconhecimento e indenização</li>
+                    <li>• Danos morais</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Multiparentalidade</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Reconhecimento de múltiplos pais</li>
+                    <li>• Direitos sucessórios</li>
+                    <li>• Filiação socioafetiva</li>
+                  </ul>
+                </div>
               </div>
-           </div>
-           
-           <div className="space-y-4">
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 Posso pedir pensão alimentícia depois de anos?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>Sim. O direito à pensão alimentícia para filhos menores é <strong>indisponível</strong> e pode ser solicitado a qualquer momento, desde que o alimentando necessite e o alimentante tenha condições de pagar. No entanto, a cobrança de <strong>prestações alimentares vencidas</strong> (retroativas) possui um prazo prescricional de 2 (dois) anos, contados a partir do vencimento de cada parcela. Para filhos maiores de idade, a necessidade da pensão deve ser comprovada.</p>
-               </div>
-             </details>
+            </div>
 
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 Como funciona a retificação de registro civil?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>A retificação de registro civil (como nome, sobrenome, data de nascimento) pode ser realizada de forma <strong>extrajudicial</strong> (diretamente no cartório) em muitos casos, especialmente quando não há litígio ou necessidade de produção de provas complexas. É indispensável a assistência de um advogado para instruir o pedido corretamente, apresentando os documentos necessários e garantindo a conformidade com a Lei de Registros Públicos (Lei nº 6.015/73) e as normas da Corregedoria Geral de Justiça. Casos mais complexos podem exigir processo judicial.</p>
-               </div>
-             </details>
+            {/* Sucessões */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 border-b pb-2 flex items-center gap-2"><FileText/> Sucessões e Heranças</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Herança e Partilha</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Divisão de bens entre herdeiros</li>
+                    <li>• Cálculo de quinhões</li>
+                    <li>• Resolução de conflitos</li>
+                    <li>• Contestação de testamento</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Inventário e Testamento</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Elaboração e validade de testamento</li>
+                    <li>• Abertura de inventário</li>
+                    <li>• Avaliação e partilha de bens</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 É possível realizar o divórcio sem processo judicial?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>Sim, é possível realizar o <strong>divórcio extrajudicial</strong> (em cartório) quando o casal atende a alguns requisitos: ambos devem estar de acordo com o divórcio, não podem ter filhos menores ou incapazes, e a mulher não pode estar grávida. É obrigatória a assistência de um advogado para a lavratura da escritura pública de divórcio, que terá os mesmos efeitos de uma sentença judicial.</p>
-               </div>
-             </details>
+            {/* Propriedade */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 border-b pb-2 flex items-center gap-2"><Home/> Propriedade e Bens</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Imobiliário</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Compra, venda e locação</li>
+                    <li>• Despejo e defesa</li>
+                    <li>• Conflitos entre vizinhos</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Regularização</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Usucapião (ordinária, familiar, etc)</li>
+                    <li>• Retificação de registro civil</li>
+                    <li>• Direitos de propriedade</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 Como funciona a guarda compartilhada de filhos?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>A <strong>guarda compartilhada</strong> é a regra geral no Brasil, conforme o Código Civil, e busca garantir que ambos os pais participem ativamente da vida dos filhos, compartilhando responsabilidades e decisões. Mesmo que os pais residam em cidades diferentes, a guarda compartilhada pode ser aplicada, com a definição de uma base de moradia para a criança e um plano de convivência que contemple a participação de ambos. A decisão final sempre visa o melhor interesse da criança.</p>
-               </div>
-             </details>
+            {/* Obrigações */}
+            <div>
+              <h3 className="text-2xl font-bold text-primary mb-6 border-b pb-2 flex items-center gap-2"><FileSignature/> Obrigações e Contratos</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Cobrança</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Ação de cobrança</li>
+                    <li>• Execução de título</li>
+                    <li>• Negociação de débito</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Contratos</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Análise de cláusulas abusivas</li>
+                    <li>• Renegociação e nulidade</li>
+                    <li>• Revisão de contratos</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                  <h4 className="font-bold text-lg mb-3 text-secondary">Indenizações</h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Danos morais e materiais</li>
+                    <li>• Responsabilidade civil</li>
+                    <li>• Acidentes e lesões</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 Tenho direito de me arrepender de uma compra online?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>Sim, o Código de Defesa do Consumidor (Lei nº 8.078/90) prevê o <strong>direito de arrependimento</strong> (ou direito de desistência) para compras realizadas fora do estabelecimento comercial (online, por telefone, a domicílio). O consumidor tem o prazo de 7 (sete) dias, a contar da assinatura do contrato ou do recebimento do produto ou serviço, para desistir da compra, sem necessidade de justificativa e com direito à devolução integral dos valores pagos.</p>
-               </div>
-             </details>
+      {/* SEÇÃO 5: MUDANÇAS EM 2026 */}
+      <section id="mudancas" className="py-16 bg-primary-dark text-white">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold mb-4">Mudanças Importantes em 2026</h2>
+            <p className="text-gray-300">O Direito de Família passa por atualizações significativas. Conheça as principais:</p>
+          </div>
 
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 O que é usucapião e como posso adquiri-la?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>A <strong>usucapião</strong> é uma forma de adquirir a propriedade de um bem (móvel ou imóvel) pela posse prolongada, contínua e ininterrupta, com a intenção de ser dono, e cumprindo os requisitos legais específicos para cada modalidade (urbana, rural, extraordinária, ordinária, familiar, etc.). Os prazos de posse variam de 2 a 15 anos, dependendo do tipo de usucapião e da presença de boa-fé e justo título. O processo pode ser judicial ou, em alguns casos, extrajudicial (em cartório), sempre com a assistência de um advogado.</p>
-               </div>
-             </details>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Users className="text-secondary"/> Guarda Compartilhada Obrigatória</h3>
+              <p className="text-sm text-gray-700 mb-4">A partir de 2026, a guarda compartilhada é a regra. Ambos os pais participam das decisões e responsabilidades.</p>
+              <div className="bg-green-50 p-3 rounded text-xs text-green-800 border border-green-200">
+                <strong>Benefício:</strong> Maior participação de ambos os pais na vida dos filhos.
+              </div>
+            </div>
 
-             <details className="bg-white rounded-lg shadow-sm border border-gray-200 group">
-               <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors font-heading">
-                 Quais os direitos de quem vive em união estável?
-                 <span className="ml-2 transition-transform group-open:rotate-180">▼</span>
-               </summary>
-               <div className="px-5 pb-5 text-text-light text-sm leading-relaxed border-t border-gray-100 pt-3">
-                 <p>A <strong>união estável</strong> é reconhecida como entidade familiar e garante aos companheiros direitos semelhantes aos do casamento, como direitos patrimoniais, previdenciários e sucessórios. Para que seja reconhecida, a união deve ser pública, contínua e duradoura, com o objetivo de constituir família. A comprovação da união estável pode ser feita por diversos meios, como contrato de convivência, testemunhas, contas conjuntas, entre outros. Em caso de falecimento de um dos companheiros, o sobrevivente tem direito à herança, conforme a legislação vigente e o entendimento do Supremo Tribunal Federal.</p>
-               </div>
-             </details>
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Briefcase className="text-secondary"/> Reforma do Código Civil</h3>
+              <ul className="text-sm text-gray-700 space-y-2">
+                <li>• <strong>Pets:</strong> Reconhecidos como membros da família (guarda e pensão).</li>
+                <li>• <strong>Relacionamentos:</strong> Ampliação de direitos para novos tipos de família.</li>
+                <li>• <strong>Sucessões:</strong> Novos direitos sucessórios e alterações em testamentos.</li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-2"><DollarSign className="text-secondary"/> Pensão Alimentícia Atualizada</h3>
+              <p className="text-sm text-gray-700 mb-4">Cálculo sobre valor atualizado (R$ 1.621,00) e novas regras de execução.</p>
+              <p className="text-xs text-gray-500">Se você recebe pensão antiga, pode pedir revisão.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-2"><Users className="text-secondary"/> Multiparentalidade</h3>
+              <p className="text-sm text-gray-700 mb-4">Reconhecimento legal de múltiplos pais (biológico, padrasto, socioafetivo) com garantia de direitos sucessórios.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 6: COMO FUNCIONA */}
+      <section id="atendimento" className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold text-primary">Como Funciona Nosso Atendimento</h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { step: 1, title: "Consulta Inicial", desc: "Você descreve sua situação. Analisamos detalhes e explicamos opções." },
+              { step: 2, title: "Planejamento", desc: "Definimos a estratégia, prazos e custos. Você tem um plano claro." },
+              { step: 3, title: "Ação e Execução", desc: "Iniciamos o processo. Mantemos você informado a cada etapa." },
+              { step: 4, title: "Resolução", desc: "Negociamos acordo ou levamos a julgamento. Você recebe o resultado." }
+            ].map((item) => (
+              <div key={item.step} className="bg-gray-50 p-6 rounded-lg text-center relative group hover:-translate-y-1 transition-transform border border-gray-200">
+                <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 group-hover:bg-secondary transition-colors">
+                  {item.step}
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-primary">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 7: PRAZOS ESTIMADOS */}
+      <section id="prazos" className="py-16 bg-[#f8f9fa]">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-heading font-bold text-primary flex items-center justify-center gap-2">
+              <Clock/> Prazos Estimados
+            </h2>
+            <p className="text-gray-600 mt-2">Quanto tempo leva?</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow overflow-hidden">
+            <table className="w-full text-left border-collapse">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th className="p-4">Processo</th>
+                  <th className="p-4">Prazo Estimado</th>
+                  <th className="p-4 hidden md:table-cell">Observações</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 text-sm">
+                {[
+                  { proc: "Divórcio Amigável", time: "30-60 dias", obs: "Com acordo prévio entre as partes" },
+                  { proc: "Divórcio Litigioso", time: "6-24 meses", obs: "Depende da complexidade e contestação" },
+                  { proc: "Pensão Alimentícia", time: "2-6 meses", obs: "Pode ser rápido com acordo" },
+                  { proc: "Guarda de Filhos", time: "3-12 meses", obs: "Depende se há contestação" },
+                  { proc: "Herança Simples", time: "6-12 meses", obs: "Sem conflitos entre herdeiros" },
+                  { proc: "Herança Complexa", time: "12-36 meses", obs: "Com muitos bens ou conflitos" },
+                  { proc: "Usucapião", time: "12-36 meses", obs: "Processo mais longo" },
+                  { proc: "Indenização", time: "6-36 meses", obs: "Varia muito conforme o caso" },
+                ].map((row, i) => (
+                  <tr key={i} className="hover:bg-gray-50">
+                    <td className="p-4 font-bold text-gray-700">{row.proc}</td>
+                    <td className="p-4 text-secondary font-bold">{row.time}</td>
+                    <td className="p-4 text-gray-600 hidden md:table-cell">{row.obs}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-500 mt-4 text-center italic">
+            *Estimativas. Cada caso é único e depende da complexidade e do tribunal.
+          </p>
+        </div>
+      </section>
+
+      {/* SEÇÃO 8: O QUE VOCÊ PRECISA FAZER */}
+      <section id="o-que-fazer" className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold text-primary">O Que Você Precisa Fazer</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+              <h3 className="font-bold text-xl text-blue-800 mb-4">Para Divórcio</h3>
+              <ul className="space-y-2 text-sm text-blue-900">
+                <li>✓ Reúna certidão de casamento e documentos pessoais</li>
+                <li>✓ Liste bens do casal e documentos de propriedades</li>
+                <li>✓ Defina se quer amigável ou litigioso</li>
+                <li>✓ Pense sobre acordo de bens e filhos</li>
+              </ul>
+            </div>
+            <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+              <h3 className="font-bold text-xl text-green-800 mb-4">Para Pensão Alimentícia</h3>
+              <ul className="space-y-2 text-sm text-green-900">
+                <li>✓ Reúna documentos da criança e certidão de nascimento</li>
+                <li>✓ Comprove renda e gastos (contracheques, notas)</li>
+                <li>✓ Prepare histórico de relacionamento e pagamentos</li>
+                <li>✓ Defina o valor que considera justo</li>
+              </ul>
+            </div>
+            <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
+              <h3 className="font-bold text-xl text-purple-800 mb-4">Para Herança</h3>
+              <ul className="space-y-2 text-sm text-purple-900">
+                <li>✓ Certidão de óbito e testamento (se houver)</li>
+                <li>✓ Documentos pessoais do falecido e herdeiros</li>
+                <li>✓ Documentos de todos os bens e dívidas</li>
+                <li>✓ Lista de herdeiros</li>
+              </ul>
+            </div>
+            <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
+              <h3 className="font-bold text-xl text-orange-800 mb-4">Para Indenização/Contratos</h3>
+              <ul className="space-y-2 text-sm text-orange-900">
+                <li>✓ Documentação do ocorrido (BO, fotos, vídeos)</li>
+                <li>✓ Testemunhas e orçamentos de danos</li>
+                <li>✓ Cópia do contrato e comprovantes de pagamento</li>
+                <li>✓ Cronologia dos fatos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 9: DOCUMENTOS NECESSÁRIOS */}
+      <section id="documentos" className="py-16 bg-[#f8f9fa]">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-heading font-bold text-primary mb-8 text-center">Documentos Necessários</h2>
+          
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+            <h3 className="font-bold text-lg mb-4 text-secondary border-b pb-2">Documentação Pessoal (Sempre)</h3>
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <div className="flex items-center gap-2 text-gray-700"><CheckCircle size={16} className="text-green-500"/> RG e CPF</div>
+              <div className="flex items-center gap-2 text-gray-700"><CheckCircle size={16} className="text-green-500"/> Comprovante de Residência</div>
+              <div className="flex items-center gap-2 text-gray-700"><CheckCircle size={16} className="text-green-500"/> Certidão de Nascimento/Casamento</div>
+            </div>
+
+            <h3 className="font-bold text-lg mb-4 text-secondary border-b pb-2">Específicos por Caso</h3>
+            <div className="space-y-4">
+              <div>
+                <strong className="block text-primary mb-1">Divórcio:</strong>
+                <p className="text-sm text-gray-600">Certidão de casamento, documentos de bens (imóveis, veículos), documentos dos filhos.</p>
+              </div>
+              <div>
+                <strong className="block text-primary mb-1">Pensão Alimentícia:</strong>
+                <p className="text-sm text-gray-600">Certidão de nascimento do filho, comprovantes de renda e despesas, histórico.</p>
+              </div>
+              <div>
+                <strong className="block text-primary mb-1">Herança:</strong>
+                <p className="text-sm text-gray-600">Certidão de óbito, testamento, documentos de bens e herdeiros.</p>
+              </div>
+              <div>
+                <strong className="block text-primary mb-1">Indenização:</strong>
+                <p className="text-sm text-gray-600">Provas do ocorrido (fotos, vídeos, BO), orçamentos, laudos médicos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 10: DIFERENCIAIS */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+           <h2 className="text-3xl font-heading font-bold mb-12 text-primary">Por Que Escolher Nosso Atendimento</h2>
+           <div className="grid md:grid-cols-3 gap-8">
+              <div className="p-6 border border-gray-100 rounded-xl bg-gray-50 hover:shadow-lg transition-all">
+                <Shield size={40} className="text-secondary mx-auto mb-4"/>
+                <h3 className="text-xl font-bold text-primary mb-2">Especializado</h3>
+                <p className="text-sm text-gray-600">Expertise em Direito Civil e Família. Cada caso é analisado com atenção aos detalhes.</p>
+              </div>
+              <div className="p-6 border border-gray-100 rounded-xl bg-gray-50 hover:shadow-lg transition-all">
+                <Lock size={40} className="text-secondary mx-auto mb-4"/>
+                <h3 className="text-xl font-bold text-primary mb-2">Sigilo Total</h3>
+                <p className="text-sm text-gray-600">Todos os dados tratados com sigilo profissional conforme Código de Ética da OAB.</p>
+              </div>
+              <div className="p-6 border border-gray-100 rounded-xl bg-gray-50 hover:shadow-lg transition-all">
+                <Clock size={40} className="text-secondary mx-auto mb-4"/>
+                <h3 className="text-xl font-bold text-primary mb-2">Resposta Rápida</h3>
+                <p className="text-sm text-gray-600">Respondemos suas dúvidas em até 24 horas úteis. Comunicação clara e ágil.</p>
+              </div>
            </div>
         </div>
       </section>
 
-      {/* 7. CTA Final */}
-      <section className="py-16 bg-white text-center">
-         <div className="max-w-2xl mx-auto px-4">
-            <h2 className="text-3xl font-heading font-bold text-primary mb-6">Entre em contato</h2>
-            <p className="text-lg text-text-light mb-8">Estamos prontos para analisar seu caso. Agende uma consulta.</p>
-            <a 
-              href="https://wa.me/5585981186205" 
-              className="inline-flex items-center justify-center w-full sm:w-auto bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-10 rounded-md shadow-lg transition-transform hover:scale-105 gap-2"
-            >
-              <MessageCircle size={24} />
-              Falar com Dr. Vitor Coelho
-            </a>
-         </div>
+      {/* SEÇÃO 11: FAQ */}
+      <section id="faq" className="py-16 bg-[#f8f9fa]">
+        <div className="max-w-4xl mx-auto px-4">
+           <h2 className="text-3xl font-heading font-bold text-primary mb-8 text-center">Perguntas Frequentes</h2>
+           <div className="space-y-4">
+             {[
+               { q: "Qual a diferença entre divórcio amigável e litigioso?", a: "Amigável: partes concordam, é mais rápido e barato. Litigioso: há discordância, o juiz decide, é mais demorado e caro." },
+               { q: "Como funciona a pensão alimentícia?", a: "Calculada sobre a renda de quem paga (geralmente 15-30%) e necessidade do filho. Paga mensalmente até 18 anos ou fim da faculdade." },
+               { q: "O que é guarda compartilhada?", a: "Ambos os pais decidem sobre a vida do filho e dividem responsabilidades. É a regra desde 2014. O filho tem uma base de moradia, mas convive com ambos." },
+               { q: "Quais direitos na união estável?", a: "Direito à herança, pensão, partilha de bens e benefícios do INSS. Comprovada por convivência pública, contínua e duradoura." },
+               { q: "Como funciona a herança?", a: "Transmissão de bens aos herdeiros (cônjuge, filhos, pais). Requer inventário. Prazo varia de meses a anos dependendo da complexidade." },
+               { q: "O que é usucapião?", a: "Aquisição de propriedade por posse prolongada (5 a 15 anos), contínua e sem oposição. Requer processo judicial ou extrajudicial." },
+               { q: "Posso revisar um contrato?", a: "Sim, se houver cláusulas abusivas ou mudança drástica nas circunstâncias econômicas que tornem o cumprimento impossível." },
+               { q: "O que é abandono afetivo?", a: "Quando o pai/mãe não cumpre dever de convivência e afeto. Pode gerar indenização por danos morais." },
+               { q: "O que é multiparentalidade?", a: "Reconhecimento legal de mais de dois pais (ex: biológico e socioafetivo). Garante direitos sucessórios e de filiação a todos." },
+               { q: "Qual o prazo para pedir pensão?", a: "Não há prazo máximo para pedir. Pode ser cobrada retroativamente desde a data da citação no processo." }
+             ].map((item, i) => (
+               <details key={i} className="bg-white rounded-lg shadow-sm border border-gray-200 group">
+                 <summary className="font-bold text-primary p-5 cursor-pointer list-none flex justify-between items-center group-open:text-secondary transition-colors">
+                   {item.q}
+                   <ChevronDown className="transition-transform group-open:rotate-180" size={20}/>
+                 </summary>
+                 <div className="px-5 pb-5 text-gray-600 text-sm border-t border-gray-100 pt-3">
+                   {item.a}
+                 </div>
+               </details>
+             ))}
+           </div>
+        </div>
       </section>
+
+      {/* SEÇÃO 12: PRÓXIMOS PASSOS */}
+      <section id="proximos" className="py-16 bg-white border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-heading font-bold text-primary">Próximos Passos</h2>
+            <p className="text-gray-600 mt-2">O que fazer agora?</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { title: "Reúna Documentos", text: "Coloque todos os documentos relevantes em ordem cronológica." },
+              { title: "Descreva a Situação", text: "Escreva o que está acontecendo e liste suas dúvidas." },
+              { title: "Fale Conosco", text: "Agende uma consulta inicial gratuita para análise." },
+              { title: "Inicie o Processo", text: "Começamos a trabalhar no seu caso para buscar o melhor resultado." }
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
+                <div className="w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center font-bold mx-auto mb-3">{i+1}</div>
+                <h3 className="font-bold text-primary mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="py-20 bg-primary text-white text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-heading font-bold mb-6">Não deixe para depois</h2>
+          <p className="text-xl text-gray-200 mb-10">
+            Quanto mais cedo você buscar orientação, melhor será o resultado. Estamos prontos para ajudar.
+          </p>
+          <a 
+            href={getWhatsappLink()}
+            className="inline-block bg-whatsapp hover:bg-green-600 text-white font-bold py-4 px-12 rounded-md text-lg shadow-2xl transition-transform hover:scale-105"
+          >
+            FALAR COM UM DE NOSSOS ESPECIALISTAS
+          </a>
+        </div>
+      </section>
+
+      {/* RODAPÉ DA PÁGINA (Informações Legais) */}
+      <div className="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <div className="max-w-4xl mx-auto px-4 space-y-2">
+          <p><strong>Aviso Importante:</strong> Esta página contém informações educativas sobre Direito Civil. Cada caso é único e requer análise individual.</p>
+          <p>Conforme Provimento 205/2021 da OAB | Baseado em legislação vigente</p>
+          <p>Atualizado com mudanças de 2026 | Sem promessas de resultados</p>
+        </div>
+      </div>
 
     </div>
   );
